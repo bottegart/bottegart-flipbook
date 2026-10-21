@@ -205,6 +205,12 @@ import os
 os.makedirs('../docs', exist_ok=True)
 open('../docs/index.html', 'w', encoding='utf-8').write(HTML)
 open('../docs/.nojekyll', 'w').close()
+# sezione "La nostra libreria" per la homepage del sito (Flazio, componente Codici), con i numeri aggiornati
+SEZ = open('sezione_template.html', encoding='utf-8').read()
+for k, v in {"__N_LIBRI__": len(books), "__N_EDITORI__": len({b["p"] for b in books}), "__N_CAA__": sum(b["caa"] for b in books),
+             "__N_FASCE__": len({b["f"] for b in books})}.items():
+    SEZ = SEZ.replace(k, str(v))
+open('../docs/sezione-libreria.html', 'w', encoding='utf-8').write(SEZ)
 # elenco definitivo dei libri del flipbook, usato da aggiorna_excel.py
 _EMB = {b["isbn"] for b in books if b["isbn"] in COV} | {k[2:] for k in COV if k.startswith("t:")}
 json.dump([dict(fascia=LABEL.get(b["f"], b["f"]), editore=b["p"], titolo=b["t"], autore=b["a"], eta=b["e"], prezzo=b["pr"], isbn=b["isbn"],

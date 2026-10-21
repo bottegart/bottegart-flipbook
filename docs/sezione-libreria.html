@@ -1,0 +1,76 @@
+<!-- ===== Sezione "La nostra libreria" per la homepage di Bottegart (Flazio, componente Codici) =====
+     Copia TUTTO il testo di questo file e incollalo nel componente Codici.
+     Le immagini e il catalogo sono pubblicati su https://bottegart.github.io/bottegart-flipbook/ -->
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Serif:ital@0;1&display=swap");
+#bg-libreria{--ink:#121a26;--mute:#5b6472;--line:#dde1e3;--paper:#fbfbf9;--soft:#eef0ee;--brand:#1f8fd6;
+  font-family:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--paper);
+  box-sizing:border-box;width:100%;overflow:hidden;border-radius:20px;line-height:1.5;-webkit-font-smoothing:antialiased}
+#bg-libreria *{box-sizing:border-box}
+#bg-libreria .bg-wrap{display:grid;grid-template-columns:1fr;gap:28px;padding:clamp(22px,4vw,56px)}
+@media (min-width:900px){#bg-libreria .bg-wrap{grid-template-columns:1.05fr .95fr;align-items:center}}
+#bg-libreria .bg-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 18px}
+#bg-libreria .bg-top img{width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 0 0 1px var(--line)}
+#bg-libreria .bg-top span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:600}
+#bg-libreria h2{margin:0 0 18px;font-size:clamp(40px,7vw,84px);line-height:.9;font-weight:800;letter-spacing:-.045em;font-variation-settings:"opsz" 96}
+#bg-libreria h2 em{display:block;font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.015em;color:var(--brand);font-size:1.12em}
+#bg-libreria p{margin:0 0 14px;font-size:17px;max-width:36em;color:var(--mute)}
+#bg-libreria p b{color:var(--ink);font-weight:600}
+#bg-libreria .bg-verbs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+#bg-libreria .bg-verbs span{border-radius:999px;padding:5px 14px;font-weight:600;font-size:15px;color:#fff}
+#bg-libreria .bg-stats{display:flex;gap:clamp(18px,3vw,34px);flex-wrap:wrap;border-top:1px solid var(--line);padding-top:16px;margin:20px 0 22px}
+#bg-libreria .bg-stats div{display:flex;flex-direction:column}
+#bg-libreria .bg-stats b{font-size:clamp(28px,3.4vw,40px);font-weight:800;line-height:1;letter-spacing:-.03em}
+#bg-libreria .bg-stats span{font-size:13px;color:var(--mute)}
+#bg-libreria .bg-cta{display:flex;gap:10px;flex-wrap:wrap}
+#bg-libreria .bg-btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:15px 26px;font-size:17px;font-weight:700;text-decoration:none;transition:transform .15s ease,filter .15s ease}
+#bg-libreria .bg-btn:hover{transform:translateY(-2px);filter:brightness(1.07)}
+#bg-libreria .bg-btn.bg-main{background:var(--brand);color:#fff;box-shadow:0 10px 24px -10px rgba(31,143,214,.8)}
+#bg-libreria .bg-btn.bg-alt{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+#bg-libreria .bg-btn:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
+#bg-libreria .bg-pic{position:relative;display:block;border-radius:16px;overflow:hidden;background:var(--soft);aspect-ratio:5/4}
+#bg-libreria .bg-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+#bg-libreria .bg-pic:hover img{transform:scale(1.03)}
+#bg-libreria .bg-stripe{position:absolute;right:0;top:0;bottom:0;width:10px;display:flex;flex-direction:column}
+#bg-libreria .bg-stripe i{flex:1}
+#bg-libreria .bg-ilp{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:0 clamp(22px,4vw,56px) clamp(22px,4vw,48px);padding:16px 20px;border-radius:14px;background:var(--soft)}
+#bg-libreria .bg-ilp strong{font-size:18px;color:#d9334a;font-weight:800;letter-spacing:-.01em}
+#bg-libreria .bg-ilp span{font-size:15px;color:var(--mute);flex:1;min-width:220px}
+@media (max-width:600px){#bg-libreria{border-radius:0}#bg-libreria p{font-size:16px}#bg-libreria .bg-btn{width:100%;justify-content:center}}
+@media (prefers-reduced-motion:reduce){#bg-libreria .bg-btn,#bg-libreria .bg-pic img{transition:none}}
+</style>
+<section id="bg-libreria" aria-labelledby="bg-libreria-titolo">
+  <div class="bg-wrap">
+    <div>
+      <div class="bg-top">
+        <img src="https://bottegart.github.io/bottegart-flipbook/logo-bottegart.png" alt="Associazione Bottegart">
+        <img src="https://bottegart.github.io/bottegart-flipbook/logo-sostare.png" alt="So’Stare, microeditoria del borgo consapevole">
+        <span>Associazione Bottegart · So’Stare</span>
+      </div>
+      <h2 id="bg-libreria-titolo">La nostra <em>libreria</em></h2>
+      <div class="bg-verbs">
+        <span style="background:#ee4a5f">divertirsi</span><span style="background:#f2b705;color:#121a26">innamorarsi</span><span style="background:#3dae5a">comprendere</span><span style="background:#4a5fc1">riflettere</span>
+      </div>
+      <p>Scegliamo libri di <b>case editrici indipendenti</b> per bambine, bambini e ragazzi. Tanti titoli sono in <b>CAA</b>, con il testo accompagnato da simboli, e molti parlano di <b>inclusione, ambiente, diritti</b> e di come si cresce insieme.</p>
+      <p>Per le scuole abbiamo preparato un <b>catalogo da sfogliare online</b>, diviso per età: le insegnanti scelgono i libri, compilano la lista desiderata e ce la mandano con un clic.</p>
+      <div class="bg-stats">
+        <div><b>363</b><span>libri</span></div>
+        <div><b>19</b><span>case editrici</span></div>
+        <div><b>35</b><span>in CAA</span></div>
+        <div><b>8</b><span>fasce d’età</span></div>
+      </div>
+      <div class="bg-cta">
+        <a class="bg-btn bg-main" href="https://bottegart.github.io/bottegart-flipbook/" target="_blank" rel="noopener">Sfoglia il catalogo →</a>
+        <a class="bg-btn bg-alt" href="mailto:bottegart@gmail.com">Scrivici</a>
+      </div>
+    </div>
+    <a class="bg-pic" href="https://bottegart.github.io/bottegart-flipbook/" target="_blank" rel="noopener" aria-label="Sfoglia il catalogo Libri per crescere">
+      <img src="https://bottegart.github.io/bottegart-flipbook/copertine.jpg" alt="Copertine di alcuni libri del catalogo" loading="lazy">
+      <span class="bg-stripe" aria-hidden="true"><i style="background:#ee4a5f"></i><i style="background:#f07a2a"></i><i style="background:#f2b705"></i><i style="background:#3dae5a"></i><i style="background:#1f9d8b"></i><i style="background:#1f8fd6"></i><i style="background:#4a5fc1"></i><i style="background:#9b3fa0"></i></span>
+    </a>
+  </div>
+  <div class="bg-ilp">
+    <strong>#ioleggoperché</strong>
+    <span>Dal 7 al 15 novembre 2026 la nostra libreria partecipa a #ioleggoperché: gemellate la vostra scuola con noi per far crescere la biblioteca scolastica.</span>
+  </div>
+</section>
