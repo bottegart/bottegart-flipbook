@@ -734,6 +734,34 @@ def _insel(r):
     return "Sì" if _nn(r[1]) in SELECT[r[0]] else "No"
 for _r in R: _r.append(_insel(_r))
 
+# --- correzioni e dati trovati in rete (IBS, siti degli editori, Bottegart): vedi dati_web.json
+# Le stesse correzioni le applica make_flipbook.py, così Excel e flipbook dicono la stessa cosa.
+_WEB = json.load(open('dati_web.json', encoding='utf-8'))
+_fx = lambda x: x.replace("'", "’") if isinstance(x, str) else x
+for _r in R:
+    _k = (_r[0], _r[1])
+    _w = _WEB.get(_fx(_r[0]) + '|' + _fx(_r[1]))
+    if not _w or _w.get("sostituisci"): continue
+    if _w.get("rimuovi"):
+        _r[11] = "No"
+        _r[9] = "Tolto: " + _w.get("motivo", "")
+        continue
+    _src = _w.get("fonte") or _w.get("fonte_eta") or ""
+    if _w.get("autore_corretto"): _r[2] = _w["autore_corretto"]
+    elif _w.get("autore") and _r[2] in ("", "n.d.", "—", None): _r[2] = _w["autore"]
+    _eta = _w.get("eta_corretta") or (_w.get("eta") if _r[4] in ("", "n.d.", "—", None) or str(_r[4]).startswith("n.d") else None)
+    if _eta:
+        _r[4] = _eta
+        _r[9] = "Verificata (" + ("Bottegart" if _w.get("fonte_eta") else "IBS / editore") + ")"
+    if _w.get("fascia_corretta"): _r[5] = _w["fascia_corretta"]
+    elif _w.get("fascia") and _r[5] == FN: _r[5] = _w["fascia"]
+    _i = _w.get("isbn_corretto") or (_w.get("isbn") if not ISBNS.get(_k) else None)
+    if _i: ISBNS[_k] = _i
+    if _w.get("prezzo_corretto") is not None:
+        PRICES[_k] = (_w["prezzo_corretto"], _w.get("fonte_prezzo") or _src)
+    elif _w.get("prezzo") is not None and PRICES.get(_k, (None,))[0] is None:
+        PRICES[_k] = (_w["prezzo"], _w.get("fonte_prezzo") or _src)
+
 def etichette(r):
     tags = []
     if TAGF[r[5]]: tags.append(TAGF[r[5]])

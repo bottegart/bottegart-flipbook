@@ -7,7 +7,8 @@ Il catalogo completo vive nell'Excel; nel flipbook entra solo una SELEZIONE (cir
 
 ## Pipeline (da eseguire dalla radice del progetto)
 1. `python build_xlsx.py`  -> output/catalogo_case_editrici_indipendenti.xlsx (+ isbn.json)
-2. `python make_flipbook.py` -> output/flipbook_bottegart.html (usa covers.json e flip_template.html)
+2. `python make_flipbook.py` -> output/flipbook_bottegart.html (usa covers.json, dati_web.json e flip_template.html)
+3. `python aggiorna_excel.py` -> foglio "Flipbook" nel catalogo + output/da_completare_per_editore.xlsx aggiornato
 Le formule dell'Excel si ricalcolano aprendo il file (o con LibreOffice headless).
 
 ## File principali
@@ -16,6 +17,7 @@ Le formule dell'Excel si ricalcolano aprendo il file (o con LibreOffice headless
 - make_flipbook.py: legge l'Excel (foglio "Tutti i titoli", colonna "Nel flipbook" = Sì) e produce l'HTML.
 - flip_template.html: copertina, pagine (>=4 libri per pagina), indice, scheda desiderata. I dati dei libri sono nel blocco "DATI DEI LIBRI" dell'HTML generato.
 - *_data.py / uo_cat.py: dati estratti dai cataloghi (prezzi, età, ISBN, sinossi) per editore.
+- dati_web.json: dati trovati in rete o forniti da Bottegart (ISBN, età, trame, prezzi, correzioni, righe tolte, serie sostituite da titoli precisi), con la fonte. Lo usano sia build_xlsx.py sia make_flipbook.py.
 - covers.json: copertine in base64 (chiave = ISBN, oppure "t:" + titolo normalizzato). Estratte dai PDF con extract_covers.py.
 - cataloghi/: PDF/Excel/immagini caricati dall'utente (i PDF grandi vanno rimessi qui, vedi README).
 

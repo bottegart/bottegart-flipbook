@@ -36,16 +36,16 @@ Claude Code legge da solo `CLAUDE.md`. Come primo messaggio puoi scrivere:
 1. Metti il catalogo (PDF/Excel/ZIP di copertine) in `cataloghi/`.
 2. Scrivi a Claude Code: "Ecco il catalogo di <editore> in `cataloghi/…`. Completa solo i titoli già in selezione: sinossi, prezzo, età, ISBN, copertina."
 3. Claude Code crea o aggiorna un `<editore>_data.py`, lo collega a `build_xlsx.py` e `make_flipbook.py`, estrae le copertine in `covers.json` e controlla a vista un campione.
-4. Rilancia `python build_xlsx.py` e `python make_flipbook.py`.
+4. Rilancia `python build_xlsx.py`, `python make_flipbook.py` e `python aggiorna_excel.py`.
 5. Apri `output/flipbook_bottegart.html` nel browser e controlla (pagine, schede, scheda desiderata).
 Per le età e i testi puoi anche modificare a mano il blocco "DATI DEI LIBRI" nell'HTML (istruzioni in testa al file).
 
 ## 6. Cosa resta da fare (backlog)
-Apri `output/da_completare_per_editore.xlsx`: ha un foglio riepilogo e una riga per ogni dato mancante. In sintesi:
-- Sinossi: Logos (10), BeccoGiallo (14), Camelozampa (7), La Meridiana (9), Lapis (9), effequ (4), People, Cronache Ribelli, Gallucci e pochi altri.
-- Copertine: mancano quasi per tutti, tranne Terre di Mezzo, Corsare, Pelledoca, L'Ippocampo e in parte Uovonero.
-- Prezzi: BeccoGiallo (7), Lapis (10), Camelozampa e pochi altri.
-- Chiedere agli editori: ZIP di copertine, listino prezzi, catalogo completo (la mail modello è nel foglio "Email modello" dell'Excel).
+Apri `output/da_completare_per_editore.xlsx`:
+- "Riepilogo": per ogni casa editrice quanti libri hanno copertina, trama, prezzo ed età (oggi tutti i 363 libri hanno tutto).
+- "Da completare": i dati che mancano (oggi nessuno).
+- "Modifiche": libri tolti, serie sostituite da titoli precisi, correzioni.
+- "Da controllare": i dati presi dalla rete, con la fonte, da verificare a campione prima di mandare il link alle scuole.
 
 ## 7. Pubblicare il flipbook per le insegnanti
 Il flipbook è un solo file HTML con tutto incorporato. Opzioni:

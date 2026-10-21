@@ -197,4 +197,10 @@ for k, v in {"__FASCE__": json.dumps(FL, ensure_ascii=False), "__LIBRI__": "\n".
              "__P2__": rd('poster2'), "__BART__": rd('bartegart'), "__SOSTARE__": rd('sostare'), "__COPERTINE__": json.dumps({**{b["isbn"]: COV[b["isbn"]] for b in books if b["isbn"] in COV}, **{k: v for k, v in COV.items() if k.startswith("t:") and k[2:] in {_mm(x["t"]) for x in books}}})}.items():
     HTML = HTML.replace(k, v)
 open('output/flipbook_bottegart.html', 'w', encoding='utf-8').write(HTML)
+# elenco definitivo dei libri del flipbook, usato da aggiorna_excel.py
+_EMB = {b["isbn"] for b in books if b["isbn"] in COV} | {k[2:] for k in COV if k.startswith("t:")}
+json.dump([dict(fascia=LABEL.get(b["f"], b["f"]), editore=b["p"], titolo=b["t"], autore=b["a"], eta=b["e"], prezzo=b["pr"], isbn=b["isbn"],
+                caa=b["caa"], collana=b["c"], temi=b["th"], sinossi=b["s"], copertina=(b["isbn"] in _EMB or _mm(b["t"]) in _EMB),
+                web=WEB.get(b["p"] + '|' + b["t"], {})) for b in books],
+          open('output/libri_flipbook.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
 print(len(books), "libri;", len(HTML) // 1024, "KB")
