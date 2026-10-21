@@ -196,7 +196,15 @@ HTML = HTML.replace("__FONTCSS__", FONTCSS)
 for k, v in {"__FASCE__": json.dumps(FL, ensure_ascii=False), "__LIBRI__": "\n".join(lines), "__P1__": rd('poster1'),
              "__P2__": rd('poster2'), "__BART__": rd('bartegart'), "__SOSTARE__": rd('sostare'), "__COPERTINE__": json.dumps({**{b["isbn"]: COV[b["isbn"]] for b in books if b["isbn"] in COV}, **{k: v for k, v in COV.items() if k.startswith("t:") and k[2:] in {_mm(x["t"]) for x in books}}})}.items():
     HTML = HTML.replace(k, v)
+# indirizzo pubblico del flipbook (GitHub Pages): serve per l’anteprima nei messaggi
+URL = "https://bottegart.github.io/bottegart-flipbook/"
+HTML = HTML.replace("__URL__", URL)
 open('output/flipbook_bottegart.html', 'w', encoding='utf-8').write(HTML)
+# copia per la pubblicazione online (cartella docs/ del repository, servita da GitHub Pages)
+import os
+os.makedirs('../docs', exist_ok=True)
+open('../docs/index.html', 'w', encoding='utf-8').write(HTML)
+open('../docs/.nojekyll', 'w').close()
 # elenco definitivo dei libri del flipbook, usato da aggiorna_excel.py
 _EMB = {b["isbn"] for b in books if b["isbn"] in COV} | {k[2:] for k in COV if k.startswith("t:")}
 json.dump([dict(fascia=LABEL.get(b["f"], b["f"]), editore=b["p"], titolo=b["t"], autore=b["a"], eta=b["e"], prezzo=b["pr"], isbn=b["isbn"],
