@@ -153,6 +153,13 @@ for b in books:
 COV = json.load(open('covers.json'))
 rd = lambda n: open(f'assets/{n}.b64').read()
 HTML = open('flip_template.html', encoding='utf-8').read()
+import base64 as _b64
+FONTS = [("Bricolage Grotesque", "normal", "200 800", "BricolageGrotesque-normal"),
+         ("Instrument Serif", "normal", "400", "InstrumentSerif-normal"),
+         ("Instrument Serif", "italic", "400", "InstrumentSerif-italic")]
+FONTCSS = "\n".join("@font-face{font-family:'%s';font-style:%s;font-weight:%s;font-display:swap;src:url(data:font/woff2;base64,%s) format('woff2')}"
+                    % (fam, st, w, _b64.b64encode(open(f'assets/fonts/{fn}.woff2', 'rb').read()).decode()) for fam, st, w, fn in FONTS)
+HTML = HTML.replace("__FONTCSS__", FONTCSS)
 for k, v in {"__FASCE__": json.dumps(FL, ensure_ascii=False), "__LIBRI__": "\n".join(lines), "__P1__": rd('poster1'),
              "__P2__": rd('poster2'), "__BART__": rd('bartegart'), "__SOSTARE__": rd('sostare'), "__COPERTINE__": json.dumps({**{b["isbn"]: COV[b["isbn"]] for b in books if b["isbn"] in COV}, **{k: v for k, v in COV.items() if k.startswith("t:")}})}.items():
     HTML = HTML.replace(k, v)
