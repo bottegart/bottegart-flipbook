@@ -1,0 +1,4 @@
+openpyxl
+pymupdf
+pillow
+pdfplumber

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Libri per crescere: il flipbook di Bottegart</title>
+<style>
+:root{--bg:#efe6d6;--paper:#fffaf0;--ink:#2b2118;--mute:#6f6254;--line:#dccfb8;--accent:#b4482c;--accent-ink:#fff;--chip:#f3e7cf;--ok:#2f7a4d;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1612;--paper:#262019;--ink:#f1e8d8;--mute:#b3a592;--line:#43392d;--accent:#e0795c;--accent-ink:#1b1612;--chip:#35291d;--ok:#6fcf97}}
+:root[data-theme="dark"]{--bg:#1b1612;--paper:#262019;--ink:#f1e8d8;--mute:#b3a592;--line:#43392d;--accent:#e0795c;--accent-ink:#1b1612;--chip:#35291d;--ok:#6fcf97}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.45;min-height:100vh}
+button,input,textarea{font:inherit;color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:12px 12px 96px}
+.stage{perspective:1600px}
+.page{background:var(--paper);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.18),inset 0 0 0 6px var(--paper);padding:18px 18px 22px;min-height:70vh;transition:transform .22s ease,opacity .22s ease}
+.out-n{transform:rotateY(-60deg);transform-origin:left center;opacity:0}
+.out-p{transform:rotateY(60deg);transform-origin:right center;opacity:0}
+@keyframes inn{from{transform:rotateY(55deg);transform-origin:right center;opacity:0}to{transform:none;opacity:1}}
+@keyframes inp{from{transform:rotateY(-55deg);transform-origin:left center;opacity:0}to{transform:none;opacity:1}}
+.in-n{animation:inn .26s ease}.in-p{animation:inp .26s ease}
+@media (prefers-reduced-motion:reduce){.page{transition:none}.in-n,.in-p{animation:none}}
+h1,h2,h3{font-weight:700;margin:0}
+.pagehead{display:flex;justify-content:space-between;align-items:baseline;gap:8px;border-bottom:2px solid var(--accent);padding-bottom:8px;margin-bottom:14px;flex-wrap:wrap}
+.pagehead h2{font-size:1.5rem}.pagehead span{color:var(--mute);font-size:.9rem}
+.grid{display:grid;grid-template-columns:1fr;gap:14px}
+@media (min-width:760px){.grid{grid-template-columns:1fr 1fr}}
+.card{display:flex;gap:12px;border:1px solid var(--line);border-radius:8px;padding:10px;background:var(--paper)}
+.cover{flex:0 0 104px;height:156px;border-radius:3px 6px 6px 3px;padding:8px 7px;display:flex;flex-direction:column;justify-content:space-between;color:#fff;box-shadow:3px 3px 8px rgba(0,0,0,.3),inset 4px 0 0 rgba(0,0,0,.18);overflow:hidden;text-align:center}
+.cover{position:relative}.cimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;background:#fff}.cover b{font-size:.74rem;line-height:1.15;word-break:break-word}.cover i{font-size:.58rem;opacity:.85;font-style:normal;letter-spacing:.04em;text-transform:uppercase}
+.cover u{font-size:.5rem;text-decoration:none;opacity:.7}
+.info{min-width:0;display:flex;flex-direction:column;gap:3px}
+.info h3{font-size:1.02rem;line-height:1.2}
+.meta{font-size:.84rem;color:var(--mute)}
+.syn{font-size:.9rem;margin:4px 0}.det{list-style:none;margin:2px 0 6px;padding:0;font-size:.8rem;color:var(--mute)}.det li{margin:1px 0}.det b{color:var(--ink)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;flex-wrap:wrap}
+.price{font-weight:700}.price.none{font-weight:400;color:var(--mute);font-size:.84rem}
+.chip{display:inline-block;background:var(--chip);border-radius:20px;padding:1px 9px;font-size:.74rem;margin-right:4px}
+.btn{background:var(--accent);color:var(--accent-ink);border:0;border-radius:20px;padding:7px 14px;cursor:pointer;font-size:.88rem}
+.btn.alt{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.added{background:var(--ok);color:#fff}
+.btn:focus-visible,input:focus-visible,textarea:focus-visible,.nav button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.nav{position:fixed;left:0;right:0;bottom:0;background:var(--paper);border-top:1px solid var(--line);display:flex;justify-content:center;align-items:center;gap:8px;padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));z-index:5;flex-wrap:wrap}
+.nav button{background:var(--chip);border:1px solid var(--line);border-radius:20px;padding:7px 14px;cursor:pointer}
+.nav .cnt{min-width:76px;text-align:center;color:var(--mute);font-size:.9rem}
+.badge{background:var(--accent);color:var(--accent-ink);border-radius:20px;padding:0 7px;margin-left:5px;font-size:.78rem}
+.center{text-align:center}
+.coverpg{display:flex;flex-direction:column;justify-content:space-between;gap:14px;min-height:78vh;text-align:center}
+.coverpg h1{font-size:clamp(1.45rem,4.4vw,2.7rem);line-height:1.15;margin:4px auto 12px;max-width:760px}
+.ctext{display:flex;flex-direction:column;align-items:center;gap:10px}.ctext p{max-width:600px;color:var(--mute);margin:0}
+.crow{display:flex;align-items:flex-end}.crow.top{justify-content:flex-end}.crow.bot{justify-content:space-between;gap:10px}
+.poster{--flap:#f3ead6;position:relative;filter:drop-shadow(4px 5px 4px rgba(0,0,0,.32))}
+.poster img{display:block;width:100%;height:auto;clip-path:polygon(20px 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%,0 20px)}
+.poster::before,.poster::after{content:"";position:absolute;width:20px;height:20px}
+.poster::before{left:0;top:0;background:linear-gradient(135deg,transparent 50%,var(--flap) 50%)}
+.poster::after{right:0;bottom:0;background:linear-gradient(315deg,transparent 50%,var(--flap) 50%)}
+.p1{width:clamp(130px,22vw,215px);transform:rotate(2.2deg)}.p2{width:clamp(118px,18vw,170px);transform:rotate(-2deg)}
+.logos{display:flex;gap:12px;align-items:center;justify-content:center;flex:1;padding-bottom:6px}
+.logos img{width:clamp(62px,13vw,98px);height:auto;border-radius:50%;background:#fff;box-shadow:0 1px 5px rgba(0,0,0,.25)}
+.spacer{width:clamp(118px,18vw,170px);flex:none}
+.idx{list-style:none;padding:0;margin:12px 0;display:grid;gap:8px}
+.idx button{width:100%;display:flex;justify-content:space-between;background:var(--chip);border:1px solid var(--line);border-radius:8px;padding:10px 14px;cursor:pointer;text-align:left}
+.note{font-size:.82rem;color:var(--mute);margin-top:14px}
+.form{display:grid;gap:10px}
+.form label{display:grid;gap:3px;font-size:.88rem;color:var(--mute)}
+.form input,.form textarea{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px}
+.two{display:grid;gap:10px;grid-template-columns:1fr}@media (min-width:700px){.two{grid-template-columns:1fr 1fr}}
+.wl{display:grid;gap:8px}
+.wi{display:grid;grid-template-columns:1fr 64px;gap:6px 8px;border:1px solid var(--line);border-radius:8px;padding:8px;align-items:center}
+.wi .t{grid-column:1/2;font-weight:700}.wi input{width:100%}.wi .n{grid-column:1/3}
+.wi .x{grid-column:2/3;grid-row:1/2;justify-self:end;background:none;border:0;color:var(--accent);cursor:pointer;font-size:.84rem}
+.wi .q{grid-column:2/3;grid-row:2/3}
+.acts{display:flex;gap:8px;flex-wrap:wrap}
+textarea.out{min-height:200px;width:100%;font-size:.88rem}
+.warn{color:var(--accent);font-size:.84rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="stage"><div id="page" class="page" aria-live="polite"></div></div>
+</div>
+<div class="nav">
+  <button id="prev" aria-label="Pagina precedente">‹ Indietro</button>
+  <span class="cnt" id="cnt"></span>
+  <button id="next" aria-label="Pagina successiva">Avanti ›</button>
+  <button id="goidx">Indice</button>
+  <button id="gowish">Desiderata<span class="badge" id="badge">0</span></button>
+</div>
+<!--
+=====================  COME MODIFICARE QUESTO FILE  =====================
+Apri questo file HTML con un editor di testo (Blocco note, VS Code…).
+Cerca il blocco "DATI DEI LIBRI" qui sotto: ogni libro è su UNA riga.
+- "fascia": decide in quale sezione/pagina compare il libro. Deve essere uno dei valori
+  elencati in FASCE (puoi anche aggiungerne di nuovi: le pagine si creano da sole).
+- "eta": testo mostrato sulla scheda (es. "5-7 anni").
+- "prezzo": numero con il punto (es. 16.5) oppure null per "Prezzo su richiesta".
+- "sinossi": il testo che leggono le insegnanti. Quando lo hai verificato metti "verificata": true.
+- "isbn" e "copertina": la copertina si mostra se il libro ha una copertina incorporata (blocco "copertine") oppure, se COPERTINE_ONLINE è true, scaricandola da internet con l’ISBN.
+  Per usare una tua immagine scrivi l’indirizzo (https://…) in "copertina".
+- Per spostare un libro di età basta cambiare "fascia". Per cancellarlo togli la riga.
+Mantieni le virgolette e la virgola alla fine di ogni riga (tranne l’ultima).
+=========================================================================
+-->
+<script id="dati-modificabili">
+// ---------- FASCE D'ETÀ (ordine delle sezioni) ----------
+var FASCE = __FASCE__;
+// true = per i libri senza copertina incorporata prova a caricarla da internet (funziona solo se il file è ospitato/aperto fuori dall’anteprima Claude)
+var COPERTINE_ONLINE = true;
+// ---------- DATI DEI LIBRI ----------
+var LIBRI = [
+__LIBRI__
+];
+</script>
+<script id="immagini">
+var IMG={p1:"__P1__",p2:"__P2__",bart:"__BART__",sostare:"__SOSTARE__"};
+</script>
+<script id="copertine">
+var COPERTINE=__COPERTINE__;
+</script>
+<script>
+function nrmjs(s){return String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]/g,"");}
+var B=LIBRI.map(function(x,i){return {id:i,t:x.titolo,a:x.autore,p:x.editore,f:x.fascia,s:x.sinossi,real:x.verificata,pr:x.prezzo,caa:x.caa,e:x.eta,g:x.tipo,c:x.collana,th:x.temi,acc:x.accessibilita,img:(x.copertina||COPERTINE[x.isbn]||COPERTINE["t:"+nrmjs(x.titolo)]||((COPERTINE_ONLINE&&x.isbn)?"https://www.ibs.it/images/"+x.isbn+"_0_0_150_0_75.jpg":""))};});
+B.forEach(function(b){if(FASCE.indexOf(b.f)<0)FASCE.push(b.f);});
+var P=[],AGES=[];
+FASCE.forEach(function(f){var ids=[];B.forEach(function(b){if(b.f===f)ids.push(b.id);});if(!ids.length)return;
+  var n=ids.length,k=Math.max(1,Math.floor(n/4)),base=Math.floor(n/k),extra=n%k,i=0;AGES.push({name:f,first:P.length,tot:n});
+  for(var j=0;j<k;j++){var size=base+(j<extra?1:0);P.push({type:"books",age:f,ids:ids.slice(i,i+size)});i+=size;}});
+var PAGES=[{type:"cover"},{type:"index"}].concat(P).concat([{type:"wish"}]);
+var cur=0,wish={},custom=[],info={name:"",school:"",email:"",msg:""},edited=false;
+var PAL=[["#b4482c","#7a2a16"],["#2f6f8f","#1b3f55"],["#6a8f3a","#3b5a1f"],["#8a4f9e","#52295f"],["#c08a1e","#7d5608"],["#2e8b7a","#175046"],["#b03a5b","#6c1d35"],["#4d5aa8","#2b3270"]];
+try{var sv=JSON.parse(localStorage.getItem("bottegart_wish")||"null");if(sv){wish=sv.wish||{};custom=sv.custom||[];info=sv.info||info;}}catch(e){}
+function save(){try{localStorage.setItem("bottegart_wish",JSON.stringify({wish:wish,custom:custom,info:info}));}catch(e){}}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]});}
+function hash(s){var h=0;for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))>>>0;return h;}
+function money(v){return "€ "+v.toFixed(2).replace(".",",");}
+function count(){var n=0;for(var k in wish)n++;return n+custom.length;}
+function badge(){document.getElementById("badge").textContent=count();}
+function card(b){
+  var c=PAL[hash(b.p)%PAL.length];
+  var cover='<div class="cover" style="background:linear-gradient(160deg,'+c[0]+','+c[1]+')"><i>'+esc(b.p)+'</i><b>'+esc(b.t)+'</b><u>'+(b.caa?"CAA · ":"")+'copertina provvisoria</u>'+(b.img?'<img class="cimg" src="'+esc(b.img)+'" alt="Copertina di '+esc(b.t)+'" loading="lazy" onerror="this.style.display=\'none\'">':'')+'</div>';
+  var price=b.pr!=null?'<span class="price">'+money(b.pr)+'</span>':'<span class="price none">Prezzo su richiesta</span>';
+  var on=!!wish[b.id];
+  var det='<ul class="det">'+(b.g?'<li><b>Tipo:</b> '+esc(b.g)+'</li>':'')+(b.e?'<li><b>Età:</b> '+esc(b.e)+'</li>':'')+(b.c?'<li><b>Collana:</b> '+esc(b.c)+'</li>':'')+(b.th?'<li><b>Temi:</b> '+esc(b.th)+'</li>':'')+(b.acc?'<li><b>Accessibilità:</b> '+esc(b.acc)+'</li>':'')+'</ul>';
+  return '<article class="card">'+cover+'<div class="info"><h3>'+esc(b.t)+'</h3><div class="meta">'+(b.a?esc(b.a):"Autore da verificare")+' · <em>'+esc(b.p)+'</em></div>'+
+    '<p class="syn">'+esc(b.s)+(b.real?'':' <span class="meta">(scheda sintetica: trama completa in arrivo)</span>')+'</p>'+det+
+    '<div class="row">'+price+'<button class="btn'+(on?' added':'')+'" data-id="'+b.id+'">'+(on?'✓ Aggiunto':'+ Desiderata')+'</button></div></div></article>';
+}
+function build(i){
+  var p=PAGES[i];
+  if(p.type==="cover")return '<div class="coverpg"><div class="crow top"><div class="poster p1"><img src="'+IMG.p1+'" alt="Locandina #ioleggoperché: dona un libro a una scuola dal 7 al 15 novembre"></div></div>'+
+    '<div class="ctext"><h1>Libri per divertirsi, innamorarsi, comprendere, riflettere… Libri per crescere</h1><p>Il catalogo dell’Associazione Bottegart e della sua microlibreria So’Stare è pensato per le/gli insegnanti: libri di case editrici indipendenti divisi per età, con tanti titoli in CAA e sui temi sociali.</p><p>Sfoglia con le frecce, scegli i libri con “+ Desiderata” e invia la tua lista a Bottegart dall’ultima pagina.</p><button class="btn" id="start">Inizia a sfogliare ›</button></div>'+
+    '<div class="crow bot"><div class="poster p2"><img src="'+IMG.p2+'" alt="Locandina #ioleggoperché: la nostra libreria è iscritta, gemellatevi con noi"></div><div class="logos"><img src="'+IMG.bart+'" alt="Logo Associazione Bottegart"><img src="'+IMG.sostare+'" alt="Logo So’Stare, microeditoria del borgo consapevole"></div><div class="spacer"></div></div></div>';
+  if(p.type==="index"){
+    var h='<div class="pagehead"><h2>Indice per età</h2><span>'+B.length+' libri</span></div><ul class="idx">';
+    AGES.forEach(function(a){h+='<li><button data-go="'+(a.first+2)+'"><span>'+esc(a.name)+'</span><span>'+a.tot+' libri · da pag. '+(a.first+3)+'</span></button></li>';});
+    h+='<li><button data-go="'+(PAGES.length-1)+'"><span>Scheda desiderata da inviare a Bottegart</span><span>pag. '+PAGES.length+'</span></button></li></ul>';
+    h+='<p class="note">Le copertine sono segnaposto grafici provvisori. Dove il prezzo non è indicato, lo comunicheremo al momento dell’ordine. Per i libri Uovonero trame e prezzi vengono dal catalogo 2026; per gli altri la scheda è sintetica e verrà completata.</p>';
+    return h;
+  }
+  if(p.type==="books"){
+    var g='<div class="pagehead"><h2>'+esc(p.age)+'</h2><span>pagina '+(i+1)+' di '+PAGES.length+'</span></div><div class="grid">';
+    p.ids.forEach(function(id){g+=card(B[id]);});
+    return g+'</div>';
+  }
+  return wishPage();
+}
+function listHtml(){
+  var h="";
+  Object.keys(wish).forEach(function(id){var b=B[id],w=wish[id];h+='<div class="wi"><div class="t">'+esc(b.t)+' <span class="meta">· '+esc(b.p)+'</span></div><button class="x" data-rm="'+id+'">Rimuovi</button><input class="n" data-note="'+id+'" placeholder="Nota (es. classe, quante copie per la biblioteca…)" value="'+esc(w.note||"")+'"><input class="q" type="number" min="1" data-qty="'+id+'" value="'+(w.qty||1)+'" aria-label="Copie"></div>';});
+  custom.forEach(function(c,k){h+='<div class="wi"><div class="t">'+esc(c.title)+' <span class="meta">· '+esc(c.pub||"editore da indicare")+' · titolo aggiunto da te</span></div><button class="x" data-rmc="'+k+'">Rimuovi</button><input class="q" type="number" min="1" data-cq="'+k+'" value="'+(c.qty||1)+'" aria-label="Copie"></div>';});
+  return h||'<p class="meta">Non hai ancora scelto nessun libro. Torna alle pagine e premi “+ Desiderata”, oppure aggiungi un titolo qui sotto.</p>';
+}
+function compose(){
+  var L=["Gentile Bottegart,","","vorrei segnalarvi la mia lista di libri desiderati.",""];
+  Object.keys(wish).forEach(function(id){var b=B[id],w=wish[id];L.push("- "+b.t+" ("+(b.a||"autore n.d.")+", "+b.p+") × "+(w.qty||1)+(b.pr!=null?" – "+money(b.pr):"")+(w.note?" – nota: "+w.note:""));});
+  custom.forEach(function(c){L.push("- "+c.title+" ("+(c.pub||"editore n.d.")+") × "+(c.qty||1)+" – titolo aggiunto da me");});
+  if(!count())L.push("(nessun libro selezionato)");
+  L.push("");if(info.msg)L.push(info.msg,"");
+  L.push("Grazie e a presto,",(info.name||"[nome e cognome]"),(info.school||"[scuola / classe]"),(info.email||""));
+  return L.join("\n");
+}
+function wishPage(){
+  return '<div class="pagehead"><h2>La tua lista desiderata</h2><span>modificabile prima dell’invio</span></div><div class="form">'+
+  '<div class="two"><label>Nome e cognome<input id="f-name" value="'+esc(info.name)+'"></label><label>Scuola e classe<input id="f-school" value="'+esc(info.school)+'"></label></div>'+
+  '<label>La tua email (per ricontattarti)<input id="f-email" type="email" value="'+esc(info.email)+'"></label>'+
+  '<h3 style="margin-top:6px">Libri scelti</h3><div class="wl" id="wl">'+listHtml()+'</div>'+
+  '<h3 style="margin-top:6px">Aggiungi un titolo non presente</h3><div class="two"><label>Titolo<input id="c-t"></label><label>Casa editrice (facoltativo)<input id="c-p"></label></div><div><button class="btn alt" id="c-add">+ Aggiungi alla lista</button></div>'+
+  '<label>Messaggio per Bottegart (facoltativo)<textarea id="f-msg" rows="3">'+esc(info.msg)+'</textarea></label>'+
+  '<h3 style="margin-top:6px">Testo dell’email (puoi modificarlo)</h3><textarea class="out" id="out">'+esc(compose())+'</textarea>'+
+  '<div class="acts"><button class="btn" id="send">Invia a bottegart@gmail.com</button><button class="btn alt" id="copy">Copia il testo</button><button class="btn alt" id="clear">Svuota la lista</button></div>'+
+  '<p class="note" id="sm">Il pulsante “Invia” apre il tuo programma di posta con il testo già pronto: devi premere Invia nella mail. Se non si apre, usa “Copia il testo” e scrivi a bottegart@gmail.com.</p></div>';
+}
+function refreshOut(){var o=document.getElementById("out");if(o){o.value=compose();}}
+function render(i,dir){
+  var el=document.getElementById("page");
+  function put(){el.innerHTML=build(i);el.className="page "+(dir?(dir>0?"in-n":"in-p"):"");cur=i;wire();window.scrollTo(0,0);
+    document.getElementById("cnt").textContent=(i+1)+" / "+PAGES.length;
+    document.getElementById("prev").disabled=i===0;document.getElementById("next").disabled=i===PAGES.length-1;badge();}
+  if(dir&&!window.matchMedia("(prefers-reduced-motion: reduce)").matches){el.className="page "+(dir>0?"out-n":"out-p");setTimeout(put,200);}else put();
+}
+function go(i){i=Math.max(0,Math.min(PAGES.length-1,i));if(i===cur)return;render(i,i>cur?1:-1);}
+function wire(){
+  var el=document.getElementById("page");
+  el.querySelectorAll("[data-id]").forEach(function(b){b.onclick=function(){var id=b.getAttribute("data-id");if(wish[id]){delete wish[id];b.className="btn";b.textContent="+ Desiderata";}else{wish[id]={qty:1,note:""};b.className="btn added";b.textContent="✓ Aggiunto";}save();badge();};});
+  el.querySelectorAll("[data-go]").forEach(function(b){b.onclick=function(){go(parseInt(b.getAttribute("data-go"),10));};});
+  var s=document.getElementById("start");if(s)s.onclick=function(){go(1);};
+  if(PAGES[cur].type!=="wish")return;
+  function bind(id,key){var f=document.getElementById(id);f.oninput=function(){info[key]=f.value;save();refreshOut();};}
+  bind("f-name","name");bind("f-school","school");bind("f-email","email");bind("f-msg","msg");
+  function rewire(){document.getElementById("wl").innerHTML=listHtml();wl();refreshOut();badge();}
+  function wl(){
+    document.querySelectorAll("[data-rm]").forEach(function(b){b.onclick=function(){delete wish[b.getAttribute("data-rm")];save();rewire();};});
+    document.querySelectorAll("[data-rmc]").forEach(function(b){b.onclick=function(){custom.splice(parseInt(b.getAttribute("data-rmc"),10),1);save();rewire();};});
+    document.querySelectorAll("[data-qty]").forEach(function(f){f.oninput=function(){wish[f.getAttribute("data-qty")].qty=Math.max(1,parseInt(f.value,10)||1);save();refreshOut();};});
+    document.querySelectorAll("[data-note]").forEach(function(f){f.oninput=function(){wish[f.getAttribute("data-note")].note=f.value;save();refreshOut();};});
+    document.querySelectorAll("[data-cq]").forEach(function(f){f.oninput=function(){custom[parseInt(f.getAttribute("data-cq"),10)].qty=Math.max(1,parseInt(f.value,10)||1);save();refreshOut();};});
+  }
+  wl();
+  document.getElementById("c-add").onclick=function(){var t=document.getElementById("c-t").value.trim();if(!t)return;custom.push({title:t,pub:document.getElementById("c-p").value.trim(),qty:1});document.getElementById("c-t").value="";document.getElementById("c-p").value="";save();rewire();};
+  document.getElementById("clear").onclick=function(){wish={};custom=[];save();rewire();};
+  document.getElementById("copy").onclick=function(){var t=document.getElementById("out");t.select();var ok=false;try{ok=document.execCommand("copy");}catch(e){}if(!ok&&navigator.clipboard){navigator.clipboard.writeText(t.value);}document.getElementById("sm").textContent="Testo copiato: incollalo in una mail a bottegart@gmail.com.";};
+  document.getElementById("send").onclick=function(){
+    var body=document.getElementById("out").value;var subj="Lista desiderata libri"+(info.school?" – "+info.school:"");
+    var url="mailto:bottegart@gmail.com?subject="+encodeURIComponent(subj)+"&body="+encodeURIComponent(body);
+    var sm=document.getElementById("sm");
+    if(url.length>1900){sm.className="warn";sm.textContent="La lista è lunga: usa “Copia il testo” e incollala in una mail a bottegart@gmail.com.";return;}
+    window.location.href=url;sm.textContent="Se la mail non si è aperta, usa “Copia il testo” e scrivi a bottegart@gmail.com.";
+  };
+}
+document.getElementById("prev").onclick=function(){go(cur-1);};
+document.getElementById("next").onclick=function(){go(cur+1);};
+document.getElementById("goidx").onclick=function(){go(1);};
+document.getElementById("gowish").onclick=function(){go(PAGES.length-1);};
+document.addEventListener("keydown",function(e){var t=e.target.tagName;if(t==="INPUT"||t==="TEXTAREA")return;if(e.key==="ArrowRight")go(cur+1);if(e.key==="ArrowLeft")go(cur-1);});
+var tx=null;
+document.getElementById("page").addEventListener("touchstart",function(e){tx=e.touches[0].clientX;},{passive:true});
+document.getElementById("page").addEventListener("touchend",function(e){if(tx==null)return;var d=e.changedTouches[0].clientX-tx;tx=null;if(Math.abs(d)>70&&PAGES[cur].type!=="wish"){go(d<0?cur+1:cur-1);}},{passive:true});
+render(0,0);
+</script>
+</body>
+</html>

@@ -1,0 +1,742 @@
+[
+ {
+  "p": 4,
+  "titolo": "Come riconoscere una forchetta e molti altri oggetti di casa di Silvia Borando",
+  "eta": "dai 3 anni",
+  "prezzo": "14,90",
+  "pagine": "64",
+  "isbn": "979-12-81054-18-9",
+  "syn": "",
+  "cart": false
+ },
+ {
+  "p": 5,
+  "titolo": "Come riconoscere un innaffiatoio e molti altri oggetti in giardino di Silvia Borando",
+  "eta": "dai 3 anni",
+  "prezzo": "14,90",
+  "pagine": "64",
+  "isbn": "979-12-81054-21-9",
+  "syn": "",
+  "cart": false
+ },
+ {
+  "p": 6,
+  "titolo": "Il cespuglio di Dario Pomodoro, Eva Francescutto e Silvia Borando",
+  "eta": "dai 3 anni",
+  "prezzo": "13,90",
+  "pagine": "44",
+  "isbn": "979-12-81054-19-6",
+  "syn": "",
+  "cart": false
+ },
+ {
+  "p": 7,
+  "titolo": "La gara di canto di Oliver Weiss",
+  "eta": "dai 2 anni",
+  "prezzo": "13,90",
+  "pagine": "24",
+  "isbn": "979-12-81054-20-2",
+  "syn": "",
+  "cart": true
+ },
+ {
+  "p": 8,
+  "titolo": "Ciao, tartaruga! di Kim Crumrine",
+  "eta": "dai 2 anni",
+  "prezzo": "11,90",
+  "pagine": "40",
+  "isbn": "979-12-81054-17-2",
+  "syn": "",
+  "cart": true
+ },
+ {
+  "p": 9,
+  "titolo": "Orso, buco! Ed. cartonata di Nicola Grossi",
+  "eta": "da 1 anno",
+  "prezzo": "10,90",
+  "pagine": "44",
+  "isbn": "979-12-81054-26-4",
+  "syn": "",
+  "cart": true
+ },
+ {
+  "p": 10,
+  "titolo": "Il piccolo fienile rosso di Kim Crumrine",
+  "eta": "da 1 anno",
+  "prezzo": "11,90",
+  "pagine": "36",
+  "isbn": "979-12-81054-03-5",
+  "syn": "per gli animali della fattoria è tempo di andare a dormire nel piccolo fienile rosso. Per primo entra un topo, poi due gatti, tre cani, quattro galline, cinque maiali e... Ma ci staranno tutti? Certo, nessun problema, c’è ancora posto nel piccolo fienile rosso!",
+  "cart": true
+ },
+ {
+  "p": 10,
+  "titolo": "Cerchio al parco di Silvia Borando",
+  "eta": "da 1 anno",
+  "prezzo": "9,90",
+  "pagine": "24",
+  "isbn": "979-12-81054-10-3",
+  "syn": "Un cerchio giallo e la sua giornata al parco: cosa c’è di meglio che fare un picnic sul prato o godersi un bel giro in bicicletta? Voltate le pagine per scoprire quante cose può diventare un piccolo foro rotondo, in questo gioco di osservazione senza parole all’aria aperta!",
+  "cart": true
+ },
+ {
+  "p": 10,
+  "titolo": "Triangolo al circo di Silvia Borando",
+  "eta": "da 1 anno",
+  "prezzo": "9,90",
+  "pagine": "24",
+  "isbn": "979-12-81054-08-0",
+  "syn": "Un triangolo rosso alle prese con il circo: cosa c’è di meglio che finire in un numero di giocoleria o nascondersi nel taschino del prestigiatore? Voltate le pagine per scoprire quante cose può diventare un piccolo foro triangolare, in questo gioco di osservazione senza parole a tema circense.",
+  "cart": true
+ },
+ {
+  "p": 10,
+  "titolo": "Quadrato al mare di Silvia Borando",
+  "eta": "da 1 anno",
+  "prezzo": "9,90",
+  "pagine": "24",
+  "isbn": "979-12-81054-09-7",
+  "syn": "Un quadrato blu e la sua giornata al mare: cosa c’è di meglio che giocare nella sabbia o tuffarsi sott’acqua per vedere da vicino i pesci dei fondali? Voltate le pagine per scoprire quante cose può diventare un piccolo foro quadrato, in questo gioco di osservazione senza parole a tema marino.",
+  "cart": true
+ },
+ {
+  "p": 11,
+  "titolo": "Si vede non si vede di Silvia Borando",
+  "eta": "da 1 anno",
+  "prezzo": "10,90",
+  "pagine": "26",
+  "isbn": "978-88-98177-96-7",
+  "syn": "Guarda bene! Chi si nasconde nel prato? E chi tra i granelli di sabbia? Un invito a giocare con i concetti di visibile e invisibile, trovando gli animali che si mimetizzano di volta in volta nello sfondo colorato.",
+  "cart": true
+ },
+ {
+  "p": 11,
+  "titolo": "Vicino lontano di Silvia Borando",
+  "eta": "da 1 anno",
+  "prezzo": "10,90",
+  "pagine": "40",
+  "isbn": "978-88-98177-95-0",
+  "syn": "Cosa sarà? È il cielo? È una città? Ma no, è un ippopotamo! L’avresti mai detto? Un invito a giocare con i concetti di vicino e lontano, scoprendo nuove figure in un dettaglio ingrandito.",
+  "cart": true
+ },
+ {
+  "p": 11,
+  "titolo": "Chi c’è sotto il cappello? di Elena Galloni",
+  "eta": "da 1 anno",
+  "prezzo": "10,90",
+  "pagine": "18",
+  "isbn": "978-88-98177-92-9",
+  "syn": "Chi c’è sotto il cappello dell’elefante? E sotto quello del polpo? Gli animali di questo libro hanno tutti un copricapo in testa, grande giusto giusto per contenere un altro animale provvisto di cappello a sua volta... Solleva le alette e scopri chi vi si nasconde, e ricorda che sotto un cappello può starci chiunque!",
+  "cart": true
+ },
+ {
+  "p": 11,
+  "titolo": "Apri la gabbia! di Silvia Borando e Lorenzo Clerici",
+  "eta": "da 1 anno",
+  "prezzo": "10,90",
+  "pagine": "22",
+  "isbn": "978-88-98177-91-2",
+  "syn": "Sei animali da far uscire, altrettante gabbie da spalancare. Se non resisti alla tentazione di sapere chi vive lì dentro la soluzione è a portata di mano... Prendi la chiave, apri l’aletta e il gioco è fatto. Attenzione, però: non tutte le gabbie sono uguali!",
+  "cart": true
+ },
+ {
+  "p": 12,
+  "titolo": "Ho un sasso nella scarpa di Silvia Borando",
+  "eta": "da 1 anno",
+  "prezzo": "9,90",
+  "pagine": "24",
+  "isbn": "978-88-98177-83-7",
+  "syn": "Avere un sasso nella scarpa non è mai piacevole, ecco perché i protagonisti di questo libro non sono affatto contenti di trovare il fastidioso intruso dentro le loro calzature! Ma se questo disguido sembra indispettirli tanto, un ultimo personaggio dimostrerà loro come, in fondo, è sempre tutto relativo!",
+  "cart": true
+ },
+ {
+  "p": 12,
+  "titolo": "Ho un buco nel calzino di Silvia Borando",
+  "eta": "da 1 anno",
+  "prezzo": "9,90",
+  "pagine": "24",
+  "isbn": "978-88-98177-82-0",
+  "syn": "I protagonisti di questo libro si trovano alle prese con un problema che li getta nello sconforto: la comparsa di un buco nei loro capi di vestiario preferiti! Un ultimo personaggio, però, affronterà la spinosa questione da un altro punto di vista...",
+  "cart": true
+ },
+ {
+  "p": 12,
+  "titolo": "La mia famiglia è uno zoo di Teresa Sdralevich",
+  "eta": "da 1 anno",
+  "prezzo": "9,90",
+  "pagine": "24",
+  "isbn": "978-88-98177-79-0",
+  "syn": "Ogni famiglia è uno zoo fatto a modo suo. Tutti i membri del parentado hanno le loro caratteristiche più o meno pittoresche, tanto che spesso finiscono per ricordare… degli animali! Un catalogo acuto e ironico sugli esemplari di parenti in cui, almeno una volta nella vita, tutti ci siamo imbattuti.",
+  "cart": true
+ },
+ {
+  "p": 12,
+  "titolo": "La mia famiglia mi somiglia di Teresa Sdralevich",
+  "eta": "da 1 anno",
+  "prezzo": "9,90",
+  "pagine": "28",
+  "isbn": "978-88-98177-78-3",
+  "syn": "Le orecchie dello zio Gino, gli occhi della nonna Sandra, il naso del bisnonno Carletto… Queste sono alcune delle somiglianze che una bambina si sente attribuire da un folto stuolo di parenti. La protagonista darà prova di tutta la sua pazienza fino alla fine... o quasi!",
+  "cart": true
+ },
+ {
+  "p": 13,
+  "titolo": "Tutino e l’albero di Lorenzo Clerici",
+  "eta": "da 1 anno",
+  "prezzo": "9,90",
+  "pagine": "30",
+  "isbn": "978-88-98177-71-4",
+  "syn": "",
+  "cart": true
+ },
+ {
+  "p": 13,
+  "titolo": "Tutino e la pozzanghera di Lorenzo Clerici",
+  "eta": "da 1 anno",
+  "prezzo": "9,90",
+  "pagine": "30",
+  "isbn": "978-88-98177-72-1",
+  "syn": "",
+  "cart": true
+ },
+ {
+  "p": 13,
+  "titolo": "Tutino e il vento di Lorenzo Clerici",
+  "eta": "da 1 anno",
+  "prezzo": "9,90",
+  "pagine": "30",
+  "isbn": "978-88-98177-73-8",
+  "syn": "Che giochi con l’albero, la pozzanghera o il vento, che assaggi gli spuntini del bosco o sia alla ricerca di una tana per dormire, tutino è sempre pronto per nuove avventure all’aria aperta! Che cosa farà oggi?",
+  "cart": true
+ },
+ {
+  "p": 13,
+  "titolo": "Tutino ha un po’ di fame di Lorenzo Clerici",
+  "eta": "da 1 anno",
+  "prezzo": "9,90",
+  "pagine": "38",
+  "isbn": "978-88-98177-74-5",
+  "syn": "",
+  "cart": true
+ },
+ {
+  "p": 13,
+  "titolo": "Tutino non ha sonno di Lorenzo Clerici",
+  "eta": "da 1 anno",
+  "prezzo": "9,90",
+  "pagine": "38",
+  "isbn": "978-88-98177-75-2",
+  "syn": "",
+  "cart": true
+ },
+ {
+  "p": 13,
+  "titolo": "Tutino nella neve di Lorenzo Clerici",
+  "eta": "da 1 anno",
+  "prezzo": "9,90",
+  "pagine": "36",
+  "isbn": "979-12-81054-13-4",
+  "syn": "Tutino è un piccolo esploratore che ama divertirsi all’aria aperta. Oggi, vestito da civetta, esce di casa per una nuova avventura nella neve. Ma che fare là fuori? Che domande, un bel pupazzo! Presto, allora, meglio mettersi in cammino per trovare tutto l’occorrente...",
+  "cart": true
+ },
+ {
+  "p": 13,
+  "titolo": "Tutino con la terra di Lorenzo Clerici",
+  "eta": "da 1 anno",
+  "prezzo": "9,90",
+  "pagine": "36",
+  "isbn": "979-12-81054-12-7",
+  "syn": "Tutino è un piccolo esploratore che ama divertirsi all’aria aperta. Oggi, vestito da talpa, esce di casa per una nuova avventura con la terra. Ma che fare là fuori? Che domande, un bell’orto! Presto, allora, è meglio darsi subito da fare e iniziare a scavare...",
+  "cart": true
+ },
+ {
+  "p": 14,
+  "titolo": "Ned e Ted di Angelo Mozzillo ed Elisa Marzano",
+  "eta": "dai 3 anni",
+  "prezzo": "12,90",
+  "pagine": "40",
+  "isbn": "979-12-81054-14-1",
+  "syn": "Questo è Ned e questo è Ted, Ned è un grande amico di Ted e Ted è molto amico di Ned. Ned e Ted sono uguali in tutto, o quasi: a casa di Ned il giovedì si mangia la pizza, a casa di Ted, invece, i broccoli. Ecco allora che a Ted viene in mente un escamotage per usare questa somiglianza a proprio vantaggio...",
+  "cart": false
+ },
+ {
+  "p": 14,
+  "titolo": "L’aeroplano blu di Silvia Borando",
+  "eta": "dai 2 anni",
+  "prezzo": "13,90",
+  "pagine": "48",
+  "isbn": "979-12-81054-15-8",
+  "syn": "durante Un picnic tra una bambina e un adulto, in lontananza nel cielo volteggia un aeroplano blu… blu? «Ma no, quell’aeroplano è rosso!» sostiene la piccola protagonista. Nasce così un confronto tra i due che sembra mettere in dubbio anche ciò che appare più ovvio… Un irresistibile invito allo scherzo e a entrare nel gioco della finzione, a qualsiasi età!",
+  "cart": false
+ },
+ {
+  "p": 15,
+  "titolo": "Un coniglietto molto ubbidiente di Silvia Borando",
+  "eta": "dai 2 anni",
+  "prezzo": "12,90",
+  "pagine": "48",
+  "isbn": "979-12-81054-02-8",
+  "syn": "Quella sera il coniglietto era finalmente a casa da solo. Del resto, era molto ubbidiente e avrebbe sicuramente rispettato tutte le regole, una in particolare: non aprire agli sconosciuti... Ma cosa accadrebbe se a bussare alla sua porta fossero ben quattro diversi animali?",
+  "cart": false
+ },
+ {
+  "p": 15,
+  "titolo": "Storie brevi di Silvia Borando",
+  "eta": "dai 3 anni",
+  "prezzo": "12,90",
+  "pagine": "64",
+  "isbn": "978-88-98177-87-5",
+  "syn": "C’era una volta un libro fatto di dodici storie di massimo tre pagine. Erano storie brevi. Fine.",
+  "cart": false
+ },
+ {
+  "p": 15,
+  "titolo": "Se ti dessi mezza mela di Silvia Borando",
+  "eta": "dai 2 anni",
+  "prezzo": "13,90",
+  "pagine": "48",
+  "isbn": "979-12-81054-04-2",
+  "syn": "tutti sanno che quando si ha qualcosa è meglio tenersela per sé... O almeno questo è ciò che crede lo scoiattolo che si trova a fronteggiare la richiesta di un elefante di passaggio: concedergli metà della mela che sta per addentare! In quel caso, però, a lui ne resterebbe davvero troppo poca... Che fare allora?",
+  "cart": false
+ },
+ {
+  "p": 15,
+  "titolo": "Se incontrassi un orso di Silvia Borando",
+  "eta": "dai 3 anni",
+  "prezzo": "12,90",
+  "pagine": "48",
+  "isbn": "978-88-98177-76-9",
+  "syn": "Le grotte, si sa, sono piene di orsi e gli orsi sono creature terribili… Ma che fare se la tua palla finisce proprio in una grotta? Lo scoiattolo protagonista prende coraggio e si lancia nella ricerca, augurandosi di non incontrare mai un orso. Perché se ne incontrasse uno sarebbe una vera sciagura… o almeno così crede!",
+  "cart": false
+ },
+ {
+  "p": 16,
+  "titolo": "Il dubbio di Silvia Borando e Alberto Lot",
+  "eta": "dai 3 anni",
+  "prezzo": "13,90",
+  "pagine": "52",
+  "isbn": "978-88-98177-84-4",
+  "syn": "Un topo e un coccodrillo erano buoni amici. Così, quando il coccodrillo disse: «Non trovo più le mie maracas, temo di averle mangiate!», l’amico decise di aiutarlo. Ma lo stomaco del coccodrillo è decisamente affollato e un dubbio coglie allora il topo: e se fosse stato mangiato?",
+  "cart": false
+ },
+ {
+  "p": 16,
+  "titolo": "Raccontami una storia di Elisabetta Pica e Silvia Borando",
+  "eta": "dai 2 anni",
+  "prezzo": "11,90",
+  "pagine": "44",
+  "isbn": "978-88-98177-86-8",
+  "syn": "Un pomeriggio a casa dei nonni, quale migliore momento per farsi raccontare una storia? È ciò che pensa il protagonista di questo libro, la cui richiesta non viene però soddisfatta: una storia tutta gialla, una grigia e perfino una nera... non si vede niente! Sarà meglio allora fare ritorno nel mondo reale e lasciarsi alle spalle queste storie assurde...",
+  "cart": false
+ },
+ {
+  "p": 16,
+  "titolo": "Ibby Honour List italia 2023 the white ravens 2023 premio anna osti 2023 premio bettoni 2024 Gelato! di Elisabetta Pica e Silvia Borando",
+  "eta": "dai 3 anni",
+  "prezzo": "11,90",
+  "pagine": "48",
+  "isbn": "978-88-98177-43-1",
+  "syn": "",
+  "cart": false
+ },
+ {
+  "p": 16,
+  "titolo": "Un segreto importante di Angelo Mozzillo ed Elisa Marzano",
+  "eta": "dai 3 anni",
+  "prezzo": "13,90",
+  "pagine": "40",
+  "isbn": "978-88-98177-88-2",
+  "syn": "In fattoria c’è qualcosa sulla bocca di tutti: è il segreto di Pulcino, che non è riuscito a tenerselo per sé e l’ha rivelato al maiale, che l’ha detto a un suo amico, che se l’è lasciato sfuggire a sua volta... Questo segreto ormai sembrano conoscerlo proprio tutti! Sarà davvero così?",
+  "cart": false
+ },
+ {
+  "p": 17,
+  "titolo": "Orso, buco! di Nicola Grossi",
+  "eta": "dai 2 anni",
+  "prezzo": "11,90",
+  "pagine": "44",
+  "isbn": "978-88-98177-06-6",
+  "syn": "Si può raccontare una storia soltanto con forme, colori e suoni? Il risultato è un viaggio alla ricerca della tana di Orso, da immaginare e ascoltare… Basterà seguire le linee e trovare la strada, stando attenti a non cadere nei buchi!",
+  "cart": false
+ },
+ {
+  "p": 17,
+  "titolo": "Solo un puntino di Elisabetta Pica, Chiara Vignocchi e Silvia Borando",
+  "eta": "dai 3 anni",
+  "prezzo": "11,90",
+  "pagine": "48",
+  "isbn": "978-88-98177-15-8",
+  "syn": "Un lupo molto affamato divora senza scrupoli una preda dopo l’altra: dall’antipasto alla frutta non si fa mancare davvero nulla, nemmeno il dessert! Tra morsi, bocconi e grandi scorpacciate, un invito a fermarsi quando si è ancora in tempo.",
+  "cart": false
+ },
+ {
+  "p": 17,
+  "titolo": "Un sasso nella strada di Ilaria Antonini, Barbara Balduzzi e Marco Scalcione",
+  "eta": "dai 3 anni",
+  "prezzo": "11,90",
+  "pagine": "44",
+  "isbn": "978-88-98177-23-3",
+  "syn": "Un sasso che ieri non c’era è finito in mezzo alla strada. È grande, rotondo, pesante e impedisce il passaggio agli animali del bosco. Come ci sarà arrivato lì?",
+  "cart": false
+ },
+ {
+  "p": 17,
+  "titolo": "Un mare di tristezza di Anna Iudica, Chiara Vignocchi e Silvia Borando",
+  "eta": "dai 3 anni",
+  "prezzo": "11,90",
+  "pagine": "32",
+  "isbn": "978-88-98177-24-0",
+  "syn": "Un piccolo pesce alla ricerca del buon umore si accorge ben presto che in fondo al mare regna un’inspiegabile tristezza. Com’è possibile che tutti i pesci siano così affranti? Una vicenda apparentemente senza speranza, da prendere per il verso giusto…",
+  "cart": false
+ },
+ {
+  "p": 17,
+  "titolo": "Il castoro, l’uovo e la gallina di Eva Francescutto, Chiara Vignocchi e Silvia Borando",
+  "eta": "dai 3 anni",
+  "prezzo": "11,90",
+  "pagine": "48",
+  "isbn": "978-88-98177-50-9",
+  "syn": "Un castoro assonnato riceve in custodia un misterioso uovo. Il suo compito è chiaro: per nulla al mondo dovrà darlo alla gallina. Siamo certi, però, che abbia sentito bene il messaggio?",
+  "cart": false
+ },
+ {
+  "p": 17,
+  "titolo": "Chi mi ha rubato il naso? di Lorenzo Clerici",
+  "eta": "dai 3 anni",
+  "prezzo": "11,90",
+  "pagine": "32",
+  "isbn": "978-88-98177-01-1",
+  "syn": "Un mistero nella savana. Chi ha rubato il naso dell’elefante? Potrebbe essere stato lo struzzo, il pitone o perfino l’insospettabile giraffa. Ma l’elefante, poi, ritroverà il suo naso?",
+  "cart": false
+ },
+ {
+  "p": 18,
+  "titolo": "Hai preso tutto? di Chiara Vignocchi e Silvia Borando",
+  "eta": "dai 2 anni",
+  "prezzo": "11,90",
+  "pagine": "40",
+  "isbn": "978-88-98177-65-3",
+  "syn": "Il capogruppo di una combriccola in partenza per le vacanze interroga i membri della comitiva: avranno preso tutto quello che serve, o ci saranno stati i soliti sbadati? Per scoprirlo occorre dare un’occhiata ai loro bagagli...",
+  "cart": false
+ },
+ {
+  "p": 18,
+  "titolo": "Arriva l’onda e... di Lorenzo Clerici",
+  "eta": "dai 2 anni",
+  "prezzo": "11,90",
+  "pagine": "40",
+  "isbn": "978-88-98177-47-9",
+  "syn": "Un papà e il suo bambino trascorrono il pomeriggio in riva al mare, ma un’onda irriverente crea scompiglio sul bagnasciuga, prendendosi gioco dei due protagonisti. Al momento di tornare a casa, sarà tutto tornato al proprio posto?",
+  "cart": false
+ },
+ {
+  "p": 18,
+  "titolo": "Chi ha il coraggio? di Silvia Borando",
+  "eta": "dai 3 anni",
+  "prezzo": "11,90",
+  "pagine": "48",
+  "isbn": "978-88-98177-29-5",
+  "syn": "Una sfida alla paura, un oltraggio al buon gusto, una sfilata di bestie incomparabilmente brutte, antipatiche o spaventose. Chi riuscirà ad affrontarle tutte? Un libro che metterà alla prova il coraggio dei malcapitati lettori!",
+  "cart": false
+ },
+ {
+  "p": 18,
+  "titolo": "Nascondino di Silvia Borando",
+  "eta": "dai 2 anni",
+  "prezzo": "11,90",
+  "pagine": "40",
+  "isbn": "978-88-98177-32-5",
+  "syn": "Chi si cela tra i dadi da gioco? E in mezzo alle cuffie invernali? Qualcuno ci sarà, ma non è certo facile da scovare! Tra mucchi di calzini e montagne di foglie, un gioco di osservazione per rintracciare gli animali mimetizzati… del tutto o quasi!",
+  "cart": false
+ },
+ {
+  "p": 18,
+  "titolo": "Niente da fare di Silvia Borando",
+  "eta": "dai 2 anni",
+  "prezzo": "12,90",
+  "pagine": "48",
+  "isbn": "978-88-98177-53-0",
+  "syn": "Cosa potrà mai fare un omino tutto solo quando intorno a lui sembra non esserci nulla? Per fortuna all’improvviso un passatempo salta fuori, ma… non tutto è come sembra! Un racconto silenzioso, pieno di attese e sorprese, alla ricerca di qualcosa da fare.",
+  "cart": false
+ },
+ {
+  "p": 18,
+  "titolo": "Il libro bianco - Ed. speciale di Silvia Borando, Elisabetta Pica e Lorenzo Clerici",
+  "eta": "dai 2 anni",
+  "prezzo": "13,90",
+  "pagine": "48",
+  "isbn": "978-88-98177-89-9",
+  "syn": "Cosa si nasconde in questa storia senza parole? Sembra non ci sia nulla all’infuori di un imbianchino alle prese con delle pareti bianche. Ma basta una passata di colore ed ecco apparire... Un racconto sul potere della lettura nell’edizione speciale che celebra i 10 anni della sua pubblicazione!",
+  "cart": false
+ },
+ {
+  "p": 19,
+  "titolo": "Chi c’è tra i ritagli? di Silvia Borando",
+  "eta": "dai 3 anni",
+  "prezzo": "12,90",
+  "pagine": "48",
+  "isbn": "978-88-98177-14-1",
+  "syn": "E questa cos’è? Una montagna di ritagli colorati? Se si sceglie, si inclina, si sposta e si ridispone, ci si accorgerà ben presto che tra le strisce di carta qualcuno c’è... ma non per molto!",
+  "cart": false
+ },
+ {
+  "p": 19,
+  "titolo": "Forme in gioco di Silvia Borando",
+  "eta": "dai 3 anni",
+  "prezzo": "12,90",
+  "pagine": "32",
+  "isbn": "978-88-98177-13-4",
+  "syn": "Triangoli rossi, quadrati gialli e cerchi blu. Saltellano, rimbalzano e a volte si scontrano: sembra solo una gran confusione ma poi dal nulla viene fuori… Una vicenda geometrica con una fine dell’altro mondo!",
+  "cart": false
+ },
+ {
+  "p": 19,
+  "titolo": "Questo libro fa di tutto di Silvia Borando",
+  "eta": "dai 3 anni",
+  "prezzo": "11,90",
+  "pagine": "28",
+  "isbn": "978-88-98177-31-8",
+  "syn": "Cosa può mai fare un libro? Aprirsi e chiudersi sicuramente, ma forse anche mordere, volare e abbracciare… Un invito a esplorare l’oggetto-libro per sperimentarne tutti gli usi, fino a quelli più improbabili e impropri.",
+  "cart": false
+ },
+ {
+  "p": 19,
+  "titolo": "Cose mai viste di Silvia Borando",
+  "eta": "dai 3 anni",
+  "prezzo": "12,90",
+  "pagine": "48",
+  "isbn": "978-88-98177-46-2",
+  "syn": "Chi ha mai visto un ragno altissimo? E una lumaca molto veloce? Di certo nessuno prima d’ora, ecco perché occorre aprire questo libro! Un’insolita rassegna di animali che difficilmente potrà lasciare indifferenti gli amanti delle rarità!",
+  "cart": false
+ },
+ {
+  "p": 19,
+  "titolo": "Ho visto una talpa di Chiara Vignocchi e Silvia Borando",
+  "eta": "dai 3 anni",
+  "prezzo": "12,90",
+  "pagine": "44",
+  "isbn": "978-88-98177-45-5",
+  "syn": "Un gruppo di animali discute di avvistamenti in fatto di talpe: grandi, piccole, veloci e sottosopra… in giro se ne vedono di ogni tipo! Una vicenda all’insegna del confronto, per non dimenticare che, se ognuno vede le cose a modo proprio, c’è sempre una buona ragione.",
+  "cart": false
+ },
+ {
+  "p": 19,
+  "titolo": "Tutto il contrario di Silvia Borando",
+  "eta": "dai 3 anni",
+  "prezzo": "12,90",
+  "pagine": "28",
+  "isbn": "978-88-98177-61-5",
+  "syn": "Il pulcino che incappa in un verme è fortunato. Il verme che incappa in un pulcino è sfortunato. E se il verme riuscisse a scappare? Chi sarebbe fortunato e chi sfortunato? Un invito a giocare con gli opposti perché quasi sempre le cose possono essere… tutto il contrario!",
+  "cart": false
+ },
+ {
+  "p": 20,
+  "titolo": "Festa di primavera di Silvia Borando",
+  "eta": "dai 2 anni",
+  "prezzo": "13,90",
+  "pagine": "48",
+  "isbn": "978-88-98177-64-6",
+  "syn": "Come ogni anno, tutti gli animali sono in fermento per l’agognata festa di primavera. Anche Tartaruga si incammina verso la meta, pregustando il divertimento... Ma questa festa di primavera sarà davvero così bella come se l’era immaginata?",
+  "cart": false
+ },
+ {
+  "p": 20,
+  "titolo": "Grande Gatto Piccolo Gatto di Silvia Borando",
+  "eta": "dai 2 anni",
+  "prezzo": "13,90",
+  "pagine": "52",
+  "isbn": "978-88-98177-30-1",
+  "syn": "Grande Gatto fa sempre le cose in grande, Piccolo Gatto, invece, si dedica a piccole cose. Ma se a cacciarsi in un grosso guaio fosse proprio Piccolo Gatto? Una piccola avventura inattesa per una storia di grandi conquiste.",
+  "cart": false
+ },
+ {
+  "p": 20,
+  "titolo": "Gatto Nero, Gatta Bianca di Silvia Borando",
+  "eta": "dai 3 anni",
+  "prezzo": "12,90",
+  "pagine": "48",
+  "isbn": "978-88-98177-07-3",
+  "syn": "Un gatto tutto nero che esce solo di giorno, una gatta tutta bianca che esce solo di notte. Lui ama raccogliere le margherite, lei va a caccia di bisce e pipistrelli. Cosa nascerà dal loro incontro?",
+  "cart": false
+ },
+ {
+  "p": 20,
+  "titolo": "Affamato come un lupo di Silvia Borando",
+  "eta": "dai 3 anni",
+  "prezzo": "12,90",
+  "pagine": "52",
+  "isbn": "978-88-98177-38-7",
+  "syn": "Si dice che nel bosco ci sia un lupo affamato. Tutti gli animali vengono avvisati da una lepre che cercherà di salvarli con l’aiuto di una talpa. La fuga di quattro impacciati protagonisti che scappano dal più classico dei pericoli… sempre che esista davvero!",
+  "cart": false
+ },
+ {
+  "p": 20,
+  "titolo": "Guarda fuori di Silvia Borando",
+  "eta": "dai 3 anni",
+  "prezzo": "12,90",
+  "pagine": "44",
+  "isbn": "978-88-98177-37-0",
+  "syn": "In un pomeriggio d’inverno due bambini alla finestra guardano fuori. Tutto sembra immobile, ma siamo sicuri che non ci sia proprio nessuno nei paraggi? Una storia senza parole raccontata dallo sguardo dei due protagonisti, che lascerà con il fiato sospeso fino all’ultima pagina.",
+  "cart": false
+ },
+ {
+  "p": 20,
+  "titolo": "Dalla chioma di Chiara Vignocchi, Paolo Chiarinotti e Silvia Borando",
+  "eta": "dai 3 anni",
+  "prezzo": "13,90",
+  "pagine": "48",
+  "isbn": "978-88-98177-22-6",
+  "syn": "Un albero maestoso, una castagna che spunta tra le foglie e un topo che da terra pregusta già il suo pranzetto. Non gli resta che scuotere la pianta per conquistare il bottino... ma non sarà facile come sembra!",
+  "cart": false
+ },
+ {
+  "p": 21,
+  "titolo": "Ha visto la mia coda? di Alberto Lot",
+  "eta": "dai 3 anni",
+  "prezzo": "12,90",
+  "pagine": "44",
+  "isbn": "978-88-98177-54-7",
+  "syn": "Un’annosa questione affligge il Signor Cane: dove mai sarà la sua coda? Per fortuna lo spaesato protagonista sarà accompagnato nelle ricerche dal Signor Tartaruga, consigliere prodigo di indicazioni. Ce la farà il Signor Cane a risolvere il suo problema?",
+  "cart": false
+ },
+ {
+  "p": 21,
+  "titolo": "Due code mai viste di Alberto Lot",
+  "eta": "dai 3 anni",
+  "prezzo": "12,90",
+  "pagine": "44",
+  "isbn": "978-88-98177-62-2",
+  "syn": "Il Signor Cane è da tempo alla ricerca della sua coda, senza grandi risultati. Neppure l’incontro con un suo simile sembra portare a una soluzione, ma c’è qualcuno che ha sentito i due discutere e che porrà fine alla questione… Sarà la volta buona?",
+  "cart": false
+ },
+ {
+  "p": 21,
+  "titolo": "Il ristorante degli elefanti di Alberto Lot",
+  "eta": "dai 3 anni",
+  "prezzo": "12,90",
+  "pagine": "60",
+  "isbn": "978-88-98177-69-1",
+  "syn": "Una coppia di elefanti alquanto creativa è alle prese con un’idea imprenditoriale dal successo assicurato: aprire un ristorante. Ma si sa, quando il progetto è ambizioso a volte le cose sfuggono di mano e bisogna trovare soluzioni rapide e inattese: il risultato, però, può essere sorprendente!",
+  "cart": false
+ },
+ {
+  "p": 21,
+  "titolo": "Il grande debutto di Eva Francescutto e Alberto Lot",
+  "eta": "dai 3 anni",
+  "prezzo": "11,90",
+  "pagine": "28",
+  "isbn": "978-88-98177-55-4",
+  "syn": "Dal nero della pagina si stagliano le voci di una fantomatica compagnia teatrale in attesa del suo grande debutto. Saranno tutti pronti quando si accenderanno i riflettori? Una storia al buio, trentadue misteriosi personaggi e un’illuminazione finale che farà luce sull’intera vicenda…",
+  "cart": false
+ },
+ {
+  "p": 21,
+  "titolo": "Un bello spavento di Elena Galloni",
+  "eta": "dai 2 anni",
+  "prezzo": "11,90",
+  "pagine": "40",
+  "isbn": "978-88-98177-63-9",
+  "syn": "Un lombrico gironzola tranquillo in giardino quando… hip!, di colpo rimbalza via, trovandosi suo malgrado coinvolto in un viaggio inarrestabile. Ma che cosa starà succedendo davvero? Ci sarà qualcuno in grado di fermarlo?",
+  "cart": false
+ },
+ {
+  "p": 21,
+  "titolo": "Allarme rosso! di Marco Scalcione",
+  "eta": "dai 3 anni",
+  "prezzo": "12,90",
+  "pagine": "48",
+  "isbn": "978-88-98177-39-4",
+  "syn": "La quiete del formicaio viene interrotta da un grido di emergenza: allarme rosso! Sarà meglio sbrigarsi e iniziare la corsa… Una vicenda dal finale imprevisto che dimostra come non tutti gli allarmi vengano per nuocere!",
+  "cart": false
+ },
+ {
+  "p": 22,
+  "titolo": "Riccio dal barbiere di Silvia Borando",
+  "eta": "dai 2 anni",
+  "prezzo": "9,90",
+  "pagine": "60",
+  "isbn": "978-88-98177-51-6",
+  "syn": "Chi l’ha detto che un riccio non possa cambiare look di tanto in tanto? Shampoo, risciacquo e ventitré buffe acconciature per un protagonista vanitoso che non si accontenta mai del primo risultato...",
+  "cart": false
+ },
+ {
+  "p": 22,
+  "titolo": "Zebra dalla sarta di Silvia Borando",
+  "eta": "dai 2 anni",
+  "prezzo": "9,90",
+  "pagine": "52",
+  "isbn": "978-88-98177-52-3",
+  "syn": "Chi l’ha detto che una zebra non possa cambiare look di tanto in tanto? Stoffe, ago, filo e ventun bizzarri cambi d’abito per una protagonista quanto mai esigente...",
+  "cart": false
+ },
+ {
+  "p": 22,
+  "titolo": "Un colore bellissimo di Marco Scalcione",
+  "eta": "dai 3 anni",
+  "prezzo": "11,90",
+  "pagine": "48",
+  "isbn": "978-88-98177-44-8",
+  "syn": "Che il colore della pelle cambi da persona a persona è un dato di fatto, ma che il colore della propria pelle non sia esattamente come ce lo si immaginava è tutta un’altra storia. Una discussione leggera e spensierata per dimostrare che il più delle volte… è solo una questione di sfumature!",
+  "cart": false
+ },
+ {
+  "p": 22,
+  "titolo": "Gabbiano più gabbiano meno di Silvia Borando e Marco Scalcione",
+  "eta": "dai 3 anni",
+  "prezzo": "13,90",
+  "pagine": "36",
+  "isbn": "978-88-98177-40-0",
+  "syn": "Due isole: una affollata e rumorosa, l’altra deserta e invitante. Lasciando tutti i suoi compagni sulla prima isola, un gabbiano non troppo conciliante opta per la seconda soluzione, alla ricerca della tanto agognata pace. Sarà la scelta giusta?",
+  "cart": false
+ },
+ {
+  "p": 22,
+  "titolo": "Due cozze in riva al mare di Marco Scalcione",
+  "eta": "dai 3 anni",
+  "prezzo": "13,90",
+  "pagine": "44",
+  "isbn": "978-88-98177-77-6",
+  "syn": "Una coppia di cozze osserva il via vai dei pesci: c’è chi è molto impegnato, chi decisamente affiatato e chi esplora gli abissi più remoti… Loro, invece, che fanno? Tra interrogativi e riflessioni, queste immobili spettatrici si renderanno conto che anche essere una cozza non è poi così male!",
+  "cart": false
+ },
+ {
+  "p": 22,
+  "titolo": "Adesso ti prendo di Ilaria Antonini, Barbara Balduzzi e Marco Scalcione",
+  "eta": "dai 2 anni",
+  "prezzo": "13,90",
+  "pagine": "44",
+  "isbn": "978-88-98177-70-7",
+  "syn": "Anche quel giorno la giungla era pronta per l’inseguimento, e anche quella volta il giaguaro non sbagliò il colpo: «Trovata!». Fissò la scimmia con i suoi occhi penetranti e... E adesso? Chi avrà la meglio in questo inseguimento a perdifiato?",
+  "cart": false
+ },
+ {
+  "p": 23,
+  "titolo": "Il libro cane di Lorenzo Clerici",
+  "eta": "dai 2 anni",
+  "prezzo": "9,90",
+  "pagine": "32",
+  "isbn": "978-88-98177-02-8",
+  "syn": "Se ti piacciono i nasi umidi e le code scodinzolanti, questo libro è per te! Non perde i peli sul divano, non salta addosso agli ospiti e non scava buche in giardino. Fai giocare il tuo libro domestico e divertiti con lui!",
+  "cart": false
+ },
+ {
+  "p": 23,
+  "titolo": "Il libro criceto di Silvia Borando",
+  "eta": "dai 2 anni",
+  "prezzo": "9,90",
+  "pagine": "32",
+  "isbn": "978-88-98177-10-3",
+  "syn": "Se ti piacciono i roditori, questo libro è per te! Non rosicchia le gambe del tavolo, non mordicchia i polpastrelli e non si perde tra i mobili di casa. Fai giocare il tuo libro domestico e divertiti con lui!",
+  "cart": false
+ },
+ {
+  "p": 23,
+  "titolo": "Il libro gatto di Silvia Borando",
+  "eta": "dai 2 anni",
+  "prezzo": "9,90",
+  "pagine": "32",
+  "isbn": "978-88-98177-03-5",
+  "syn": "Se ti piacciono le fusa e il pelo soffice, questo libro è per te! Non graffia le tende, non si fa le unghie sul tappeto e non ruba il pesce dalla tavola. Fai giocare il tuo libro domestico e divertiti con lui!",
+  "cart": false
+ }
+]
