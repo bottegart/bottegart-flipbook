@@ -324,7 +324,10 @@
   "eta": "da 4 anni",
   "fascia": "3-6 anni",
   "eta_fonte": "da 4 anni",
-  "fonte": "https://www.ibs.it/x/e/9791280104038"
+  "fonte": "testo fornito da Bottegart (scheda Uovonero)",
+  "isbn_corretto": "9791280104038",
+  "prezzo_corretto": 8.9,
+  "sinossi": "Una raccolta di attività ed esercizi che utilizzano il sistema della Comunicazione Aumentativa Alternativa. Uno strumento efficace e divertente che, grazie ai simboli PCS, è fruibile da tutti: anche da chi ha qualche difficoltà di lettura o di comunicazione, o da chi sta imparando a leggere. A volte un logogramma vale più di mille parole!"
  },
  "Uovonero|I quaderni di #intantofaccioqualcosa 6 – Attività con la CAA 2": {
   "isbn": "9791280104182",
@@ -607,7 +610,8 @@
  },
  "Momo Edizioni|Libera dal ciclo": {
   "eta_fonte": "da 10 anni",
-  "fonte": "https://www.ibs.it/x/e/9791280298164"
+  "fonte": "testo fornito da Bottegart",
+  "sinossi": "Racconta la storia di Libera e del suo percorso per liberarsi non solo dal ciclo mestruale in senso pratico o emotivo, ma soprattutto dai tabù, dai pregiudizi e dai luoghi comuni legati alla pubertà e al corpo femminile."
  },
  "Momo Edizioni|Ad occhi aperti": {
   "eta_fonte": "da 12 anni",
@@ -795,11 +799,8 @@
   "fonte": "https://www.ibs.it/x/e/9788898177387"
  },
  "Minibombo|Affamato come un lupo – versione in simboli (InBook)": {
-  "eta": "da 3 anni",
-  "eta_fonte": "da 3 anni",
-  "fonte": "https://www.ibs.it/x/e/9788898177387",
-  "isbn_copertina": "9788898177387",
-  "sinossi": "Versione in simboli dell’albo. Si dice che nel bosco ci sia un lupo affamato. Sarà il caso di crederci?"
+  "rimuovi": true,
+  "motivo": "versione in simboli InBook, non in vendita"
  },
  "Minibombo|Allarme rosso!": {
   "eta_fonte": "da 3 anni",
@@ -830,18 +831,12 @@
   "fonte": "https://www.ibs.it/x/e/9788898177844"
  },
  "Minibombo|Il libro gatto – versione in simboli (InBook)": {
-  "eta": "da 3 anni",
-  "eta_fonte": "da 3 anni",
-  "fonte": "https://www.ibs.it/x/e/9788898177035",
-  "isbn_copertina": "9788898177035",
-  "sinossi": "Versione in simboli dell’albo. Questo è il tuo libro gatto. Da coccolare, stringere, prendere in braccio."
+  "rimuovi": true,
+  "motivo": "versione in simboli InBook, non in vendita"
  },
  "Minibombo|Orso, buco! – versione in simboli (InBook)": {
-  "eta": "da 0 a 2 anni",
-  "eta_fonte": "da 0 a 2 anni",
-  "fonte": "https://www.ibs.it/x/e/9788898177066",
-  "isbn_copertina": "9788898177066",
-  "sinossi": "Versione in simboli dell’albo. Si può raccontare una storia soltanto con forme e colori? Segui le linee, scova le tane ma attento a non cadere nei buchi!"
+  "rimuovi": true,
+  "motivo": "versione in simboli InBook, non in vendita"
  },
  "Minibombo|Storie brevi": {
   "eta_fonte": "da 3 anni",
@@ -873,9 +868,8 @@
   "fonte": "https://www.ibs.it/x/e/9791259792822"
  },
  "Nero Latte|La bottega di Bepo il sarto": {
-  "isbn": "9791298546028",
-  "prezzo": 16.0,
-  "fonte": "https://www.ibs.it/x/e/9791298546028"
+  "rimuovi": true,
+  "motivo": "fuori catalogo"
  },
  "Logos|Edmondo e la Cacca Misteriosa": {
   "eta_fonte": "da 3 anni",
@@ -975,11 +969,8 @@
   ]
  },
  "Lapis|Foto di gruppo (versione in simboli InBook)": {
-  "eta": "da 3 anni",
-  "eta_fonte": "da 3 anni",
-  "fonte": "https://www.ibs.it/x/e/9788878745209",
-  "isbn_copertina": "9788878745209",
-  "sinossi": "Versione in simboli dell’albo. Lasciano in giro di tutto gli esploratori. Quasi mai oggetti interessanti. Stavolta però si trattava di una macchina fotografica. E la trovò la scimmia."
+  "rimuovi": true,
+  "motivo": "versione in simboli InBook, non in vendita"
  },
  "Lapis|Le mini storie di Attilio": {
   "sostituisci": [
@@ -1123,7 +1114,10 @@
  "effequ|XY": {
   "isbn": "9791281639478",
   "eta_fonte": "da 5 anni",
-  "fonte": "https://www.ibs.it/x/e/9791281639478"
+  "fonte": "https://www.ibs.it/x/e/9791281639478",
+  "isbn_corretto": "9791281639478",
+  "sinossi": "Dalla collana Scatoline di effequ, saggi per piccoli umani dai 5 anni in su: ogni libro è una parola, non spiegata né definita ma raccontata, da chi la conosce bene e da chi la illustra. XY racconta, con testo ad alta leggibilità, una parola dai tanti significati che tutti usiamo fin da piccoli.",
+  "nota": "l’editore e IBS riportano solo la descrizione della collana"
  },
  "effequ|ZAMPA": {
   "isbn": "9791281639485",
