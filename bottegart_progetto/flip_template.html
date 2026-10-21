@@ -279,7 +279,6 @@ function build(i){
     var h='<div class="ph-head"><div><div class="k"><i></i>Indice</div><h2>Scegli <em>l’età</em></h2></div><span class="pn">'+B.length+' libri</span></div><ul class="idx">';
     AGES.forEach(function(a){var c=band(a.name);h+='<li><button style="--b:'+c[0]+';--bi:'+c[1]+'" data-go="'+(a.first+2)+'"><span class="n">'+esc(a.name)+'</span><span class="c"><span>'+a.tot+' libri</span><span>pag. '+(a.first+3)+'</span></span></button></li>';});
     h+='<li><button class="wishtile" data-go="'+(PAGES.length-1)+'"><span class="n">La tua lista desiderata</span><span class="c"><span>da inviare a Bottegart</span><span>pag. '+PAGES.length+'</span></span></button></li></ul>';
-    h+='<p class="note">Alcune copertine sono ancora in arrivo: al loro posto trovi una copertina grafica con il titolo. Dove il prezzo non è indicato, lo comunicheremo al momento dell’ordine.</p>';
     h+='<div class="posters"><h3>#ioleggoperché con Bottegart</h3><img src="'+IMG.p1+'" alt="Locandina #ioleggoperché: dona un libro a una scuola"><img src="'+IMG.p2+'" alt="Locandina #ioleggoperché: la nostra libreria è iscritta, gemellatevi con noi"></div>';
     return h;
   }

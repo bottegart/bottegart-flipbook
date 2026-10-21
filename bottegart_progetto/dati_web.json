@@ -505,7 +505,10 @@
  "La Meridiana|Il mio Afghanistan (CAA)": {
   "isbn": "9788861538955",
   "sinossi": "«Prima di scendere a terra ho indossato i vestiti puliti che avevo preparato in un sacchetto di nailon. Mi sono rassettato e ho messo piede in Italia.» Ne Il mio Afghanistan Gholam Najafi racconta la sua storia di rifugiato, giunto in Italia come minore straniero non accompagnato. Con questo libro, tradotto in simboli di Comunicazione Aumentativa e Alternativa dal gruppo di lavoro Librarsi, la sua storia diventa accessibile anche ai giovani lettori con disabilità linguistiche e cognitive, o a tanti altri che si approcciano con difficoltà ai testi tradizionali. Il libro è parte della collana accessibile Parimenti.",
-  "fonte": "https://www.ibs.it/x/e/9788861538955"
+  "fonte": "https://www.ibs.it/x/e/9788861538955",
+  "eta_corretta": "da 12 anni",
+  "fascia_corretta": "Scuola media (11-13)",
+  "fonte_eta": "età indicata da Bottegart"
  },
  "La Meridiana|L’albero del riccio": {
   "isbn": "9788861539808",
@@ -524,7 +527,10 @@
  "La Meridiana|Milagro in CAA": {
   "isbn": "9788861539983",
   "sinossi": "Il celebre scritto di don Tonino Bello, nato dopo il suo viaggio in Argentina nel 1992, in cui racconta del fortuito incontro con Milagro, un miracolo di tenerezza in grado di portare luce anche in un luogo fortemente segnato da povertà e fatica. Tradotto in simboli della Comunicazione Aumentativa e Alternativa dal gruppo di lavoro Librarsi della Cooperativa Accaparlante di Bologna. Con illustrazioni di Vittoria Facchini. In simboli CAA",
-  "fonte": "https://www.ibs.it/x/e/9788861539983"
+  "fonte": "https://www.ibs.it/x/e/9788861539983",
+  "eta_corretta": "dai 12-14 anni in su",
+  "fascia_corretta": "Scuola media (11-13)",
+  "fonte_eta": "età indicata da Bottegart"
  },
  "La Meridiana|Paul Klee pittore musicista": {
   "isbn": "9791256260560",
@@ -859,13 +865,19 @@
   "isbn": "9791259792280",
   "sinossi": "Il ritorno del lupo in Italia e in Europa, con la recente espansione della specie giunta a ridosso delle grandi città, riguarda ormai tutti noi ed è il simbolo di un tema più vasto: quello della convivenza tra esseri umani e animali selvatici. Mentre la crisi ambientale rivela le nostre fragilità, la presenza del lupo ci spinge a riflettere sulla necessità di riadattare prospettive e comportamenti, per far fronte a minacce che riguardano non solo la conservazione delle altre specie, ma la nostra stessa capacità di sopravvivenza.",
   "prezzo": 18.0,
-  "fonte": "https://www.ibs.it/x/e/9791259792280"
+  "fonte": "https://www.ibs.it/x/e/9791259792280",
+  "eta_corretta": "14+",
+  "fascia_corretta": "Adolescenza (14+)",
+  "fonte_eta": "età indicata da Bottegart"
  },
  "People|Non esistono piccoli antifascisti": {
   "isbn": "9791259792822",
   "sinossi": "Perché l’ennesimo libro sulla Resistenza? Perché il 25 aprile di quest’anno ricorre l’ottantesimo anniversario della Liberazione: la giusta occasione per offrire una serie di testimonianze, raccontate in prima persona, che celebrano il coraggio di coloro che hanno lottato e sacrificato la loro vita per la nostra libertà. Le vite contenute in questo nuovo volume dimostrano come l’antifascismo abbia attraversato trasversalmente la società italiana. Donne, giovani, operai, intellettuali, cattolici: a essere coinvolte sono state persone di estrazione sociale, età e genere diversi. Le loro storie raccontano atti di straordinario valore.",
   "prezzo": 16.0,
-  "fonte": "https://www.ibs.it/x/e/9791259792822"
+  "fonte": "https://www.ibs.it/x/e/9791259792822",
+  "eta_corretta": "da 12 anni",
+  "fascia_corretta": "Scuola media (11-13)",
+  "fonte_eta": "età indicata da Bottegart"
  },
  "Nero Latte|La bottega di Bepo il sarto": {
   "rimuovi": true,
@@ -1116,8 +1128,8 @@
   "eta_fonte": "da 5 anni",
   "fonte": "https://www.ibs.it/x/e/9791281639478",
   "isbn_corretto": "9791281639478",
-  "sinossi": "Dalla collana Scatoline di effequ, saggi per piccoli umani dai 5 anni in su: ogni libro è una parola, non spiegata né definita ma raccontata, da chi la conosce bene e da chi la illustra. XY racconta, con testo ad alta leggibilità, una parola dai tanti significati che tutti usiamo fin da piccoli.",
-  "nota": "l’editore e IBS riportano solo la descrizione della collana"
+  "sinossi": "XY è un invito a scoprire come la scienza possa essere inclusiva, dimostrando che il corpo è solo l’inizio della nostra complessa e bellissima identità personale.",
+  "fonte_sinossi": "testo fornito da Bottegart"
  },
  "effequ|ZAMPA": {
   "isbn": "9791281639485",
@@ -1356,5 +1368,10 @@
   "fonte": "https://www.ibs.it/x/e/9791256260539",
   "prezzo_corretto": 16.0,
   "nota_prezzo": "nel catalogo c’era il prezzo scontato IBS (15,20 €); il prezzo di copertina è 16,00 €"
+ },
+ "Momo Edizioni|Karukinka. La nostra terra": {
+  "eta_corretta": "da 6 anni",
+  "fascia_corretta": "Prime letture (6-8)",
+  "fonte_eta": "età indicata da Bottegart"
  }
 }
