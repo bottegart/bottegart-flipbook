@@ -5,7 +5,7 @@ from uov_data import U, S, CAM_CAT
 wb = openpyxl.load_workbook('output/catalogo_case_editrici_indipendenti.xlsx', data_only=True)
 ws = wb['Tutti i titoli']
 FASCE = ["0-3 anni", "3-6 anni", "Prime letture (6-8)", "8+", "9+", "10+", "Scuola media (11-13)", "Adolescenza (14+)", "n.d. / tutte le età"]
-LABEL = {"n.d. / tutte le età": "Tutte le età (età da verificare)"}
+LABEL = {"n.d. / tutte le età": "Altri libri"}
 BAD_START = ("Collana", "Collezione", "Catalogo", "Fasce d", "Nessun", "Leggere senza")
 BAD_EXACT = {"Libri gioco cartonati", "I libri di Gek Tessaro / Il mondo di Tony Ross / Il mondo di Salina Yoon"}
 GEN = {"—", ""}
@@ -142,6 +142,17 @@ for r in ws.iter_rows(min_row=2, values_only=True):
                       pr=pr, caa=(caa == "Sì"), e=fix(eta if eta not in ("n.d.", None) else ""),
                       isbn=ISB.get(pub + '|' + t, ''), g=fix(g or ""), c=fix(col if col not in ("Catalogo", "—", None) else ""), th=fix(th), acc=fix("; ".join(acc))))
 
+# dati trovati in rete (IBS): ISBN, età, fascia, sinossi e prezzo mancanti. Vedi dati_web.json
+WEB = json.load(open('dati_web.json', encoding='utf-8'))
+for b in books:
+    w = WEB.get(b["p"] + '|' + b["t"])
+    if not w: continue
+    if w.get("isbn") and not b["isbn"]: b["isbn"] = w["isbn"]
+    if w.get("eta") and not b["e"]: b["e"] = w["eta"]
+    if w.get("fascia"): b["f"] = w["fascia"]
+    if w.get("sinossi") and not b["real"]: b["s"], b["real"] = w["sinossi"], True
+    if w.get("prezzo") is not None and b["pr"] is None: b["pr"] = w["prezzo"]
+
 # dati modificabili
 FL = [LABEL.get(f, f) for f in FASCE]
 lines = []
@@ -161,7 +172,7 @@ FONTCSS = "\n".join("@font-face{font-family:'%s';font-style:%s;font-weight:%s;fo
                     % (fam, st, w, _b64.b64encode(open(f'assets/fonts/{fn}.woff2', 'rb').read()).decode()) for fam, st, w, fn in FONTS)
 HTML = HTML.replace("__FONTCSS__", FONTCSS)
 for k, v in {"__FASCE__": json.dumps(FL, ensure_ascii=False), "__LIBRI__": "\n".join(lines), "__P1__": rd('poster1'),
-             "__P2__": rd('poster2'), "__BART__": rd('bartegart'), "__SOSTARE__": rd('sostare'), "__COPERTINE__": json.dumps({**{b["isbn"]: COV[b["isbn"]] for b in books if b["isbn"] in COV}, **{k: v for k, v in COV.items() if k.startswith("t:")}})}.items():
+             "__P2__": rd('poster2'), "__BART__": rd('bartegart'), "__SOSTARE__": rd('sostare'), "__COPERTINE__": json.dumps({**{b["isbn"]: COV[b["isbn"]] for b in books if b["isbn"] in COV}, **{k: v for k, v in COV.items() if k.startswith("t:") and k[2:] in {_mm(x["t"]) for x in books}}})}.items():
     HTML = HTML.replace(k, v)
 open('output/flipbook_bottegart.html', 'w', encoding='utf-8').write(HTML)
 print(len(books), "libri;", len(HTML) // 1024, "KB")
