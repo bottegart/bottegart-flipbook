@@ -86,7 +86,7 @@ em.s,.serif{font-family:var(--serif);font-style:italic;font-weight:400;letter-sp
 .grid{display:grid;grid-template-columns:1fr;gap:clamp(14px,2vw,22px)}
 @media (min-width:780px){.grid{grid-template-columns:1fr 1fr}}
 .card{display:grid;grid-template-columns:auto 1fr;gap:16px;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--paper);min-width:0}
-.cover{position:relative;width:118px;aspect-ratio:2/3;border-radius:3px 8px 8px 3px;overflow:hidden;box-shadow:0 10px 22px -10px rgba(0,0,0,.5),inset 3px 0 0 rgba(0,0,0,.12);color:var(--c-ink);background:var(--c);display:flex;flex-direction:column;justify-content:space-between;padding:10px 9px;flex:none}
+.cover{position:relative;align-self:start;width:118px;aspect-ratio:2/3;border-radius:3px 8px 8px 3px;overflow:hidden;box-shadow:0 10px 22px -10px rgba(0,0,0,.5),inset 3px 0 0 rgba(0,0,0,.12);color:var(--c-ink);background:var(--c);display:flex;flex-direction:column;justify-content:space-between;padding:10px 9px;flex:none}
 .cover .pt{font-family:var(--serif);font-size:1.32rem;line-height:1;letter-spacing:-.01em;word-break:break-word;hyphens:auto}
 .cover .pp{font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;opacity:.85}
 .cover .pl{width:22px;height:3px;background:currentColor;opacity:.6}
@@ -217,6 +217,8 @@ var IMG={p1:"__P1__",p2:"__P2__",bart:"__BART__",sostare:"__SOSTARE__"};
 var COPERTINE=__COPERTINE__;
 </script>
 <script>
+/* la copertina prende le proporzioni dell’immagine (gli albi quadrati non vengono tagliati) */
+function fitCover(i){if(i.naturalWidth&&i.naturalHeight){var r=i.naturalWidth/i.naturalHeight;i.parentNode.style.aspectRatio=Math.min(1.25,Math.max(.55,r));}}
 function nrmjs(s){return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]/g,"");}
 var B=LIBRI.map(function(x,i){var emb=COPERTINE[x.isbn]||COPERTINE["t:"+nrmjs(x.titolo)]||"";return {id:i,t:x.titolo,a:x.autore,p:x.editore,f:x.fascia,s:x.sinossi,real:x.verificata,pr:x.prezzo,caa:x.caa,e:x.eta,g:x.tipo,c:x.collana,th:x.temi,acc:x.accessibilita,emb:!!(x.copertina||emb),img:(x.copertina||emb||((COPERTINE_ONLINE&&x.isbn)?"https://www.ibs.it/images/"+x.isbn+"_0_0_150_0_75.jpg":""))};});
 B.forEach(function(b){if(FASCE.indexOf(b.f)<0)FASCE.push(b.f);});
@@ -240,7 +242,7 @@ function splitAge(name){var m=String(name).match(/^(.*?)\s*\((.*)\)\s*$/);return
 
 function card(b){
   var c=band(b.f);
-  var cover='<div class="cover" style="--c:'+c[0]+';--c-ink:'+c[1]+'"><span class="pl"></span><span class="pt">'+esc(b.t)+'</span><span class="pp">'+esc(b.p)+'</span>'+(b.img?'<img class="cimg" src="'+esc(b.img)+'" alt="Copertina di '+esc(b.t)+'" loading="lazy" onerror="this.remove()">':'')+'</div>';
+  var cover='<div class="cover" style="--c:'+c[0]+';--c-ink:'+c[1]+'"><span class="pl"></span><span class="pt">'+esc(b.t)+'</span><span class="pp">'+esc(b.p)+'</span>'+(b.img?'<img class="cimg" src="'+esc(b.img)+'" alt="Copertina di '+esc(b.t)+'" loading="lazy" onload="fitCover(this)" onerror="this.remove()">':'')+'</div>';
   var price=b.pr!=null?'<span class="price">'+money(b.pr)+'</span>':'<span class="price none">Prezzo su richiesta</span>';
   var on=!!wish[b.id];
   var chips=(b.e?'<span class="chip age">'+esc(b.e)+'</span>':'')+(b.caa?'<span class="chip caa">CAA</span>':'')+(b.g&&b.g.length<34?'<span class="chip">'+esc(b.g)+'</span>':'');

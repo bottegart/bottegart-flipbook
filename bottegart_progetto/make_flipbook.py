@@ -142,16 +142,38 @@ for r in ws.iter_rows(min_row=2, values_only=True):
                       pr=pr, caa=(caa == "Sì"), e=fix(eta if eta not in ("n.d.", None) else ""),
                       isbn=ISB.get(pub + '|' + t, ''), g=fix(g or ""), c=fix(col if col not in ("Catalogo", "—", None) else ""), th=fix(th), acc=fix("; ".join(acc))))
 
-# dati trovati in rete (IBS): ISBN, età, fascia, sinossi e prezzo mancanti. Vedi dati_web.json
+# dati trovati in rete (IBS e siti degli editori): ISBN, età, fascia, sinossi, prezzo. Vedi dati_web.json
+# - "rimuovi": toglie la riga (es. doppioni)
+# - "sostituisci": una riga che indicava una serie intera diventa 1-2 libri precisi della serie
 WEB = json.load(open('dati_web.json', encoding='utf-8'))
-for b in books:
-    w = WEB.get(b["p"] + '|' + b["t"])
-    if not w: continue
+def _web(b, w):
     if w.get("isbn") and not b["isbn"]: b["isbn"] = w["isbn"]
+    if w.get("autore") and not b["a"]: b["a"] = fix(w["autore"])
+    if w.get("autore_corretto"): b["a"] = fix(w["autore_corretto"])
+    if w.get("isbn_corretto"): b["isbn"] = w["isbn_corretto"]
+    if w.get("eta_corretta"): b["e"] = w["eta_corretta"]
+    if w.get("fascia_corretta"): b["f"] = w["fascia_corretta"]
+    if w.get("prezzo_corretto") is not None: b["pr"] = w["prezzo_corretto"]
     if w.get("eta") and not b["e"]: b["e"] = w["eta"]
-    if w.get("fascia"): b["f"] = w["fascia"]
-    if w.get("sinossi") and not b["real"]: b["s"], b["real"] = w["sinossi"], True
+    if w.get("fascia") and (b["f"] == "n.d. / tutte le età" or w.get("sostituito")): b["f"] = w["fascia"]
+    if w.get("sinossi") and not b["real"]: b["s"], b["real"] = fix(w["sinossi"]), True
     if w.get("prezzo") is not None and b["pr"] is None: b["pr"] = w["prezzo"]
+_out, _seen = [], set()
+for b in books:
+    if (b["p"], b["t"]) in _seen: continue   # doppione
+    _seen.add((b["p"], b["t"]))
+    w = WEB.get(b["p"] + '|' + b["t"], {})
+    if w.get("rimuovi"): continue
+    if w.get("sostituisci"):
+        for r in w["sostituisci"]:
+            nb = dict(b, t=fix(r["titolo"]), a="", isbn="", e="", s="", real=False, pr=None, c=fix(r.get("collana") or ""))
+            _web(nb, dict(r, sostituito=True))
+            _out.append(nb)
+        continue
+    _web(b, w)
+    _out.append(b)
+books = _out
+for k, b in enumerate(books): b["id"] = k
 
 # dati modificabili
 FL = [LABEL.get(f, f) for f in FASCE]

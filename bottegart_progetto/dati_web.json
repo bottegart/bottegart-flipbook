@@ -398,7 +398,7 @@
  },
  "Camelozampa|La sorpresa della volpe": {
   "eta_fonte": "da 5 anni",
-  "sinossi": "Un racconto sull’amicizia e contro i pregiudizi, una storia dolce e divertente, con un finale davvero a sorpresa. TuttolibriLa volpe ha preparato una sorpresa: è un’idea talmente furba, pensa, che nessuno riuscirà a indovinare di cosa si tratta! L’orso ama le torte, quindi pensa che sarà una gara di dolci. La lepre è appassionata di calcio: sarà una partita? Il topo adora i libri ed è sicuro che aprirà una biblioteca. La civetta è patita del rock, quindi si aspetta un concerto, mentre la tartaruga, che ha un debole per il circo, si attende uno show... Tutti seguono la volpe. Quando nella sua tana si fa buio, per un attimo hanno paura...",
+  "sinossi": "Un racconto sull’amicizia e contro i pregiudizi, una storia dolce e divertente, con un finale davvero a sorpresa. Tuttolibri. La volpe ha preparato una sorpresa: è un’idea talmente furba, pensa, che nessuno riuscirà a indovinare di cosa si tratta! L’orso ama le torte, quindi pensa che sarà una gara di dolci. La lepre è appassionata di calcio: sarà una partita? Il topo adora i libri ed è sicuro che aprirà una biblioteca. La civetta è patita del rock, quindi si aspetta un concerto, mentre la tartaruga, che ha un debole per il circo, si attende uno show... Tutti seguono la volpe. Quando nella sua tana si fa buio, per un attimo hanno paura...",
   "fonte": "https://www.ibs.it/x/e/9788899842888"
  },
  "Camelozampa|70 trucchi per non fare il bagno": {
@@ -531,14 +531,28 @@
   "fonte": "https://www.ibs.it/x/e/9791256260560"
  },
  "Gallucci|La casa nella prateria (serie)": {
-  "eta_fonte": "da 11 anni",
-  "fonte": "https://www.ibs.it (ricerca)"
+  "sostituisci": [
+   {
+    "isbn": "9788836240494",
+    "titolo": "La casa nella prateria (vol. 1)",
+    "autore": "Laura Ingalls Wilder",
+    "collana": "La casa nella prateria",
+    "eta": "da 11 anni",
+    "fascia": "Scuola media (11-13)",
+    "sinossi": "In viaggio verso il Kansas con la famiglia Ingalls. La vita nella prateria è difficile e talvolta persino pericolosa, ma papà, mamma, Mary, Laura e la piccola Carrie sono felici di realizzare il sogno di una nuova vita. Il fruscio del vento nell’erba sembrava una musica. E il canto stridulo delle cavallette faceva vibrare l’immensa prateria. Un flebile ronzio proveniva dagli alberi in riva al ruscello. Tutti quei suoni formavano un fantastico, caldo, gioioso silenzio. Laura non aveva mai visto un posto che le piacesse così tanto…",
+    "prezzo": 13.5,
+    "fonte": "https://www.ibs.it/x/e/9788836240494"
+   }
+  ]
  },
  "Gallucci|Il mondo di Lucrezia 2": {
   "isbn": "9788836240067",
   "eta_fonte": "da 9 anni",
   "sinossi": "Tra una ricerca di scienze e un cinema con le amiche, Lucrezia trova anche il tempo di partecipare a un concerto e di seguire lezioni di ballo. Casomai corresse il rischio di annoiarsi, c’è sempre la sua famiglia a movimentarle la vita con l’invito a un curioso matrimonio e il fidanzamento della nonna Scarlett!",
-  "fonte": "https://www.ibs.it/x/e/9788836240067"
+  "fonte": "https://www.ibs.it/x/e/9788836240067",
+  "prezzo": 12.9,
+  "fonte_prezzo": "https://www.ibs.it/x/e/9791222114200",
+  "nota_prezzo": "prezzo della nuova edizione (Che famiglia stramba!)"
  },
  "Gallucci|Tu sei importante": {
   "isbn": "9788836242580",
@@ -671,9 +685,11 @@
  },
  "Cronache Ribelli|C’era una (ri)volta – Quaranta storie da leggere e colorare (vol. II)": {
   "isbn": "9791280257093",
-  "eta_fonte": "da 5 anni",
+  "eta": "da 5 anni",
+  "fascia": "3-6 anni",
   "prezzo": 18.0,
-  "fonte": "https://www.ibs.it/x/e/9791280257093"
+  "sinossi": "Il secondo volume, con quaranta nuove storie di ribellione e altrettanti disegni da colorare. Il libro invita i piccoli lettori a interagire e a personalizzarlo, così che ogni copia diventi unica.",
+  "fonte": "https://cronacheribelli.it/products/cera-una-rivolta-volume-ii-quaranta-storie-da-leggere-e-colorare"
  },
  "Dalia Edizioni|Alla scoperta della libertà": {
   "eta_fonte": "da 7 anni",
@@ -781,7 +797,9 @@
  "Minibombo|Affamato come un lupo – versione in simboli (InBook)": {
   "eta": "da 3 anni",
   "eta_fonte": "da 3 anni",
-  "fonte": "https://www.ibs.it (ricerca)"
+  "fonte": "https://www.ibs.it/x/e/9788898177387",
+  "isbn_copertina": "9788898177387",
+  "sinossi": "Versione in simboli dell’albo. Si dice che nel bosco ci sia un lupo affamato. Sarà il caso di crederci?"
  },
  "Minibombo|Allarme rosso!": {
   "eta_fonte": "da 3 anni",
@@ -814,12 +832,16 @@
  "Minibombo|Il libro gatto – versione in simboli (InBook)": {
   "eta": "da 3 anni",
   "eta_fonte": "da 3 anni",
-  "fonte": "https://www.ibs.it (ricerca)"
+  "fonte": "https://www.ibs.it/x/e/9788898177035",
+  "isbn_copertina": "9788898177035",
+  "sinossi": "Versione in simboli dell’albo. Questo è il tuo libro gatto. Da coccolare, stringere, prendere in braccio."
  },
  "Minibombo|Orso, buco! – versione in simboli (InBook)": {
   "eta": "da 0 a 2 anni",
   "eta_fonte": "da 0 a 2 anni",
-  "fonte": "https://www.ibs.it (ricerca)"
+  "fonte": "https://www.ibs.it/x/e/9788898177066",
+  "isbn_copertina": "9788898177066",
+  "sinossi": "Versione in simboli dell’albo. Si può raccontare una storia soltanto con forme e colori? Segui le linee, scova le tane ma attento a non cadere nei buchi!"
  },
  "Minibombo|Storie brevi": {
   "eta_fonte": "da 3 anni",
@@ -901,41 +923,186 @@
   "fonte": "https://www.ibs.it/x/e/9788857613604"
  },
  "Lapis|Avventure di Tato e Nanà": {
-  "eta_fonte": "da 0 a 2 anni",
-  "fonte": "https://www.ibs.it (ricerca)"
+  "sostituisci": [
+   {
+    "isbn": "9788878749757",
+    "titolo": "Nanà è arrabbiata",
+    "autore": "Kimiko",
+    "collana": "Le avventure di Tato e Nanà",
+    "eta": "0-3 anni",
+    "fascia": "0-3 anni",
+    "sinossi": "È arrivato il momento della merenda. Oggi ci saranno i dolcetti! Ma quando Nanà e Tato arrivano in cucina trovano il piatto vuoto. Dei dolcetti nemmeno l’ombra. La sparizione dei dolcetti scatena in Nanà una reazione di fortissima rabbia: prima accusa ingiustamente il fratellino Tato, poi si dispera in un crescendo di collera che la porta a urlare e… diventare tutta rossa. Ma la rabbia va espressa, lasciata fluire: così, una volta sfogata, grazie all’empatia di Tato e alla dolcezza della frutta, l’arrabbiatura, così come è arrivata, se ne va. Grazie, per avermi fatto passare la rabbia, Tato! Smack! Per te un bel bacio arancione. Intanto...",
+    "prezzo": 11.5,
+    "fonte": "https://www.ibs.it/x/e/9788878749757"
+   },
+   {
+    "isbn": "9788878749535",
+    "titolo": "Il bacio arcobaleno",
+    "autore": "Kimiko",
+    "collana": "Le avventure di Tato e Nanà",
+    "eta": "0-3 anni",
+    "fascia": "0-3 anni",
+    "sinossi": "Un bel bacio giallo e passa tutto. Tato spiega a Nanà che esistono baci di tutti i colori. Il bacio giallo è il bacio-della-bua, piccolo e delicato come un pulcino, il bacio rosa è il bacio-della-nanna, per fare sogni d’oro. Quello verde si dà sul collo e ti fa il solletico, quello rosso è per quando siamo felici, quello viola si schiocca da lontano per dirsi arrivederci… E poi c’è il preferito di Nanà e Tato: il bacio arcobaleno! Perfetto per ogni occasione. Un bacio di mille colori, come l’amore.",
+    "prezzo": 11.5,
+    "fonte": "https://www.ibs.it/x/e/9788878749535"
+   }
+  ]
  },
  "Lapis|I senza parole di Attilio": {
-  "eta_fonte": "da 0 a 2 anni",
-  "fonte": "https://www.ibs.it (ricerca)"
+  "sostituisci": [
+   {
+    "isbn": "9788878749177",
+    "titolo": "Meglio insieme",
+    "autore": "Attilio Cassinelli",
+    "collana": "I senza parole di Attilio",
+    "eta": "da 2 anni",
+    "fascia": "0-3 anni",
+    "sinossi": "La storia per immagini di due cuccioli, che dormono tranquilli nella loro gabbia. Ma uno dei due ha trovato un padrone e vengono separati. Il cucciolo adottato arriva nella nuova casa, dove lo attende una bambina che fa di tutto per renderlo felice, ma il cucciolo non mangia, non gioca, resta nascosto tutto il tempo. La bambina è disperata. La mamma trova la cura per la sua tristezza. Anche il secondo cucciolo ha trovato posto a casa della bambina.",
+    "prezzo": 12.5,
+    "fonte": "https://www.ibs.it/x/e/9788878749177"
+   },
+   {
+    "isbn": "9788878749184",
+    "titolo": "Pio pio bau bau",
+    "autore": "Attilio Cassinelli",
+    "collana": "I senza parole di Attilio",
+    "eta": "da 2 anni",
+    "fascia": "0-3 anni",
+    "sinossi": "La storia di un pulcino che, approfittando di un momento di distrazione della mamma, si allontana dall’aia andando incontro a ben più grandi e colorati animali: la capra, il cane, la rana, il corvo… Di ogni animale imparerà a imitare i versi restituendoli infine alla chioccia preoccupata. Per fare pio pio, però, ci vuole un aiuto. Ditelo voi, pulcini, a vostro fratello!",
+    "prezzo": 12.5,
+    "fonte": "https://www.ibs.it/x/e/9788878749184"
+   }
+  ]
  },
  "Lapis|Foto di gruppo (versione in simboli InBook)": {
   "eta": "da 3 anni",
   "eta_fonte": "da 3 anni",
-  "fonte": "https://www.ibs.it (ricerca)"
+  "fonte": "https://www.ibs.it/x/e/9788878745209",
+  "isbn_copertina": "9788878745209",
+  "sinossi": "Versione in simboli dell’albo. Lasciano in giro di tutto gli esploratori. Quasi mai oggetti interessanti. Stavolta però si trattava di una macchina fotografica. E la trovò la scimmia."
  },
  "Lapis|Le mini storie di Attilio": {
-  "eta_fonte": "da 3 anni",
-  "fonte": "https://www.ibs.it (ricerca)"
+  "sostituisci": [
+   {
+    "isbn": "9788878745124",
+    "titolo": "Cappuccetto Rosso",
+    "autore": "Attilio Cassinelli",
+    "collana": "Le mini storie di Attilio",
+    "eta": "da 2 anni",
+    "fascia": "0-3 anni",
+    "sinossi": "Le fiabe più amate, raccontate con il segno deciso e inconfondibile di Attilio, indiscusso maestro dell’illustrazione italiana.",
+    "prezzo": 9.9,
+    "fonte": "https://www.ibs.it/x/e/9788878745124"
+   },
+   {
+    "isbn": "9788878747586",
+    "titolo": "Vieni a giocare?",
+    "autore": "Attilio Cassinelli",
+    "collana": "Le mini storie di Attilio",
+    "eta": "0-3 anni",
+    "fascia": "0-3 anni",
+    "sinossi": "Il cagnolino Bob esce a cercare i suoi amici per giocare a palla. Il coniglietto Samuele vorrebbe andare giocare con lui, ma prima deve trasportare un carretto di carote. Per far prima, Bob lo aiuta. Anche la mucca Milli ha voglia di giocare, ma prima Bob deve aiutarla a trasportare un secchio di latte. Orsetto deve segare un tronco, Pericle il gatto deve sistemare il barattolo di vernice, il castoro deve trasportare alcune pietre… Bob li aiuta tutti. Che bello! Ora gli amici sono liberi dagli impegni e possono giocare tutti insieme con la palla. E Bob, dov’è? Lui si è addormentato, stanchissimo!",
+    "prezzo": 9.9,
+    "fonte": "https://www.ibs.it/x/e/9788878747586"
+   }
+  ]
  },
  "Lapis|Storie di una principessina (Tilly)": {
-  "eta_fonte": "da 4 anni",
-  "fonte": "https://www.ibs.it (ricerca)"
+  "sostituisci": [
+   {
+    "isbn": "9788878742543",
+    "titolo": "Voglio il mio ciuccio",
+    "autore": "Tony Ross",
+    "collana": "Storie di una principessina",
+    "eta": "da 4 anni",
+    "fascia": "3-6 anni",
+    "sinossi": "Dov’è finito il mio ciuccio? Voglio il mio ciuccio!. Cosa ci fa il ciuccio della Principessina nel camino? E chi lo ha buttato nella pattumiera? Anche se il Re, la Regina, il Generale e la Cameriera si danno un gran da fare per nasconderlo, lei riesce sempre a trovarlo. Ma... siamo proprio sicuri che il ciuccio serva davvero alla Principessina?",
+    "prezzo": 9.8,
+    "fonte": "https://www.ibs.it/x/e/9788878742543"
+   },
+   {
+    "isbn": "9788878742550",
+    "titolo": "Voglio il mio vasino",
+    "autore": "Tony Ross",
+    "collana": "Storie di una principessina",
+    "eta": "da 4 anni",
+    "fascia": "3-6 anni",
+    "sinossi": "Il pannolino è bleah! Non c’è niente di meglio? dice la Principessina. Il vasino è meglio! dice la Regina. La Principessina è arcistufa del pannolino ma il vasino non sembra piacerle affatto... Almeno fino a quando non scopre che può essere divertente e soprattutto... molto utile!",
+    "prezzo": 9.8,
+    "fonte": "https://www.ibs.it/x/e/9788878742550"
+   }
+  ]
  },
  "Lapis|Dardo il cane di Leonardo": {
-  "eta_fonte": "da 7 anni",
-  "fonte": "https://www.ibs.it (ricerca)"
+  "sostituisci": [
+   {
+    "isbn": "9788878749351",
+    "titolo": "La collana di Monna Lisa (Dardo il cane di Leonardo, vol. 1)",
+    "autore": "Pascal Brissy",
+    "collana": "Dardo il cane di Leonardo",
+    "eta": "da 7 anni",
+    "fascia": "Prime letture (6-8)",
+    "sinossi": "Primo volume della collana “Dardo Il cane di Leonardo”: brevi storie d’investigazione ambientate nella Firenze del Rinascimento, con un geniale detective a quattro zampe: Dardo, il cane di Leonardo da Vinci. In ogni volume due episodi. Prime letture con illustrazioni a colori in ogni pagina, divise in brevi capitoli, coinvolgenti, ricche d’azione e di momenti buffi. Nel primo episodio, Dardo cerca di scoprire chi ha rubato la collana di Monna Lisa. Nel secondo, indaga sull’apparizione di un terribile mostro dagli occhi gialli che semina il terrore sulle sonde dell’Arno.",
+    "prezzo": 10.0,
+    "fonte": "https://www.ibs.it/x/e/9788878749351"
+   }
+  ]
  },
  "Lapis|Mabel (prime letture)": {
-  "eta_fonte": "da 7 anni",
-  "fonte": "https://www.ibs.it (ricerca)"
+  "sostituisci": [
+   {
+    "isbn": "9788878747524",
+    "titolo": "Magnifica Mabel e il disastro del coniglio",
+    "autore": "Ruth Quayle",
+    "collana": "Magnifica Mabel",
+    "eta": "da 7 anni",
+    "fascia": "Prime letture (6-8)",
+    "sinossi": "Le avventure che Mabel racconta in prima persona mostrano il lato più autentico e libero dell’infanzia, fatto di desideri, divieti, monellerie, trovate originali, personaggi fantastici, ma anche dello scontro tra il suo mondo immaginario e quello reale. Mabel è campionessa mondiale nel cercare di ottenere quello che vuole. Anche a costo di essere messa in punizione. Le argomentazioni con cui Mabel giustifica le sue monellerie sono dei piccoli capolavori di umorismo, perfetti per invogliare i bambini alla lettura.",
+    "prezzo": 12.0,
+    "fonte": "https://www.ibs.it/x/e/9788878747524"
+   }
+  ]
  },
  "Lapis|Omero – Iliade / Odissea per ragazzi": {
-  "eta_fonte": "da 8 anni",
-  "fonte": "https://www.ibs.it (ricerca)"
+  "sostituisci": [
+   {
+    "isbn": "9788878743878",
+    "titolo": "Iliade",
+    "autore": "Nicola Cinquetti; ill. Desideria Guicciardini",
+    "collana": "",
+    "eta": "da 8 anni",
+    "fascia": "8+",
+    "sinossi": "La storia di una guerra interminabile, che mette a nudo le passioni, gli affetti, le crudeltà e gli slanci più generosi dei suoi protagonisti: uomini che lottano come Dei, e Dei che bisticciano come bambini. Il grande classico omerico raccontato a piccoli e grandi, nel rispetto dei suoi 24 libri, impreziosito dalle immagini di Desideria Guicciardini.",
+    "prezzo": 13.9,
+    "fonte": "https://www.ibs.it/x/e/9788878743878"
+   },
+   {
+    "isbn": "9788878743274",
+    "titolo": "Odissea",
+    "autore": "Nicola Cinquetti; ill. Desideria Guicciardini",
+    "collana": "",
+    "eta": "da 8 anni",
+    "fascia": "8+",
+    "sinossi": "Erano trascorsi quasi dieci anni dalla fine della guerra di Troia, ma nessuno sapeva più nulla di Odisseo, il re di Itaca. Molti credevano che fosse morto, ucciso in battaglia o travolto dalla furia del mare sulla via del ritorno. Qualcuno, invece, continuava a sperare che fosse ancora vivo. Il meraviglioso viaggio di Odisseo, uomo dai mille volti e di geniale intelligenza, simbolo di astuzia e implacabile sete di conoscenza. I grande classico omerico raccontato a piccoli e grandi.",
+    "prezzo": 14.5,
+    "fonte": "https://www.ibs.it/x/e/9788878743274"
+   }
+  ]
  },
  "Lapis|I misteri di Teo": {
-  "eta_fonte": "da 8 anni",
-  "fonte": "https://www.ibs.it (ricerca)"
+  "sostituisci": [
+   {
+    "isbn": "9788878743472",
+    "titolo": "Il segreto del labirinto (I misteri di Teo)",
+    "autore": "Janna Carioli, Luisa Mattia",
+    "collana": "I misteri di Teo",
+    "eta": "da 8 anni",
+    "fascia": "8+",
+    "sinossi": "Altafonte, calma piatta all’orizzonte... Questo è ciò che pensa Teo, costretta a passare l’estate a casa della zia, prima di ritrovarsi invischiata in una rocambolesca avventura con il suo nuovo amico Nicola. Reperti etruschi trafugati, spregiudicati imbroglioni e un misterioso labirinto, irrompono nelle giornate dei ragazzi. Sarà l’inizio di un’indagine emozionante... Riusciranno i due improvvisati investigatori, accompagnati da Zorro, l’inseparabile cane di Teo, a risolvere il mistero?",
+    "prezzo": 7.5,
+    "fonte": "https://www.ibs.it/x/e/9788878743472"
+   }
+  ]
  },
  "L’Ippocampo|Le cronache dell’acero e del ciliegio (4 libri)": {
   "eta_fonte": "da 13 anni",
@@ -944,12 +1111,14 @@
  "effequ|VIETATO": {
   "isbn": "9791281639454",
   "eta_fonte": "da 5 anni",
-  "fonte": "https://www.ibs.it/x/e/9791281639454"
+  "fonte": "https://www.effequ.it/prodotto/vietato/",
+  "sinossi": "“Non si fa!” “Non si dice!” Ma cosa c’è davvero dentro un divieto? In questa Scatolina fatta a filastrocca, Simone Tempia esplora con bambine e bambini la parola vietato: un limite che, se guardato bene, può aprire a molte possibilità. Tra rime, esempi buffi e domande importanti, Vietato ci insegna che ogni regola può diventare un’occasione per capire, scegliere e immaginare. L’illustrazione di Marianna Balducci gioca con il concetto di limite, aprendo spiragli poetici e colorati."
  },
  "effequ|WEB": {
   "isbn": "9791281639461",
   "eta_fonte": "da 5 anni",
-  "fonte": "https://www.ibs.it/x/e/9791281639461"
+  "fonte": "https://www.effequ.it/prodotto/web/",
+  "sinossi": "Che cos’è il Web? Da dove vengono i contenuti che vediamo ogni giorno online? In questa Scatolina ricca di spunti, Antonio Pavolini accompagna bambine e bambini in un viaggio nella parola web, tra passato e futuro, tra libertà e consapevolezza. Internet può essere un luogo bellissimo, se impariamo a usarlo senza farci usare. L’illustrazione di Nicola Giorgio apre uno sguardo vivace su un mondo fatto di connessioni, curiosità e voci che si intrecciano."
  },
  "effequ|XY": {
   "isbn": "9791281639478",
@@ -959,12 +1128,15 @@
  "effequ|ZAMPA": {
   "isbn": "9791281639485",
   "eta_fonte": "da 5 anni",
-  "fonte": "https://www.ibs.it/x/e/9791281639485"
+  "fonte": "https://www.effequ.it/prodotto/zampa/",
+  "sinossi": "A volte una parola scalpita, lascia impronte dappertutto e si fa strada tra passato, presente e immaginazione. In questa Scatolina fatta di orme e racconti, Francesca Matteoni ci invita a esplorare la parola zampa: punto d’incontro tra esseri viventi, gesto di contatto, memoria sul terreno. Dalla tua mano alle pinne, dai graffi gentili ai salti degli insetti, Zampa racconta storie di animali che si muovono, comunicano, cambiano. L’illustrazione di Prisca Milanese raccoglie questo mondo in un’immagine piena di colori, dettagli e meraviglia."
  },
  "BeccoGiallo|Il bullismo spiegato ai bambini": {
   "isbn": "9788833140254",
   "eta_fonte": "da 7 anni",
-  "fonte": "https://www.ibs.it/x/e/9788833140254"
+  "fonte": "https://www.ibs.it/x/e/9788833140254",
+  "prezzo": 14.0,
+  "fonte_prezzo": "https://www.beccogiallo.it/negozio/kids/criticalkids/il-bullismo-spiegato-ai-bambini/"
  },
  "BeccoGiallo|Il razzismo spiegato ai bambini": {
   "isbn": "9788833140391",
@@ -999,10 +1171,19 @@
   "fonte": "https://www.ibs.it/x/e/9788833143620"
  },
  "BeccoGiallo|Adele Crudele (serie)": {
-  "eta": "da 11 anni",
-  "fascia": "Scuola media (11-13)",
-  "eta_fonte": "da 11 anni",
-  "fonte": "https://www.ibs.it (ricerca)"
+  "sostituisci": [
+   {
+    "isbn": "9788899016852",
+    "titolo": "Adele Crudele 1. Tutto questo finirà male",
+    "autore": "Mr Tan",
+    "collana": "Adele Crudele",
+    "eta": "da 11 anni",
+    "fascia": "Scuola media (11-13)",
+    "sinossi": "Che si tratti di far arrabbiare i miei genitori, di torturare il mio stupido gatto, di lottare contro Giada e le sue compari o di spezzare il cuore a Goffredo... ho sempre pronta un’idea interessante! Una buona dose di humour nero e un pizzico di tenerezza: ecco la ricetta di Adele, eroina di un nuovo genere... Allacciate le cinture, si parte!",
+    "prezzo": 12.0,
+    "fonte": "https://www.ibs.it/x/e/9788899016852"
+   }
+  ]
  },
  "BeccoGiallo|Archeo Tales – Il mito del Minotauro": {
   "isbn": "9788833143866",
@@ -1013,10 +1194,19 @@
   "fonte": "https://www.ibs.it/x/e/9788833143866"
  },
  "BeccoGiallo|Ariol (serie)": {
-  "eta": "da 8 anni",
-  "fascia": "8+",
-  "eta_fonte": "da 8 anni",
-  "fonte": "https://www.ibs.it (ricerca)"
+  "sostituisci": [
+   {
+    "isbn": "9788833140148",
+    "titolo": "Ariol. Un piccolo asino come te e me",
+    "autore": "Emmanuel Guibert; ill. Marc Boutavant",
+    "collana": "Ariol",
+    "eta": "da 8 anni",
+    "fascia": "8+",
+    "sinossi": "Premio Comicon (opere straniere e internazionali) sezione Giovani Letture 2019. Ariol è un asinelio azzurro con gli occhiali. Vive in periferia con il suo papà e la sua mamma. Il suo migliore amico è un maiale. E innamorato di una compagna di classe, una graziosa vitellina. Il suo maestro è un grosso cane, il suo insegnante di ginnastica è un gallo robusto. Ecco insomma, Ariol è proprio come te e me.",
+    "prezzo": 12.0,
+    "fonte": "https://www.ibs.it/x/e/9788833140148"
+   }
+  ]
  },
  "BeccoGiallo|Come l’acqua": {
   "isbn": "9788833143750",
@@ -1033,7 +1223,9 @@
   "fascia": "Scuola media (11-13)",
   "eta_fonte": "da 12 anni",
   "sinossi": "Nel 1873 l’esploratore e botanico tedesco Georg August Schweinfurth invia alla società geografica italiana un telegramma di poche righe dove è annunciata la morte di Giovanni Miani, la fine dell’esplorazione del Nilo Superiore finanziata dal governatore del Sudan Djafer Pascia e la presenza tra i beni lasciati da Miani di due “pigmei”. La parola pigmeo, oggi fortemente dispregiativa, indicava allora alcune popolazioni che abitavano i territori della foresta pluviale dell’Africa Centrale e Occidentale. Il mondo scientifico va in fibrillazione, eccitato dall’idea di poter vedere dal vivo, in carne e sangue, due persone di quei popoli.",
-  "fonte": "https://www.ibs.it/x/e/9788833144320"
+  "fonte": "https://www.ibs.it/x/e/9788833144320",
+  "prezzo": 20.0,
+  "fonte_prezzo": "https://www.beccogiallo.it/negozio/graphic-journalism/figli-della-foresta/"
  },
  "BeccoGiallo|Il cinema spiegato ai bambini e alle bambine": {
   "isbn": "9788833143552",
@@ -1050,7 +1242,9 @@
   "fascia": "3-6 anni",
   "eta_fonte": "da 3 anni",
   "sinossi": "Esistono tanti tipi di corpi. Hanno forme e colori diversi. Riescono a fare un sacco di cose. Il tuo corpo è il tuo migliore amico! E ogni corpo va rispettato e celebrato.",
-  "fonte": "https://www.ibs.it/x/e/9788833143767"
+  "fonte": "https://www.ibs.it/x/e/9788833143767",
+  "prezzo": 17.5,
+  "fonte_prezzo": "https://www.beccogiallo.it/negozio/kids/illustrati/il-mio-corpo/"
  },
  "BeccoGiallo|Il primo soccorso spiegato alle bambine e ai bambini": {
   "isbn": "9788833143965",
@@ -1100,5 +1294,73 @@
   "sinossi": "Nel corso della storia, le proteste delle donne sono riuscite a rendere il mondo un posto migliore. A Londra, le sarte di una fabbrica della Ford spinsero il Regno Unito ad adottare la parità salariale; le donne saudite ebbero il coraggio di prendere il volante nonostante il divieto di guidare nel loro paese; le Guerrilla Girls si mascherarono da gorilla per dare uno scossone al mondo dell’arte e rivendicare la presenza femminile nei musei… Quando donne coraggiose difendono ciò in cui credono accadono cose incredibili!",
   "prezzo": 19.5,
   "fonte": "https://www.ibs.it/x/e/9788833143460"
+ },
+ "Lapis|Versi diversi / Sì, io sono (poesia)": {
+  "sostituisci": [
+   {
+    "isbn": "9788878747920",
+    "titolo": "Occhio ladro",
+    "autore": "Chiara Carminati",
+    "collana": "Versi diversi",
+    "eta": "da 6 anni",
+    "fascia": "Prime letture (6-8)",
+    "sinossi": "Vincitore Premio Andersen 2021. Miglior libro fatto ad arte. Una galleria di suggerimenti perfetti per creare un laboratorio a cielo aperto insieme ai bambini. Chi non si è mai incantato a guardare le forme nascoste delle nuvole? O le immagini che nascono dalle macchie sui muri? Questo libri invita bambini e adulti a proseguire il gioco: una collezione di foto per immaginare nuove figure nei dettagli del mondo che ci circonda, e altrettante storie in rima per tradurle in personaggi divertenti e situazioni imprevedibili. Una galleria di suggerimenti perfetti per creare un laboratorio a cielo aperto insieme ai bambini.",
+    "prezzo": 15.0,
+    "fonte": "https://www.ibs.it/x/e/9788878747920"
+   },
+   {
+    "isbn": "9788878747289",
+    "titolo": "Un anno di poesia",
+    "autore": "Bernard Friot",
+    "collana": "",
+    "eta": "da 7 anni",
+    "fascia": "Prime letture (6-8)",
+    "sinossi": "Questo volume può diventare il libro di un apprendista poeta, ma anche di qualsiasi insegnante. Un giro di 365 giorni per scoprire e riscoprire la poesia come un linguaggio accessibile a tutti, con cui sperimentare, osare, manipolare, imitare, decostruire e ricostruire e creare: punto di partenza per altre letture, stimolo a nuove scritture. Lontano dalle solite ricette, il libro è organizzato in sequenze giocose. L’attività di scrittura è associata di volta in volta a una citazione, o anche a un’intera poesia che serve da esempio e da palestra creativa.",
+    "prezzo": 21.0,
+    "fonte": "https://www.ibs.it/x/e/9788878747289"
+   }
+  ]
+ },
+ "Cronache Ribelli|C’era una (ri)volta – Quaranta storie da leggere e colorare (vol. I)": {
+  "isbn": "9791280257048",
+  "eta": "da 5 anni",
+  "fascia": "3-6 anni",
+  "prezzo": 18.0,
+  "sinossi": "Quaranta storie vere di ribellione e di lotte per i diritti, raccontate con un linguaggio semplice e pensato per bambine e bambini, ognuna con un’illustrazione da colorare. Il libro invita i piccoli lettori a interagire e a personalizzarlo, così che ogni copia diventi unica.",
+  "fonte": "https://cronacheribelli.it/products/cera-una-rivolta-quaranta-storie-da-leggere-e-colorare"
+ },
+ "La Meridiana|Cinque racconti brevi con protagonisti adolescenti (collana Parimenti)": {
+  "rimuovi": true,
+  "motivo": "è lo stesso libro di “A Said piaceva il mare” (cinque storie di adolescenti, collana Parimenti)"
+ },
+ "Cronache Ribelli|Laika e i cani venuti dallo spazio": {
+  "autore": "Francesco Velardi; ill. Francesca Mantuano",
+  "eta": "da 3 anni",
+  "fascia": "3-6 anni",
+  "prezzo": 18.0,
+  "sinossi": "Tutti conoscono la storia di Laika, la cagnetta mandata nello spazio. Ma se le cose fossero andate diversamente? In questa favola, mentre la Terra si allontana, Laika incontra creature simili a lei: viaggiatori del cosmo venuti da mondi lontani che hanno imparato a vivere in armonia col loro pianeta, invece che devastarlo. Il libro riscrive il finale di una delle storie più tristi del Novecento e lo trasforma in un racconto di speranza, che parla di amore, empatia e rispetto per ogni forma di vita.",
+  "fonte": "https://cronacheribelli.it/products/laika-e-i-cani-venuti-dallo-spazio"
+ },
+ "BeccoGiallo|L’immigrazione spiegata ai bambini": {
+  "autore_corretto": "Marco Rizzo; ill. Lelio Bonaccorso",
+  "eta": "da 7 anni",
+  "prezzo": 13.0,
+  "sinossi": "Il sole splendeva alto, il mare sembrava tranquillo, e una gatta, un cane, una capretta e un falco si erano messi in viaggio su una vecchia barca. Insieme ai loro padroncini, fuggivano da uomini crudeli che avevano distrutto i loro paesi, nella speranza di trovare una vita migliore al di là del mare… “Quel giorno sul mare c’era una di quelle piccole barche. E su quella barca, in mezzo a un mucchio di gente, si trovavano quattro animali che non si erano mai trovati insieme…figurarsi sul mare!”",
+  "fonte": "https://www.beccogiallo.it/negozio/kids/criticalkids/limmigrazione-spiegata-ai-bambini/",
+  "isbn_corretto": "9788899016395",
+  "eta_corretta": "da 7 anni",
+  "fascia_corretta": "Prime letture (6-8)"
+ },
+ "Terre di Mezzo|La grande fabbrica delle parole": {
+  "isbn_corretto": "9791259962959",
+  "nota": "ISBN aggiornato all’edizione a colori in commercio (prezzo 18,00 €)"
+ },
+ "La Meridiana|Piccole donne": {
+  "isbn_corretto": "9791256260539",
+  "sinossi": "Celebre romanzo della letteratura per ragazze e ragazzi, “Piccole donne” racconta la storia delle quattro sorelle March: Meg, la maggiore, appassionata dell’eleganza e del bel mondo; Jo, ribelle e anticonformista con una passione per la scrittura e la lettura; Beth, timida, dolce e con uno spiccato talento per la musica; Amy, la più piccola, capricciosa e vanesia con un’anima d’artista.",
+  "prezzo": 16.0,
+  "fonte": "https://www.ibs.it/x/e/9791256260539",
+  "prezzo_corretto": 16.0,
+  "nota_prezzo": "nel catalogo c’era il prezzo scontato IBS (15,20 €); il prezzo di copertina è 16,00 €"
  }
 }
