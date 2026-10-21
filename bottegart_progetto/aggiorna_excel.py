@@ -87,8 +87,16 @@ for k, w in WEB.items():
     if w.get("rimuovi"): mod.append([p, t, "Tolto dal flipbook", w.get("motivo", "")])
     elif w.get("sostituisci"): mod.append([p, t, "Serie sostituita da titoli precisi", "; ".join(r["titolo"] for r in w["sostituisci"])])
     else:
-        c = [x for x in ("autore_corretto", "isbn_corretto", "eta_corretta", "prezzo_corretto") if w.get(x)]
-        if c: mod.append([p, t, "Corretto: " + ", ".join({"autore_corretto": "autore", "isbn_corretto": "ISBN", "eta_corretta": "età", "prezzo_corretto": "prezzo"}[x] for x in c), w.get("nota") or w.get("nota_prezzo") or ""])
+        NOMI = {"titolo_corretto": "titolo", "autore_corretto": "autore", "isbn_corretto": "ISBN", "eta_corretta": "età", "fascia_corretta": "fascia", "prezzo_corretto": "prezzo", "sinossi_corretta": "trama"}
+        c = [x for x in NOMI if w.get(x)]
+        if c:
+            det = "; ".join(x for x in [("titolo: " + w["titolo_corretto"]) if w.get("titolo_corretto") else "", w.get("nota") or "", w.get("nota_prezzo") or "", w.get("nota_eta") or ""] if x)
+            mod.append([p, t, "Corretto: " + ", ".join(NOMI[x] for x in c), det])
+CORR = json.load(open('correzioni_bottegart.json', encoding='utf-8'))
+for k, c in CORR.items():
+    if k.startswith("_"): continue
+    p, t = k.split("|", 1)
+    mod.append([p, t, "Correzione Bottegart", "; ".join(f"{a}: {v}" for a, v in c.items())])
 tabella(ws3, ["Casa editrice", "Riga del catalogo", "Cosa è cambiato", "Dettagli"], mod, [20, 55, 34, 70])
 
 ws4 = wb.create_sheet("Da controllare")
@@ -103,5 +111,18 @@ for b in LIBRI:
     if w.get("sostituisci"): cosa = ["titolo scelto dalla serie", "trama", "età", "prezzo", "ISBN"]
     if cosa: chk.append([b["editore"], b["titolo"], ", ".join(cosa), fonte(w)])
 tabella(ws4, ["Casa editrice", "Titolo", "Dati presi dalla rete", "Fonte"], chk, [20, 55, 34, 70], start=3)
+ws5 = wb.create_sheet("Età da decidere")
+ws5["A1"] = ("Libri in cui l’età del catalogo dell’editore e quella indicata su IBS differiscono di 2 anni o più. "
+             "Nel flipbook c’è l’età del catalogo: se preferisci quella di IBS, scrivilo nelle correzioni.")
+ws5["A1"].font = Font(name=FN_, italic=True, size=10); ws5["A1"].alignment = Alignment(wrap_text=True); ws5.row_dimensions[1].height = 30
+import re as _re
+ETA_IBS = json.load(open('eta_ibs.json', encoding='utf-8'))
+_num = lambda e: int(_re.search(r"\d+", e).group()) if e and _re.search(r"\d+", e) else None
+dec = []
+for b in LIBRI:
+    i = ETA_IBS.get(b["isbn"])
+    if i and _num(b["eta"]) is not None and abs(_num(b["eta"]) - _num(i)) >= 2:
+        dec.append([b["editore"], b["titolo"], b["fascia"], b["eta"], i])
+tabella(ws5, ["Casa editrice", "Titolo", "Fascia nel flipbook", "Età nel flipbook", "Età su IBS"], dec, [20, 55, 22, 18, 14], start=3)
 wb.save('output/da_completare_per_editore.xlsx')
 print("Flipbook:", len(rows), "libri · da completare:", 0 if manca[0][0] == "" else len(manca), "· modifiche:", len(mod), "· da controllare:", len(chk))

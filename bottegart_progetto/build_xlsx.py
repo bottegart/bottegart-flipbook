@@ -761,6 +761,15 @@ for _r in R:
         PRICES[_k] = (_w["prezzo_corretto"], _w.get("fonte_prezzo") or _src)
     elif _w.get("prezzo") is not None and PRICES.get(_k, (None,))[0] is None:
         PRICES[_k] = (_w["prezzo"], _w.get("fonte_prezzo") or _src)
+# correzioni indicate da Bottegart (le stesse che applica make_flipbook.py)
+_CORR = json.load(open('correzioni_bottegart.json', encoding='utf-8'))
+for _r in R:
+    _c = _CORR.get(_fx(_r[0]) + '|' + _fx(_r[1]))
+    if not isinstance(_c, dict): continue
+    if _c.get("autore"): _r[2] = _c["autore"]
+    if _c.get("eta"): _r[4] = _c["eta"]; _r[9] = "Verificata (Bottegart)"
+    if _c.get("fascia"): _r[5] = _c["fascia"]
+    if _c.get("prezzo") is not None: PRICES[(_r[0], _r[1])] = (_c["prezzo"], "Bottegart")
 
 def etichette(r):
     tags = []

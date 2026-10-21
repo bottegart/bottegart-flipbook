@@ -362,7 +362,11 @@
  "Camelozampa|Amici (miniserie A bocca aperta)": {
   "eta_fonte": "da 0-36 mesi",
   "sinossi": "Stare con gli animali è sempre un incontro speciale per un bambino. Abbracciare un coniglio, accoccolarsi con un gatto, osservare un uccellino, passeggiare con una gallina, dare da mangiare a un’anatra: Oxenbury li racconta attraverso un magico gioco di sguardi tra bambino, animale e lettore. Helen Oxenbury è stata una pioniera nel mondo degli albi illustrati rivolti alla prima infanzia. È stata la prima a scegliere come personaggi solo bambini, rappresentati nella loro pienezza corporea ed emozionale.",
-  "fonte": "https://www.ibs.it/x/e/9791280014214"
+  "fonte": "https://www.ibs.it/x/e/9791280014214",
+  "titolo_corretto": "Amici",
+  "autore_corretto": "Helen Oxenbury",
+  "fonte_volume": "https://www.ibs.it/x/e/9791280014214",
+  "motivo_titolo": "il titolo indicava una serie o più libri: ora corrisponde al volume in copertina"
  },
  "Camelozampa|Peggy trova tutto": {
   "isbn": "9791254642351",
@@ -427,17 +431,20 @@
  "Camelozampa|Furia Mascherata": {
   "isbn": "9791254642528",
   "eta_fonte": "da 8 anni",
-  "fonte": "https://www.ibs.it/x/e/9791254642528"
+  "fonte": "https://www.ibs.it/x/e/9791254642528",
+  "autore": "Virginia Stefanini"
  },
  "Camelozampa|La mia vita imprevista": {
   "eta_fonte": "da 9 anni",
   "sinossi": "Ben presto Frances si ritrova a far parte di un club risolvi-misteri, il cui nome segreto è Caccole di pepe, chiamato a indagare sul rapimento di un rarissimo gallo nero e sulla sparizione del prezioso kimono realizzato da un grande artista giapponese. E un giorno Mirella, la sua Maps1, si presenta all’improvviso alla porta di casa…",
-  "fonte": "https://www.ibs.it/x/e/9791254642153"
+  "fonte": "https://www.ibs.it/x/e/9791254642153",
+  "autore": "Giuliana Facchini"
  },
  "Camelozampa|Oggi non si torna a casa": {
   "isbn": "9791254642788",
   "eta_fonte": "da 10 anni",
-  "fonte": "https://www.ibs.it/x/e/9791254642788"
+  "fonte": "https://www.ibs.it/x/e/9791254642788",
+  "autore": "Enne Koens"
  },
  "Camelozampa|Il gruppo": {
   "isbn": "9791254642689",
@@ -451,11 +458,13 @@
  },
  "Camelozampa|Figlia del destino": {
   "isbn": "9791254641934",
-  "fonte": "https://www.ibs.it/x/e/9791254641934"
+  "fonte": "https://www.ibs.it/x/e/9791254641934",
+  "autore": "Jean-Claude Van Rijckeghem"
  },
  "Camelozampa|Lemming e fiocchi di neve": {
   "isbn": "9791254642030",
-  "fonte": "https://www.ibs.it/x/e/9791254642030"
+  "fonte": "https://www.ibs.it/x/e/9791254642030",
+  "autore": "Holly Bourne"
  },
  "Camelozampa|Senza titolo": {
   "sinossi": "C’è chi ci mette una vita a trovare la propria anima gemella. Joshua e Zivan, invece, si sono trovati subito. Ma il mondo degli adulti segue regole diverse da quelle del cuore e Zivan deve tornare in Iraq, per essere data in sposa a un cugino. Joshua soffre e tutto quello che può fare è disegnare, riempire interi sketchbook di immagini di lei. Mentre attraversa il suo dolore, i suoi disegni attirano l’attenzione di Sergio e Dylan, due compagni pericolosi, di certo non del tipo che Joshua potrebbe immaginare come amici.",
@@ -468,19 +477,26 @@
  "La Meridiana|Dracula": {
   "isbn": "9788861536579",
   "eta_fonte": "da 8 anni",
-  "fonte": "https://www.ibs.it/x/e/9788861536579"
+  "fonte": "https://www.ibs.it/x/e/9788861536579",
+  "eta_corretta": "da 8 anni",
+  "fascia_corretta": "8+",
+  "nota_eta": "età di lettura IBS (testo in simboli)"
  },
  "La Meridiana|Il diario di Anna Frank": {
   "isbn": "9788861536326",
   "eta_fonte": "da 10 anni",
-  "fonte": "https://www.ibs.it/x/e/9788861536326"
+  "fonte": "https://www.ibs.it/x/e/9788861536326",
+  "eta_corretta": "da 10 anni",
+  "fascia_corretta": "10+",
+  "nota_eta": "età di lettura IBS (testo in simboli)"
  },
  "La Meridiana|A Said piaceva il mare": {
   "isbn": "9788861537101",
   "fascia": "10+",
   "eta_fonte": "da 10 anni",
   "sinossi": "Said, Rico, Andrea e altri: cinque storie di adolescenti in simboli INbook, per ragazzi e giovani adulti con disabilità linguistiche o cognitive.",
-  "fonte": "https://www.ibs.it/x/e/9788861537101"
+  "fonte": "https://www.ibs.it/x/e/9788861537101",
+  "autore": "Roberto Parmeggiani"
  },
  "La Meridiana|Canto di Natale": {
   "isbn": "9788861537200",
@@ -515,7 +531,8 @@
   "fascia": "10+",
   "eta_fonte": "da 10 anni",
   "sinossi": "Storie delicate e avventurose che parlano di animali e di vita quotidiana, scritte dall’autore per i propri figli mentre si trovava in carcere, dove era stato rinchiuso dal regime fascista. Le storie sono state tradotte in simboli della Comunicazione Aumentativa e Alternativa dal gruppo di lavoro Librarsi della Cooperativa Accaparlante di Bologna. Il testo è parte della collana Parimenti. Proprio perché cresco, che raccoglie inbook e libri in simboli dedicati a lettori e lettrici con disabilità linguistiche o cognitive.",
-  "fonte": "https://www.ibs.it/x/e/9788861539808"
+  "fonte": "https://www.ibs.it/x/e/9788861539808",
+  "autore": "Antonio Gramsci"
  },
  "La Meridiana|La Puglia è una favola": {
   "isbn": "9791256260089",
@@ -561,7 +578,8 @@
   "fonte": "https://www.ibs.it/x/e/9788836240067",
   "prezzo": 12.9,
   "fonte_prezzo": "https://www.ibs.it/x/e/9791222114200",
-  "nota_prezzo": "prezzo della nuova edizione (Che famiglia stramba!)"
+  "nota_prezzo": "prezzo della nuova edizione (Che famiglia stramba!)",
+  "autore": "Anne Goscinny"
  },
  "Gallucci|Tu sei importante": {
   "isbn": "9788836242580",
@@ -652,11 +670,21 @@
  },
  "Tunuè|Brina (serie)": {
   "eta_fonte": "da 8 anni",
-  "fonte": "https://www.ibs.it/x/e/9788867905034"
+  "fonte": "https://www.ibs.it/x/e/9788867905034",
+  "titolo_corretto": "Brina. L’alba all’orizzonte",
+  "autore_corretto": "Giorgio Salati",
+  "sinossi_corretta": "La vita di Brina scorre placida e idilliaca, nella sicurezza e nell’amore della sua famiglia... ma questo quadro è destinato a venire presto scombussolato dall’arrivo del gattino Zola, che ruba le attenzioni degli umani Marg e Sam. Brina vede il nuovo arrivato come un intruso e allontanatasi da casa finisce per vivere una nuova avventura: entrerà a far parte di una nuova famiglia e Zola si rivelerà un pasticcione ma anche un amico sincero.",
+  "fonte_volume": "https://www.ibs.it/x/e/9788867905034",
+  "motivo_titolo": "il titolo indicava una serie o più libri: ora corrisponde al volume in copertina"
  },
  "Tunuè|Monster Allergy (serie)": {
   "eta_fonte": "da 10 anni",
-  "fonte": "https://www.ibs.it/x/e/9788867903696"
+  "fonte": "https://www.ibs.it/x/e/9788867903696",
+  "titolo_corretto": "Monster Allergy. Collection, vol. 1",
+  "autore_corretto": "Katja Centomo",
+  "sinossi_corretta": "Venite anche voi a visitare Oldmill Village. C’è Zick, un tipo strano, sempre allergico; c’è Elena Patata, appena trasferita e in cerca di nuove amicizie; ma ci sono soprattutto tante mostruose presenze, non percepibili dal normale occhio umano ma molto attive! Le avventure sono solo all’inizio! Mostri, avventura e ironia dosati con maestria. i primi tre episodi di una serie che ha fatto la storia del fumetto con quasi 2 milioni di copie vendute, due serie animate, gadget, merchandising... e diritti venduti in tutto il mondo.",
+  "fonte_volume": "https://www.ibs.it/x/e/9788867903696",
+  "motivo_titolo": "il titolo indicava una serie o più libri: ora corrisponde al volume in copertina"
  },
  "Tunuè|Terry Time e il coraggio della Resistenza": {
   "eta_fonte": "da 6 anni",
@@ -664,15 +692,30 @@
  },
  "Tunuè|Investigators (serie)": {
   "eta_fonte": "da 7 anni",
-  "fonte": "https://www.ibs.it/x/e/9788867907731"
+  "fonte": "https://www.ibs.it/x/e/9788867907731",
+  "titolo_corretto": "InvestiGators. Due agenti di classe",
+  "autore_corretto": "John Patrick Green",
+  "sinossi_corretta": "Scopri Investigators, la serie a fumetti per bambini che trasforma la lettura in un’avventura irresistibile tra misteri, azioni e tantissime risate! Mango e Sciallo, gli investigatori alligatori più pasticcioni del fumetto, tornano in azione… sotto copertura a scuola! La mascotte Cerbiatto è scomparsa e la squadra di basket sembra nascondere un segreto. Tra inseguimenti nei corridoi, gadget improbabili e situazioni esilaranti, i due dovranno risolvere il mistero. Ma proteggere Cerbiatto non sarà affatto semplice! Un’avventura ricca di colpi di scena e risate, perfetta per i più piccoli.",
+  "fonte_volume": "https://www.ibs.it/x/e/9788867907731",
+  "motivo_titolo": "il titolo indicava una serie o più libri: ora corrisponde al volume in copertina"
  },
  "Tunuè|Strega a modo mio (serie)": {
   "eta_fonte": "da 8 anni",
-  "fonte": "https://www.ibs.it/x/e/9788867904877"
+  "fonte": "https://www.ibs.it/x/e/9788867904877",
+  "titolo_corretto": "Strega a modo mio",
+  "autore_corretto": "Emma Steinkellner",
+  "sinossi_corretta": "Halena Hush ha tredici anni e ha una grande passione: la magia. Vive a Founder’s Bluff, una tranquilla cittadina del Massachusetts, e le sue giornate scorrono lente tra la scuola e le sue tanto amate streghe. Quando i bulletti della scuola media cercano di rovinare il suo Halloween, succede qualcosa di strano: scopre di essere una strega. E scoprirà di non essere l’unica. Capirà che Founder’s Bluff nasconde una storia di stregoneria e tanti misteri. Alla ricerca della verità incontrerà un gatto parlante, si perderà in un diario incantato, e scoprirà un mondo stregato nascosto.",
+  "fonte_volume": "https://www.ibs.it/x/e/9788867904877",
+  "motivo_titolo": "il titolo indicava una serie o più libri: ora corrisponde al volume in copertina"
  },
  "Tunuè|Le sorelle Grémillet (serie)": {
   "eta_fonte": "da 10 anni",
-  "fonte": "https://www.ibs.it/x/e/9788867908097"
+  "fonte": "https://www.ibs.it/x/e/9788867908097",
+  "titolo_corretto": "Le sorelle Grémillet. La villa dei misteri",
+  "autore_corretto": "Giovanni Di Gregorio",
+  "sinossi_corretta": "Sole, mare e un matrimonio da favola attendono le sorelle Grémillet su un’isola. Ma l’incontro con la ribelle Aurélie incrina la loro unione, spingendo Sara contro la madre. Divise, le ragazze dovranno esplorare l’isola per un puzzle sul vero senso della libertà. Un’avventura che metterà alla prova il loro legame.",
+  "fonte_volume": "https://www.ibs.it/x/e/9788867908097",
+  "motivo_titolo": "il titolo indicava una serie o più libri: ora corrisponde al volume in copertina"
  },
  "Tunuè|Angelica e il principe orso (in arrivo)": {
   "isbn": "9788867908424",
@@ -737,7 +780,9 @@
   "isbn": "9788899207632",
   "sinossi": "“Quando avevo dieci anni desideravo fare l’agente segreto, a quindici il tennista, a venti il batterista punk, a venticinque il terrorista buono, a trenta ho smesso di credere che sarei mai diventato grande.” UVA, Wally e Reeko sono tre adolescenti sicuri che la loro strada li porterà Altrove, lontano da un’esistenza già impacchettata, lontano dalle aspettative degli altri. Questa è la storia di un’amicizia e della passione per la musica, è la storia di tre ragazzi che insieme diventano adulti.",
   "prezzo": 15.0,
-  "fonte": "https://www.ibs.it/x/e/9788899207632"
+  "fonte": "https://www.ibs.it/x/e/9788899207632",
+  "eta_corretta": "da 14 anni",
+  "nota_eta": "indicato “adolescenti” nel catalogo Dalia"
  },
  "Dalia Edizioni|Loris Wood verso l’isola di plastica": {
   "isbn": "9788899207601",
@@ -756,7 +801,8 @@
   "eta_fonte": "da 9 anni",
   "sinossi": "Diego ha nove anni e ha la mania di essere un detective: vede casi sospetti ovunque. Con la sua amica Olivia e il suo porcellino d’India forma una squadra di tutto rispetto. Durante una vacanza in Salento i nostri detective si trovano a scoprire un misterioso complotto con personaggi molto pericolosi. Ma nessuno crede loro e potranno contare soltanto sul loro coraggio per venirne a capo.",
   "prezzo": 10.0,
-  "fonte": "https://www.ibs.it/x/e/9788899136031"
+  "fonte": "https://www.ibs.it/x/e/9788899136031",
+  "autore": "Stefania Gatti"
  },
  "Edizioni Corsare|Elos": {
   "eta_fonte": "da 9 anni",
@@ -766,7 +812,8 @@
   "isbn": "9788899136277",
   "sinossi": "Lo smartphone dà un senso di libertà, indipendenza e sicurezza. I ragazzi lo portano sempre con sé e lo usano incessantemente perché consente loro di essere connessi a internet e ai social network, di comunicare rapidamente attraverso le app, di giocare e ascoltare musica. L’utilizzo compulsivo del cellulare comporta però molteplici rischi, tra cui l’accesso a contenuti non adatti quando non decisamente pericolosi.",
   "prezzo": 12.0,
-  "fonte": "https://www.ibs.it/x/e/9788899136277"
+  "fonte": "https://www.ibs.it/x/e/9788899136277",
+  "autore": "P. Paolo Frigotto"
  },
  "Minibombo|Cerchio al parco": {
   "eta_fonte": "da 1 anno",
@@ -859,7 +906,8 @@
   "eta_fonte": "da 5 anni",
   "sinossi": "Un albo illustrato per adultə e ragazzə da colorare a proprio piacimento, con venti illustrazioni realizzate da Martina Pellecchia ispirate al potere delle storie, delle idee e della fantasia. Un percorso creativo che celebra la libertà della mente e la capacità dell’immaginazione di trasformare la realtà.",
   "prezzo": 9.0,
-  "fonte": "https://www.ibs.it/x/e/9791259794178"
+  "fonte": "https://www.ibs.it/x/e/9791259794178",
+  "autore": "ill. Martina Pellecchia"
  },
  "People|Io non ho paura del lupo": {
   "isbn": "9791259792280",
@@ -926,7 +974,10 @@
  "Logos|La Sirenetta": {
   "eta_fonte": "da 5 anni",
   "sinossi": "La più celebre fiaba di Hans Christian Andersen raccontata per sole immagini. Giù negli abissi vive il popolo del mare e in uno splendido castello abitano il re e le sue figlie, fanciulle metà donne e metà pesci. La più piccola è affascinata dal mondo di sopra, di cui la nonna le ha raccontato tutto ciò che sa. Quando finalmente, al compimento dei quindici anni, la sirenetta ha il permesso di salire in superficie, è testimone di un naufragio e salva un principe di cui si innamora perdutamente. Decisa a tornare sulla terra per stare per sempre con lui, stringe un patto con la strega del mare e rinuncia alla sua voce in cambio delle gambe.",
-  "fonte": "https://www.ibs.it/x/e/9788857613604"
+  "fonte": "https://www.ibs.it/x/e/9788857613604",
+  "eta_corretta": "da 5 anni",
+  "fascia_corretta": "3-6 anni",
+  "nota_eta": "Bottegart chiedeva di abbassare l’età: IBS indica “da 5 anni” (il listino Logos diceva 12)"
  },
  "Lapis|Avventure di Tato e Nanà": {
   "sostituisci": [
@@ -1109,7 +1160,12 @@
  },
  "L’Ippocampo|Le cronache dell’acero e del ciliegio (4 libri)": {
   "eta_fonte": "da 13 anni",
-  "fonte": "https://www.ibs.it/x/e/9788867225859"
+  "fonte": "https://www.ibs.it/x/e/9788867225859",
+  "titolo_corretto": "Le cronache dell’acero e del ciliegio 1. La maschera di Nō",
+  "autore_corretto": "Camille Monceaux",
+  "sinossi_corretta": "Le cronache dell’acero e del ciliegio formano una tetralogia ambientata nel Giappone del XVII secolo. Seguiamo due eroi, Ichirō, giovane samurai dal favoloso destino, e la misteriosa Hiinahime, una sconosciuta che si nasconde dietro una maschera del Nō. altri due toccherà all’eroina Hiinahime raccontare la vicenda. Il primo tomo, intitolato La maschera del Nō, ripercorre la vita di Ichirō dall’infanzia all’adolescenza. Abbandonato, Ichirō viene cresciuto come un figlio da un ignoto samurai che gli insegna la via della spada.",
+  "fonte_volume": "https://www.ibs.it/x/e/9788867225859",
+  "motivo_titolo": "il titolo indicava una serie o più libri: ora corrisponde al volume in copertina"
  },
  "effequ|VIETATO": {
   "isbn": "9791281639454",
@@ -1158,7 +1214,8 @@
   "isbn": "9788833143415",
   "eta_fonte": "da 6 anni",
   "sinossi": "Salire in montagna, attraversare un bosco di pianura, perdersi nelle colline, scoprire le zone umide, correre a perdifiato lungo la costa per poi tornare in città con una nuova consapevolezza: la Biodiversità è un meraviglioso sistema fatto di persone, animali, piante, funghi, microrganismi e un sacco di altre cose ancora. Una moltitudine di esseri viventi in equilibrio dinamico fra loro, da conoscere e tutelare. Un patrimonio inestimabile per il pianeta e per la nostra stessa esistenza.",
-  "fonte": "https://www.ibs.it/x/e/9788833143415"
+  "fonte": "https://www.ibs.it/x/e/9788833143415",
+  "autore": "Giulia Masiero"
  },
  "BeccoGiallo|La sessualità spiegata ai bambini e alle bambine di ieri, oggi e domani": {
   "isbn": "9788833142159",
@@ -1221,7 +1278,8 @@
   "eta_fonte": "da 5 anni",
   "sinossi": "Ci sono cose straordinarie nel mondo. Ma tra tutte le cose straordinarie ce n’è una che è la più gigantesticamente, fascinosamente e incredibilmente straordinaria di tutte. Sai di cosa stiamo parlando?",
   "prezzo": 19.0,
-  "fonte": "https://www.ibs.it/x/e/9788833143750"
+  "fonte": "https://www.ibs.it/x/e/9788833143750",
+  "autore": "Giulia Conoscenti"
  },
  "BeccoGiallo|Figli della foresta. Due vite africane rapite dal colonialismo italiano": {
   "isbn": "9788833144320",
@@ -1240,7 +1298,8 @@
   "eta_fonte": "da 4 anni",
   "sinossi": "Regista, produttore, runner, rumorista, scenografa, costumista, stuntman, macchinisti: per fare un film servono tantissime persone! Ma ricorda: per quanto possa sembrare complesso, tutto inizia da una semplice idea.",
   "prezzo": 16.0,
-  "fonte": "https://www.ibs.it/x/e/9788833143552"
+  "fonte": "https://www.ibs.it/x/e/9788833143552",
+  "autore": "Lisa Riccardi"
  },
  "BeccoGiallo|Il mio corpo!": {
   "isbn": "9788833143767",
@@ -1250,7 +1309,8 @@
   "sinossi": "Esistono tanti tipi di corpi. Hanno forme e colori diversi. Riescono a fare un sacco di cose. Il tuo corpo è il tuo migliore amico! E ogni corpo va rispettato e celebrato.",
   "fonte": "https://www.ibs.it/x/e/9788833143767",
   "prezzo": 17.5,
-  "fonte_prezzo": "https://www.beccogiallo.it/negozio/kids/illustrati/il-mio-corpo/"
+  "fonte_prezzo": "https://www.beccogiallo.it/negozio/kids/illustrati/il-mio-corpo/",
+  "autore": "Elise Gravel"
  },
  "BeccoGiallo|Il primo soccorso spiegato alle bambine e ai bambini": {
   "isbn": "9788833143965",
@@ -1258,7 +1318,8 @@
   "fascia": "9+",
   "eta_fonte": "da 9 anni",
   "sinossi": "Riconoscere le situazioni di pericolo, mantenere la calma, chiamare i soccorsi, comunicare correttamente con il 112, sapere come funziona il nostro corpo e perché è importante proteggerlo: ricco di giochi utili, indovinelli e attività pratiche, questo libro è pensato per insegnare ai più piccoli e alle più piccole le basi del Primo Soccorso. Perché ognuno di noi, se adeguatamente informato, può fare la differenza quando ce n’è davvero bisogno, fin dalla più tenera età.",
-  "fonte": "https://www.ibs.it/x/e/9788833143965"
+  "fonte": "https://www.ibs.it/x/e/9788833143965",
+  "autore": "L. Memeo"
  },
  "BeccoGiallo|La Costituzione spiegata ai bambini (Piero e Nilde)": {
   "isbn": "9788833141084",
@@ -1367,11 +1428,76 @@
   "prezzo": 16.0,
   "fonte": "https://www.ibs.it/x/e/9791256260539",
   "prezzo_corretto": 16.0,
-  "nota_prezzo": "nel catalogo c’era il prezzo scontato IBS (15,20 €); il prezzo di copertina è 16,00 €"
+  "nota_prezzo": "nel catalogo c’era il prezzo scontato IBS (15,20 €); il prezzo di copertina è 16,00 €",
+  "eta_corretta": "da 9 anni",
+  "nota_eta": "coerente con la fascia 9+ scelta da Bottegart"
  },
  "Momo Edizioni|Karukinka. La nostra terra": {
   "eta_corretta": "da 6 anni",
   "fascia_corretta": "Prime letture (6-8)",
   "fonte_eta": "età indicata da Bottegart"
+ },
+ "Edizioni Corsare|Wonder Football Club (serie)": {
+  "titolo_corretto": "Wonder Football Club 1. Fare squadra",
+  "autore_corretto": "Marco Innocenti",
+  "sinossi_corretta": "Quando ha iniziato a cambiare tutto? Me ne sono accorto da un momento all’altro, mentre giocavo al campo dell’Abetone. Ero in porta, perché il mio ruolo è quello di portiere. Sapete come vanno queste cose. Con i piedi sei una frana e allora ti sbattono in difesa o in mezzo ai pali... Sventai un rasoterra insidioso e deviai in calcio d’angolo una cannonata destinata sotto la traversa. Non mi ero mai sentito così. Prima ancora che gli avversari calciassero, intuivo le loro intenzioni e mi tuffavo nella direzione giusta. Pensai che fosse tutto merito dei guanti nuovi.",
+  "fonte_volume": "https://www.ibs.it/x/e/9788899136161",
+  "motivo_titolo": "il titolo indicava una serie o più libri: ora corrisponde al volume in copertina"
+ },
+ "L’Ippocampo|Anatomia / Oceano / Nascita / Mondo vegetale (libri animati)": {
+  "titolo_corretto": "Anatomia",
+  "autore_corretto": "Hélène Druvert",
+  "sinossi_corretta": "Menzione speciale nella sezione Non Fiction 2017 al Bologna Ragazzi Award 2017Un viaggio inedito alla scoperta del corpo umano attraverso eccezionali animazioni. Un libro arricchito da finestrelle e con pagine impreziosite dai tagli laser per conoscere il corpo nei minimi dettagli. Hélène Druvert, illustratrice e designer della carta, concepisce le doppie pagine rifacendosi all’illustre tradizione delle tavole anatomiche del XIX secolo. I testi precisi e accessibili sono redatti dal padre dell’autrice, medico di professione, e accompagnano bambini e ragazzi alla comprensione del funzionamento del nostro corpo.",
+  "fonte_volume": "https://www.ibs.it/x/e/9788867222551",
+  "motivo_titolo": "il titolo indicava una serie o più libri: ora corrisponde al volume in copertina"
+ },
+ "L’Ippocampo|Esplorando l’universo / Esplorando gli elementi": {
+  "titolo_corretto": "Esplorando l’universo",
+  "autore_corretto": "Isabel Thomas",
+  "sinossi_corretta": "Quali misteri si celano nell’infinità del cielo notturno? Pianeti che orbitano maestosi, luminose comete, buchi neri supermassicci, stelle in esplosione, ragnatele cosmiche… Alcuni di questi fenomeni sono così remoti che guardarli da qui significa viaggiare indietro nel tempo. Dalle osservazioni degli astronomi babilonesi alle più avanzate sonde solari, dagli sbarchi sulla Luna fino alla ricerca della materia oscura, questo libro suddiviso per schede ricche di dati e descrizioni guiderà i lettori in un’esauriente esplorazione dell’Universo.",
+  "fonte_volume": "https://www.ibs.it/x/e/9791256731220",
+  "motivo_titolo": "il titolo indicava una serie o più libri: ora corrisponde al volume in copertina"
+ },
+ "L’Ippocampo|Enciclopedia del Meraviglioso (I draghi, Le streghe, I fantasmi...)": {
+  "titolo_corretto": "Sirene, centauri e altre chimere (L’enciclopedia del meraviglioso)",
+  "autore_corretto": "Cécile Roumiguière",
+  "sinossi_corretta": "Le chimere, creature fantastiche nate dall’unione di animali diversi, abitano miti e leggende di ogni epoca, sospese tra meraviglia e inquietudine. Dalla Melusina delle tradizioni europee al Karura del Giappone, fino al Garuda indiano, questi esseri interrogano da sempre il confine tra naturale e impossibile. In questo nuovo volume dell’Enciclopedia del Meraviglioso, scritto da Cécile Roumiguière e illustrato da Bluebirdy, il giovane Andres ci accompagna alla scoperta di queste figure straordinarie: le loro origini, le forme mutevoli, i poteri e i simboli che assumono nelle diverse culture del mondo.",
+  "fonte_volume": "https://www.ibs.it/x/e/9791256731985",
+  "motivo_titolo": "il titolo indicava una serie o più libri: ora corrisponde al volume in copertina",
+  "eta_corretta": "11-13 anni",
+  "nota_eta": "nel catalogo L’Ippocampo è nella sezione Scuole medie; IBS indica “da 5 anni”, da verificare"
+ },
+ "L’Ippocampo|Le streghe di Venezia (3 volumi)": {
+  "titolo_corretto": "Le streghe di Venezia",
+  "autore_corretto": "Sébastien Perez",
+  "sinossi_corretta": "Nel 2045, in una società post-apocalittica, Simone ha 16 anni e vive in un’Italia segnata dalla segregazione in seguito a una terribile epidemia. Presto però la sua storia finisce per intrecciarsi con quella di una strega vissuta nella Venezia del Quattrocento, forse all’origine del declino del mondo. Attraverso le oniriche illustrazioni di Marco Mazzoni, Le streghe di Venezia ci conduce in un tempo e in uno spazio tanto reali quanto fantastici, al confine tra romanzo di formazione, incanto e riflessione sulla nostra epoca.",
+  "fonte_volume": "https://www.ibs.it/x/e/9791256730049",
+  "motivo_titolo": "il titolo indicava una serie o più libri: ora corrisponde al volume in copertina",
+  "eta_corretta": "11-13 anni",
+  "nota_eta": "nel catalogo L’Ippocampo è nella narrativa ragazzi; IBS indica “da 7 anni” ma la protagonista ha 16 anni: da verificare"
+ },
+ "Terre di Mezzo|Il ministero delle Soluzioni": {
+  "eta_corretta": "da 8 anni",
+  "fascia_corretta": "8+",
+  "nota_eta": "età di lettura IBS"
+ },
+ "Terre di Mezzo|Corpo a corpo": {
+  "eta_corretta": "da 14 anni",
+  "nota_eta": "collana Young Adult di Terre di Mezzo, fascia Adolescenza"
+ },
+ "Terre di Mezzo|L’eterno ritorno di Clara hart": {
+  "eta_corretta": "da 14 anni",
+  "nota_eta": "collana Young Adult di Terre di Mezzo, fascia Adolescenza"
+ },
+ "Terre di Mezzo|Poi prenderemo New York": {
+  "eta_corretta": "da 14 anni",
+  "nota_eta": "collana Young Adult di Terre di Mezzo, fascia Adolescenza"
+ },
+ "Terre di Mezzo|Un ragazzo è quasi niente": {
+  "eta_corretta": "da 14 anni",
+  "nota_eta": "collana Young Adult di Terre di Mezzo, fascia Adolescenza"
+ },
+ "Camelozampa|Felice abbastanza": {
+  "autore": "Kari Stai"
  }
 }

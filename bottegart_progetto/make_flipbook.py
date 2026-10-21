@@ -154,6 +154,8 @@ def _web(b, w):
     if w.get("eta_corretta"): b["e"] = w["eta_corretta"]
     if w.get("fascia_corretta"): b["f"] = w["fascia_corretta"]
     if w.get("prezzo_corretto") is not None: b["pr"] = w["prezzo_corretto"]
+    if w.get("sinossi_corretta"): b["s"], b["real"] = fix(w["sinossi_corretta"]), True
+    if w.get("titolo_corretto"): b["t"] = fix(w["titolo_corretto"])
     if w.get("eta") and not b["e"]: b["e"] = w["eta"]
     if w.get("fascia") and (b["f"] == "n.d. / tutte le età" or w.get("sostituito")): b["f"] = w["fascia"]
     if w.get("sinossi") and not b["real"]: b["s"], b["real"] = fix(w["sinossi"]), True
@@ -173,6 +175,43 @@ for b in books:
     _web(b, w)
     _out.append(b)
 books = _out
+# correzioni indicate da Bottegart: hanno la precedenza su tutto (vedi correzioni_bottegart.json)
+CORR = json.load(open('correzioni_bottegart.json', encoding='utf-8'))
+for b in books:
+    c = CORR.get(b["p"] + '|' + b["t"])
+    if not c: continue
+    if c.get("autore"): b["a"] = fix(c["autore"])
+    if c.get("eta"): b["e"] = c["eta"]
+    if c.get("fascia"): b["f"] = c["fascia"]
+    if c.get("prezzo") is not None: b["pr"] = c["prezzo"]
+    if c.get("sinossi"): b["s"], b["real"] = fix(c["sinossi"]), True
+    if c.get("titolo"): b["t"] = fix(c["titolo"])
+# età scritte tutte allo stesso modo ("da 6 anni", "0-6 anni"); se il dato non è un’età si usa quella indicata da IBS (eta_ibs.json)
+ETA_IBS = json.load(open('eta_ibs.json', encoding='utf-8'))
+def eta_norm(e):
+    e = (e or "").strip()
+    x = e.lower()
+    da = lambda k: "da 1 anno" if k == 1 else f"da {k} anni"
+    m = re.findall(r"(\d+)\s*/\s*(\d+)|(\d+)\s*\+", x)
+    if "/" in x or re.fullmatch(r"[\d+,\s]+", x):            # notazione Uovonero: "0/3, 3/6", "12+, 14+"
+        lo = min(int(a or c) for a, b, c in m) if m else None
+        hi = [int(b) for a, b, c in m if b]
+        if lo is not None:
+            return f"{lo}-{max(hi)} anni" if hi and not any(c for a, b, c in m) else da(lo)
+    m = re.match(r"(?:collana prevalentemente\s+)?(?:da|dai|dagli|dall’|dall')\s*(\d+)(?:\s*anni)?(?:\s*e per tutti)?$", x)
+    if m: return da(int(m.group(1)))
+    m = re.fullmatch(r"(\d+)\s*(?:anni)?", x)
+    if m: return da(int(m.group(1)))
+    m = re.fullmatch(r"(\d+)\s*-\s*(\d+)(?:\s*anni)?", x)
+    if m: return da(int(m.group(1))) if int(m.group(2)) >= 18 else f"{m.group(1)}-{m.group(2)} anni"
+    return e
+for b in books:
+    e = eta_norm(b["e"])
+    if not re.search(r"\d", e) and ETA_IBS.get(b["isbn"]): e = ETA_IBS[b["isbn"]]
+    b["e"] = e
+# editori da mettere per primi dentro ogni fascia d’età
+_PRIMI = CORR.get("_prima_nella_fascia", [])
+books.sort(key=lambda b: b["p"] not in _PRIMI)
 for k, b in enumerate(books): b["id"] = k
 
 # dati modificabili

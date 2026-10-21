@@ -1,0 +1,180 @@
+{
+ "_leggimi": "Correzioni indicate da Bottegart (documento correzioni_flipbook_Sostare.docx). Chiave = editore|titolo come appare nel flipbook prima della correzione. Hanno la precedenza su tutti gli altri dati.",
+ "_prima_nella_fascia": [
+  "Minibombo"
+ ],
+ "Terre di Mezzo|Il segreto di Ella": {
+  "fascia": "10+"
+ },
+ "Terre di Mezzo|Jane negli abissi": {
+  "eta": "da 11 anni"
+ },
+ "Terre di Mezzo|Provaci ancora, Selma!": {
+  "fascia": "10+"
+ },
+ "Terre di Mezzo|Sotto la stessa luna": {
+  "eta": "da 11 anni"
+ },
+ "Camelozampa|Il gruppo": {
+  "autore": "Kari Stai"
+ },
+ "Camelozampa|Quell’estate con Yente": {
+  "autore": "Enne Koens"
+ },
+ "La Meridiana|Il mio Afghanistan (CAA)": {
+  "autore": "G. Najafi"
+ },
+ "La Meridiana|Milagro in CAA": {
+  "autore": "A. Bello"
+ },
+ "BeccoGiallo|Adele Crudele 1. Tutto questo finirà male": {
+  "fascia": "10+"
+ },
+ "Camelozampa|Senza titolo": {
+  "autore": "Erna Sassen"
+ },
+ "Camelozampa|Vulcano": {
+  "autore": "Zakiya Ajmi"
+ },
+ "Tunuè|Angelica e il principe orso (in arrivo)": {
+  "titolo": "Angelica e il principe orso",
+  "autore": "Trung Le Nguyen"
+ },
+ "La Meridiana|Piccole donne": {
+  "fascia": "9+"
+ },
+ "Tunuè|L’Attraversaspecchi, vol. 1 – Fidanzati dell’inverno": {
+  "autore": "Christelle Dabos"
+ },
+ "Tunuè|Noi due": {
+  "autore": "Sara Soler"
+ },
+ "Terre di Mezzo|Alfonsina corre": {
+  "eta": "da 5 anni"
+ },
+ "Terre di Mezzo|Celeste e la gemella Blu": {
+  "eta": "da 4 anni"
+ },
+ "Terre di Mezzo|Che cos’è la scuola?": {
+  "eta": "da 5 anni"
+ },
+ "Terre di Mezzo|Che cos’è l’amicizia?": {
+  "eta": "da 5 anni"
+ },
+ "Terre di Mezzo|Cosa fanno i sentimenti di notte?": {
+  "eta": "da 5 anni"
+ },
+ "Terre di Mezzo|C’è posta per Volpe": {
+  "eta": "da 4 anni"
+ },
+ "Terre di Mezzo|Dall’altra parte del mare": {
+  "eta": "da 5 anni"
+ },
+ "Terre di Mezzo|Di quante persone abbiamo bisogno?": {
+  "eta": "da 4 anni"
+ },
+ "Terre di Mezzo|Il libro dal futuro": {
+  "eta": "da 3 anni"
+ },
+ "Terre di Mezzo|Il nemico": {
+  "eta": "da 6 anni",
+  "fascia": "Prime letture (6-8)"
+ },
+ "Terre di Mezzo|La grande fabbrica delle parole": {
+  "eta": "da 4 anni"
+ },
+ "Terre di Mezzo|La libertà del polpo": {
+  "eta": "da 4 anni"
+ },
+ "Terre di Mezzo|La vera storia della Strega Cattiva": {
+  "eta": "da 3 anni"
+ },
+ "Terre di Mezzo|Le persone sono strane": {
+  "eta": "da 5 anni"
+ },
+ "Terre di Mezzo|Non tutte le principesse": {
+  "eta": "da 4 anni"
+ },
+ "Terre di Mezzo|Ogni viso è una poesia": {
+  "eta": "da 4 anni"
+ },
+ "Terre di Mezzo|Un barattolo di emozioni": {
+  "eta": "da 4 anni"
+ },
+ "Terre di Mezzo|Un posto chiamato casa": {
+  "eta": "da 4 anni"
+ },
+ "Terre di Mezzo|Un posto nel cuore del maestro Orso Bruno": {
+  "eta": "da 4 anni"
+ },
+ "Terre di Mezzo|Fratelli": {
+  "eta": "da 5 anni"
+ },
+ "Camelozampa|Avrò cura di te": {
+  "autore": "Maria Loretta Giraldo; ill. Nicoletta Bertelle"
+ },
+ "Camelozampa|Cielo di ciliegie": {
+  "autore": "Jef Aerts; ill. Sanne te Loo"
+ },
+ "Camelozampa|Dove nasco ogni giorno": {
+  "autore": "Arianna Papini"
+ },
+ "Camelozampa|Felicità è una parola semplice": {
+  "autore": "Arianna Papini"
+ },
+ "Camelozampa|Il cortile selvaggio": {
+  "autore": "Anne-Hélène Dubray; ill. Sarah Loulendo"
+ },
+ "Camelozampa|Il giardino di Rita": {
+  "autore": "Michelangelo Rossato; ill. Francesca Corso"
+ },
+ "Camelozampa|La sorpresa della volpe": {
+  "autore": "Virginia Stefanini; ill. Margherita Micheli"
+ },
+ "Gallucci|Tu sei importante": {
+  "autore": "Christian Robinson"
+ },
+ "Momo Edizioni|Bollicina": {
+  "eta": "da 5 anni"
+ },
+ "Camelozampa|70 trucchi per non fare il bagno": {
+  "autore": "Gideon Samson"
+ },
+ "Camelozampa|Dove sono finiti i bambini?": {
+  "autore": "Indrek Koff"
+ },
+ "Camelozampa|Isidoro e la luna": {
+  "autore": "Giorgos Panagiotakis"
+ },
+ "Camelozampa|La figlia della biblioteca": {
+  "autore": "Polly Horvath",
+  "eta": "da 10 anni",
+  "fascia": "10+"
+ },
+ "La Meridiana|Giacomo di cristallo e altre storie": {
+  "eta": "da 6 anni"
+ },
+ "La Meridiana|La Puglia è una favola": {
+  "autore": "Tonio Vinci, Simona Versi",
+  "eta": "da 6 anni"
+ },
+ "Cronache Ribelli|C’era una (ri)volta – Quaranta storie da leggere e colorare (vol. I)": {
+  "autore": "AA.VV."
+ },
+ "Cronache Ribelli|C’era una (ri)volta – Quaranta storie da leggere e colorare (vol. II)": {
+  "autore": "AA.VV."
+ },
+ "BeccoGiallo|Archeo Tales – Il mito del Minotauro": {
+  "autore": "Emanuele Apostolidis, Francesco Bellu, Federico Gardin"
+ },
+ "BeccoGiallo|La disabilità spiegata ai bambini e alle bambine": {
+  "autore": "Marina Cuollo; ill. Cristina Trapanese"
+ },
+ "BeccoGiallo|Le emozioni spiegate alle bambine e ai bambini": {
+  "autore": "Lorenzo Stivano, Ludovica Sodano"
+ },
+ "BeccoGiallo|Woman Power": {
+  "titolo": "Woman Power. Donne che hanno cambiato il mondo",
+  "autore": "Rebecca June, Ximo Abadia"
+ }
+}
