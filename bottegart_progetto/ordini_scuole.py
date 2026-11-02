@@ -39,6 +39,8 @@ R = json.load(open(D + "ricerca.json", encoding="utf-8"))
 _sc = json.load(open(D + "scelte.json", encoding="utf-8")) if __import__("os").path.exists(D + "scelte.json") else {}
 SCELTE, CLASSICI = _sc.get("scelte", {}), set(_sc.get("edizione_da_confermare", []))
 R2 = json.load(open(D + "ricerca2.json", encoding="utf-8")) if __import__("os").path.exists(D + "ricerca2.json") else {}
+TUTTI_ISBN = {c["isbn"]: c for v in R.values() for c in v["cands"]}
+TUTTI_ISBN.update({c["isbn"]: c for v in R2.values() for c in v})
 for k, it in enumerate(I):
     r = R.get(str(k), {"cands": []})
     tutti = r["cands"] + R2.get(str(k), [])
@@ -48,7 +50,7 @@ for k, it in enumerate(I):
     elif isinstance(scelta, dict):
         best, stato = dict(scelta, sconto=0, disp="libro del catalogo Bottegart"), "Trovato (scelto a mano)"
     elif scelta:
-        best = next((c for c in tutti if c["isbn"] == scelta), None)
+        best = next((c for c in tutti if c["isbn"] == scelta), None) or TUTTI_ISBN.get(scelta)
         stato = "Trovato (scelto a mano)" if best else "Non trovato"
     else:
         best = r["cands"][0] if r["cands"] else None
