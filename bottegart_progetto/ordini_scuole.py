@@ -36,24 +36,30 @@ righe = json.load(open(D + "righe_catalogo.json", encoding="utf-8"))
 righe += json.load(open(D + "nido.json", encoding="utf-8"))
 I = json.load(open(D + "items.json", encoding="utf-8"))
 R = json.load(open(D + "ricerca.json", encoding="utf-8"))
-SCELTE = json.load(open(D + "scelte.json", encoding="utf-8")) if __import__("os").path.exists(D + "scelte.json") else {}
+_sc = json.load(open(D + "scelte.json", encoding="utf-8")) if __import__("os").path.exists(D + "scelte.json") else {}
+SCELTE, CLASSICI = _sc.get("scelte", {}), set(_sc.get("edizione_da_confermare", []))
+R2 = json.load(open(D + "ricerca2.json", encoding="utf-8")) if __import__("os").path.exists(D + "ricerca2.json") else {}
 for k, it in enumerate(I):
     r = R.get(str(k), {"cands": []})
-    cands = r["cands"]
+    tutti = r["cands"] + R2.get(str(k), [])
     scelta = SCELTE.get(str(k))
-    if scelta == "nessuno": cands = []
-    elif scelta: cands = [c for c in cands if c["isbn"] == scelta] or cands
-    best = cands[0] if cands else None
-    if best and (best["score"] >= 1.0 or scelta):
-        stato = "Trovato" if not scelta else "Trovato (scelto a mano)"
-    elif best and best["score"] >= 0.6:
-        stato = "Da verificare"
+    if scelta == "nessuno":
+        best, stato = None, "Non trovato"
+    elif isinstance(scelta, dict):
+        best, stato = dict(scelta, sconto=0, disp="libro del catalogo Bottegart"), "Trovato (scelto a mano)"
+    elif scelta:
+        best = next((c for c in tutti if c["isbn"] == scelta), None)
+        stato = "Trovato (scelto a mano)" if best else "Non trovato"
     else:
-        stato, best = "Non trovato", None
+        best = r["cands"][0] if r["cands"] else None
+        stato = "Trovato" if best and best["score"] >= 1.0 else ("Da verificare" if best and best["score"] >= 0.6 else "Non trovato")
+        if stato == "Non trovato": best = None
+    if best and k in CLASSICI: stato = "Trovato (edizione da confermare)"
     righe.append(dict(scuola="Scuole di Montecastrilli e Avigliano Umbro (liste Word)", plesso=it["plesso"], classe=it["classe"], richiesta=it["testo"],
                       titolo=titolo_pulito(best["titolo"]) if best else "", autore=(best or {}).get("autore") or "", editore=editore((best or {}).get("editore")),
                       isbn=(best or {}).get("isbn", ""), copie=1, prezzo=prezzo_copertina(best) if best else None, stato=stato, fonte=it["fonte"],
-                      alternative="; ".join(f'{titolo_pulito(c["titolo"])} – {editore(c["editore"])} ({c["isbn"]})' for c in r["cands"][:3]) if stato != "Trovato" else ""))
+                      disp=(best or {}).get("disp") or "",
+                      alternative="; ".join(f'{titolo_pulito(c["titolo"])} – {editore(c["editore"])} ({c["isbn"]})' for c in tutti[:3]) if not stato.startswith("Trovato") else ""))
 
 FN_ = "Arial"
 hfont = Font(name=FN_, bold=True, color="FFFFFF", size=10); hfill = PatternFill("solid", start_color="1F3864")
@@ -75,6 +81,11 @@ def tabella(ws, head, rows, widths, money=(), sub=None):
     for c, w in enumerate(widths, 1): ws.column_dimensions[get_column_letter(c)].width = w
     ws.freeze_panes = "A2"; ws.row_dimensions[1].height = 30
 
+# gruppi editoriali principali (un solo canale d’ordine per gli editori dello stesso gruppo)
+GRUPPI = {"Mondadori": "Gruppo Mondadori", "Piemme": "Gruppo Mondadori", "Einaudi": "Gruppo Mondadori", "Rizzoli": "Gruppo Mondadori",
+          "Fabbri": "Gruppo Mondadori", "Sperling & Kupfer": "Gruppo Mondadori", "Salani": "Gruppo GeMS", "Guanda": "Gruppo GeMS",
+          "Giunti Editore": "Gruppo Giunti", "Bompiani": "Gruppo Giunti", "EL": "Gruppo EL", "Emme Edizioni": "Gruppo EL", "Einaudi Ragazzi": "Gruppo EL",
+          "Feltrinelli": "Gruppo Feltrinelli"}
 def chi(r): return r["plesso"] + (f' {r["classe"]}' if r["classe"] else "")
 ordinabili = [r for r in righe if r["stato"].startswith(("Trovato", "Dal "))]
 nel_catalogo = set(CONT)
@@ -89,14 +100,23 @@ for e, rr in sorted(per_ed.items(), key=lambda x: (x[0] not in nel_catalogo, -su
     tit = {r["isbn"] or r["titolo"] for r in rr}
     tot = sum((r["prezzo"] or 0) * r["copie"] for r in rr)
     tel, mail, ref, note, _ = CONT.get(e, ("", "", "", "", ""))
-    rows.append([e, "Sì" if e in nel_catalogo else "No", len(tit), sum(r["copie"] for r in rr), round(tot, 2), len({r["plesso"] for r in rr}), tel, mail, ref, note])
-tabella(ws, ["Casa editrice", "Nel catalogo Bottegart", "Titoli", "Copie", "Totale a prezzo di copertina", "Scuole/plessi", "Telefono", "Email", "Referente", "Note"],
-        rows, [26, 12, 8, 8, 14, 10, 22, 36, 26, 40], money=(5,))
+    rows.append([e, GRUPPI.get(e, "—"), "Sì" if e in nel_catalogo else "No", len(tit), sum(r["copie"] for r in rr), round(tot, 2), len({r["plesso"] for r in rr}), tel, mail, ref, note])
+tabella(ws, ["Casa editrice", "Gruppo editoriale", "Nel catalogo Bottegart", "Titoli", "Copie", "Totale a prezzo di copertina", "Scuole/plessi", "Telefono", "Email", "Referente", "Note"],
+        rows, [26, 18, 12, 8, 8, 14, 10, 22, 36, 26, 40], money=(6,))
 n = len(rows) + 2
 ws.cell(row=n, column=1, value="TOTALE").font = bold
-for c, v in ((3, sum(r[2] for r in rows)), (4, sum(r[3] for r in rows)), (5, round(sum(r[4] for r in rows), 2))):
+for c, v in ((4, sum(r[3] for r in rows)), (5, sum(r[4] for r in rows)), (6, round(sum(r[5] for r in rows), 2))):
     x = ws.cell(row=n, column=c, value=v); x.font = bold
-    if c == 5: x.number_format = "#,##0.00 €"
+    if c == 6: x.number_format = "#,##0.00 €"
+# riepilogo per canale d’ordine: editori del catalogo uno per uno, gli altri per gruppo editoriale
+wsg = wb.create_sheet("Riepilogo per gruppo", 1)
+can = collections.OrderedDict()
+for r in rows:
+    k = r[0] if r[2] == "Sì" else (r[1] if r[1] != "—" else "Altri editori indipendenti")
+    c = can.setdefault(k, ["", 0, 0, 0.0, []]); c[0] = "Catalogo Bottegart" if r[2] == "Sì" else ("Gruppo editoriale" if r[1] != "—" else "Fuori catalogo")
+    c[1] += r[3]; c[2] += r[4]; c[3] += r[5]; c[4].append(r[0])
+grows = [[k, v[0], len(v[4]), v[1], v[2], round(v[3], 2), ", ".join(v[4]) if len(v[4]) > 1 or v[0] != "Catalogo Bottegart" else ""] for k, v in can.items()]
+tabella(wsg, ["Canale d’ordine", "Tipo", "Editori", "Titoli", "Copie", "Totale a prezzo di copertina", "Editori compresi"], grows, [28, 18, 8, 8, 8, 14, 90], money=(6,))
 
 # 2. ordine per casa editrice (titoli sommati tra le scuole)
 ws = wb.create_sheet("Ordine per editore")
@@ -105,13 +125,13 @@ for e, rr in sorted(per_ed.items(), key=lambda x: (x[0] not in nel_catalogo, x[0
     g = collections.OrderedDict()
     for r in sorted(rr, key=lambda r: r["titolo"].lower()):
         g.setdefault(r["isbn"] or r["titolo"], []).append(r)
-    rows.append([e, f"{len(g)} titoli", "", "", None, sum(r["copie"] for r in rr), round(sum((r["prezzo"] or 0) * r["copie"] for r in rr), 2), "subtotale casa editrice"])
+    rows.append([e, f"{len(g)} titoli", "", "", None, sum(r["copie"] for r in rr), round(sum((r["prezzo"] or 0) * r["copie"] for r in rr), 2), "subtotale casa editrice", ""])
     for k, lst in g.items():
         r0 = lst[0]; cop = sum(r["copie"] for r in lst)
         dest = collections.Counter(chi(r) for r in lst)
-        rows.append([e, r0["titolo"], r0["autore"], r0["isbn"], r0["prezzo"], cop, round((r0["prezzo"] or 0) * cop, 2), "; ".join(f"{s} ({q})" for s, q in dest.items())])
-tabella(ws, ["Casa editrice", "Titolo", "Autore", "ISBN", "Prezzo", "Copie", "Totale", "Per chi (copie)"], rows,
-        [22, 46, 26, 16, 10, 7, 11, 60], money=(5, 7), sub=lambda r: r[7] == "subtotale casa editrice")
+        rows.append([e, r0["titolo"], r0["autore"], r0["isbn"], r0["prezzo"], cop, round((r0["prezzo"] or 0) * cop, 2), "; ".join(f"{s} ({q})" for s, q in dest.items()), r0.get("disp", "")])
+tabella(ws, ["Casa editrice", "Titolo", "Autore", "ISBN", "Prezzo", "Copie", "Totale", "Per chi (copie)", "Disponibilità (IBS/Feltrinelli)"], rows,
+        [22, 46, 26, 16, 10, 7, 11, 60, 22], money=(5, 7), sub=lambda r: r[7] == "subtotale casa editrice")
 
 # 3. per scuola
 ws = wb.create_sheet("Per scuola")
