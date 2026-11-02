@@ -66,6 +66,40 @@ for k, it in enumerate(I):
                       disp=(best or {}).get("disp") or "",
                       alternative=("" if stato.startswith(("Trovato", "Fuori", "Materiale")) else "; ".join(f'{titolo_pulito(c["titolo"])} – {editore(c["editore"])} ({c["isbn"]})' for c in tutti[:3]))))
 
+# --- regole di Bottegart sugli ordini ---------------------------------------------------------
+# 1. niente autopubblicati, materiali eduki, libri fuori catalogo o non disponibili
+# 2. niente classici, a meno che non li pubblichi una casa editrice del nostro catalogo:
+#    in quel caso si ordina la nostra edizione
+CATALOGO_LIBRI = {b["titolo"]: b for b in json.load(open("output/libri_flipbook.json", encoding="utf-8"))}
+CLASSICI_RE = re.compile(r"Pinocchio|^Cuore$|diario di Anna Frank|Oliver Twist|viaggi di Gulliver|Alice nel paese|mago di Oz|giro del mondo in 80|"
+    r"Dalla Terra alla Luna|Viaggio al centro della Terra|Rosso Malpelo|Canto di Natale|Piccolo Principe|Se questo è un uomo|sistema periodico|"
+    r"fattoria degli animali|amico ritrovato|barone rampante|cavaliere inesistente|visconte dimezzato|sentiero dei nidi|foresta-radice|"
+    r"giorno della civetta|gabbiano Jonathan|cronache di Narnia|storia infinita|Classicini|Favole al telefono|^Matilde$|fabbrica di cioccolato|"
+    r"^Il GGG$|magica medicina|Lotta Combinaguai|invasione degli orsi|bambino sottovuoto|Quando Hitler rubò|tigre all.ora del tè|bruco Maisazio|"
+    r"^Pezzettino|Un anno di sorprese|bruco misuratutto|^Il sentiero segreto|faccia di Leonardo|Piccole donne raccontato|lupo e i sette capretti", re.I)
+NOSTRA_EDIZIONE = [(r"Pinocchio", "Logos", "Pinocchio", ""), (r"mago di Oz", "L’Ippocampo", "Il meraviglioso mago di Oz", ""),
+    (r"giro del mondo in 80", "L’Ippocampo", "Il giro del mondo in 80 giorni", ""),
+    (r"Anna Frank", "La Meridiana", "Il diario di Anna Frank", "versione in simboli CAA"), (r"Canto di Natale", "La Meridiana", "Canto di Natale", "versione in simboli CAA"),
+    (r"Piccole donne", "La Meridiana", "Piccole donne", "versione in simboli CAA"), (r"lupo e i sette capretti", "Uovonero", "Il lupo e i sette capretti", "versione in simboli CAA")]
+for r in righe:
+    st, d = r["stato"], (r.get("disp") or "")
+    if st.startswith(("Materiale", "Fuori")):
+        r["stato"] = "Escluso: " + ("materiale eduki" if st.startswith("Materiale") else "fuori catalogo"); continue
+    if r["editore"].startswith("Autopubblicato"):
+        r["stato"] = "Escluso: autopubblicato"; continue
+    if re.search(r"non dispon", d, re.I):
+        r["stato"] = "Escluso: non disponibile"; continue
+    if r["titolo"] and CLASSICI_RE.search(r["titolo"]) and r["editore"] not in CONT:
+        sub = next(((e, t, n) for pat, e, t, n in NOSTRA_EDIZIONE if re.search(pat, r["titolo"], re.I)), None)
+        b = CATALOGO_LIBRI.get(sub[1]) if sub else None
+        if b and b["editore"] == sub[0]:
+            r.update(titolo=b["titolo"] + (f" ({sub[2]})" if sub[2] else ""), autore=b["autore"], editore=b["editore"], isbn=b["isbn"], prezzo=b["prezzo"],
+                     disp="libro del catalogo Bottegart", stato="Sostituito con la nostra edizione")
+        else:
+            r["stato"] = "Escluso: classico di altro editore"
+    elif r["stato"] == "Trovato (edizione da confermare)":
+        r["stato"] = "Trovato"
+
 FN_ = "Arial"
 hfont = Font(name=FN_, bold=True, color="FFFFFF", size=10); hfill = PatternFill("solid", start_color="1F3864")
 bfont = Font(name=FN_, size=10); bold = Font(name=FN_, size=10, bold=True)
@@ -92,7 +126,7 @@ GRUPPI = {"Mondadori": "Gruppo Mondadori", "Piemme": "Gruppo Mondadori", "Einaud
           "Giunti Editore": "Gruppo Giunti", "Bompiani": "Gruppo Giunti", "EL": "Gruppo EL", "Emme Edizioni": "Gruppo EL", "Einaudi Ragazzi": "Gruppo EL",
           "Feltrinelli": "Gruppo Feltrinelli", "Autopubblicato (Amazon)": "Acquisto su Amazon", "Autopubblicato": "Acquisto su Amazon"}
 def chi(r): return r["plesso"] + (f' {r["classe"]}' if r["classe"] else "")
-ordinabili = [r for r in righe if r["stato"].startswith(("Trovato", "Dal "))]
+ordinabili = [r for r in righe if r["stato"].startswith(("Trovato", "Dal ", "Sostituito"))]
 nel_catalogo = set(CONT)
 
 wb = Workbook()
@@ -149,13 +183,13 @@ for s, rr in collections.OrderedDict((s, [r for r in righe if r["plesso"] == s])
 tabella(ws, ["Scuola / plesso", "Classe", "Richiesta originale", "Libro", "Casa editrice", "ISBN", "Prezzo", "Copie", "Totale", "Stato"], rows,
         [26, 12, 48, 40, 20, 16, 10, 7, 11, 22], money=(7, 9), sub=lambda r: r[9] == "subtotale (solo libri trovati)")
 for i, r in enumerate(rows, 2):
-    if r[9] == "Da verificare": ws.cell(row=i, column=10).fill = warn
-    if r[9] == "Non trovato": ws.cell(row=i, column=10).fill = bad
+    if r[9].startswith("Sostituito"): ws.cell(row=i, column=10).fill = warn
+    if r[9].startswith(("Escluso", "Non trovato")): ws.cell(row=i, column=10).fill = bad
 
 # 4. da verificare
-ws = wb.create_sheet("Da verificare")
+ws = wb.create_sheet("Esclusi")
 dv = [r for r in righe if r not in ordinabili]
-tabella(ws, ["Scuola / plesso", "Classe", "Richiesta originale", "Stato", "Libro proposto", "Casa editrice", "ISBN", "Altre possibilità"],
+tabella(ws, ["Scuola / plesso", "Classe", "Richiesta originale", "Motivo", "Libro trovato", "Casa editrice", "ISBN", "Altre possibilità"],
         [[r["plesso"], r["classe"], r["richiesta"], r["stato"], r["titolo"], r["editore"], r["isbn"], r.get("alternative", "")] for r in dv],
         [24, 12, 48, 14, 36, 18, 16, 70])
 
