@@ -30,7 +30,7 @@ def prezzo_copertina(c):
     except (TypeError, ValueError):
         return None
 def titolo_pulito(t):
-    return re.split(r"\. Ediz\.|\. Con |\. Nuova ediz", t)[0].replace("\\'", "’").replace("'", "’")
+    return re.split(r"\.? Ediz\.|\. Con |\.? Nuova ediz", t)[0].replace("\\'", "’").replace("'", "’").strip()
 
 righe = json.load(open(D + "righe_catalogo.json", encoding="utf-8"))
 righe += json.load(open(D + "nido.json", encoding="utf-8"))
@@ -81,6 +81,14 @@ NOSTRA_EDIZIONE = [(r"Pinocchio", "Logos", "Pinocchio", ""), (r"mago di Oz", "L�
     (r"giro del mondo in 80", "L’Ippocampo", "Il giro del mondo in 80 giorni", ""),
     (r"Anna Frank", "La Meridiana", "Il diario di Anna Frank", "versione in simboli CAA"), (r"Canto di Natale", "La Meridiana", "Canto di Natale", "versione in simboli CAA"),
     (r"Piccole donne", "La Meridiana", "Piccole donne", "versione in simboli CAA"), (r"lupo e i sette capretti", "Uovonero", "Il lupo e i sette capretti", "versione in simboli CAA")]
+import unicodedata as _ud
+_nt = lambda t: re.sub(r"[^a-z0-9]", "", _ud.normalize("NFKD", str(t).lower().replace("’", "'")).encode("ascii", "ignore").decode())
+_CAT = {(b["editore"], _nt(b["titolo"])): b for b in CATALOGO_LIBRI.values()}
+for r in righe:
+    r["autore"] = re.sub(r",(?=\S)", ", ", r["autore"] or "")
+    b = _CAT.get((r["editore"], _nt(r["titolo"])))
+    if b and r["stato"].startswith("Trovato") and b["isbn"] != r["isbn"]:   # stesso libro del catalogo: si usa la nostra edizione
+        r.update(isbn=b["isbn"], prezzo=b["prezzo"], disp="libro del catalogo Bottegart")
 for r in righe:
     st, d = r["stato"], (r.get("disp") or "")
     if st.startswith(("Materiale", "Fuori")):
@@ -193,6 +201,89 @@ tabella(ws, ["Scuola / plesso", "Classe", "Richiesta originale", "Motivo", "Libr
         [[r["plesso"], r["classe"], r["richiesta"], r["stato"], r["titolo"], r["editore"], r["isbn"], r.get("alternative", "")] for r in dv],
         [24, 12, 48, 14, 36, 18, 16, 70])
 
+# 5. email d’ordine: una per casa editrice e una unica per il grossista (editori fuori catalogo)
+def euro(v): return f"{v:,.2f} €".replace(",", "X").replace(".", ",").replace("X", ".")
+def elenco(rr):
+    g = collections.OrderedDict()
+    for r in sorted(rr, key=lambda r: r["titolo"].lower()): g.setdefault(r["isbn"] or r["titolo"], []).append(r)
+    righe_t, tot, cop = [], 0, 0
+    for lst in g.values():
+        r0 = lst[0]; q = sum(r["copie"] for r in lst); cop += q; tot += (r0["prezzo"] or 0) * q
+        righe_t.append(f"- {r0['titolo']} – {r0['autore'] or 'autore n.d.'} – ISBN {r0['isbn'] or 'n.d.'} – copie {q}" + (f" – {euro(r0['prezzo'])}" if r0["prezzo"] else ""))
+    return righe_t, cop, tot
+FIRMA = "[Nome e cognome]\nAssociazione Bottegart – Microlibreria So’Stare\nbottegart@gmail.com\n[telefono]"
+def testo_editore(e, rr, nostro):
+    righe_t, cop, tot = elenco(rr)
+    nome = (CONT.get(e, ("", "", "", "", ""))[2] or "").split(" (")[0].split(";")[0].strip()
+    saluto = f"Gentile {nome}," if nome else f"Buongiorno,"
+    intro = ("come anticipato nella nostra precedente email, la microlibreria So’Stare dell’Associazione Bottegart ha raccolto le richieste delle scuole del territorio "
+             "nell’ambito di #ioleggoperché, e molte riguardano i vostri libri.") if nostro else (
+             "vi scriviamo dall’Associazione Bottegart, che porta avanti la microlibreria So’Stare, un progetto sociale a sostegno del diritto allo studio. "
+             "Con #ioleggoperché abbiamo raccolto le richieste delle scuole del nostro comprensorio, e alcune riguardano i vostri libri.")
+    return f"""Oggetto: Ordine libri per le scuole – #ioleggoperché – Microlibreria So’Stare
+
+{saluto}
+
+{intro}
+
+Vi inviamo quindi il seguente ordine:
+
+""" + "\n".join(righe_t) + f"""
+
+Totale: {cop} {'copia' if cop == 1 else 'copie'}, {euro(tot)} a prezzo di copertina.
+
+Vi chiediamo cortesemente di confermarci:
+- le condizioni applicate (sconto per libreria e spese di spedizione) e la modalità di pagamento;
+- la disponibilità dei titoli e i tempi di consegna. Se possibile, ci servirebbero entro il [data], in tempo per le attività con le scuole.
+
+Indirizzo di consegna: [indirizzo]
+Dati per la fattura: Associazione Bottegart – [indirizzo, codice fiscale / partita IVA, codice SDI o PEC]
+
+Grazie per la collaborazione, un caro saluto.
+
+""" + FIRMA
+ws = wb.create_sheet("Email d’ordine")
+mail_rows = []
+for e, rr in sorted(per_ed.items(), key=lambda x: (x[0] not in nel_catalogo, x[0].lower())):
+    nostro = e in nel_catalogo
+    a_chi = CONT[e][1].split(";")[0].split(" (")[0].strip() if nostro else "da cercare (oppure ordinare tramite il grossista: vedi foglio “Email grossista”)"
+    _, cop, tot = elenco(rr)
+    mail_rows.append([e, "Sì" if nostro else "No", a_chi, cop, round(tot, 2), testo_editore(e, rr, nostro)])
+tabella(ws, ["Casa editrice", "Nel catalogo Bottegart", "A chi scrivere", "Copie", "Totale", "Testo dell’email (pronto da copiare)"], mail_rows, [22, 10, 34, 8, 11, 110], money=(5,))
+for i in range(2, len(mail_rows) + 2): ws.row_dimensions[i].height = 260
+# email unica al grossista con tutti gli editori fuori catalogo
+fuori = [(e, rr) for e, rr in sorted(per_ed.items(), key=lambda x: x[0].lower()) if e not in nel_catalogo]
+blocchi, cop_t, tot_t = [], 0, 0
+for e, rr in fuori:
+    rt, cop, tot = elenco(rr); cop_t += cop; tot_t += tot
+    blocchi.append(f"{e.upper()} ({cop} {'copia' if cop == 1 else 'copie'})\n" + "\n".join(rt))
+testo_g = f"""Oggetto: Ordine libri – Associazione Bottegart, Microlibreria So’Stare
+
+Buongiorno,
+
+vi scriviamo dall’Associazione Bottegart, che porta avanti la microlibreria So’Stare. Con la campagna #ioleggoperché abbiamo raccolto le richieste delle scuole del nostro comprensorio e vi inviamo il seguente ordine, diviso per casa editrice.
+
+""" + "\n\n".join(blocchi) + f"""
+
+Totale: {cop_t} copie di {len(fuori)} case editrici, {euro(tot_t)} a prezzo di copertina.
+
+Vi chiediamo di confermarci condizioni, spese di spedizione, disponibilità dei titoli e tempi di consegna (se possibile entro il [data]). Per i titoli non disponibili vi preghiamo di segnalarcelo, senza sostituirli.
+
+Indirizzo di consegna: [indirizzo]
+Dati per la fattura: Associazione Bottegart – [indirizzo, codice fiscale / partita IVA, codice SDI o PEC]
+
+Grazie, un cordiale saluto.
+
+""" + FIRMA
+wsg2 = wb.create_sheet("Email grossista")
+wsg2["A1"] = "Email unica per ordinare tramite un grossista tutti i libri delle case editrici fuori dal catalogo Bottegart."
+wsg2["A1"].font = Font(name=FN_, italic=True, size=10)
+wsg2["A3"] = testo_g; wsg2["A3"].font = bfont; wsg2["A3"].alignment = Alignment(wrap_text=True, vertical="top")
+wsg2.column_dimensions["A"].width = 130; wsg2.row_dimensions[3].height = 409
+open(D + "email_grossista.txt", "w", encoding="utf-8").write(testo_g)
+for e, rr in per_ed.items():
+    if e in nel_catalogo:
+        open(D + f"email_{re.sub(r'[^A-Za-z0-9]+', '_', _ud.normalize('NFKD', e).encode('ascii', 'ignore').decode()).strip('_')}.txt", "w", encoding="utf-8").write(testo_editore(e, rr, True))
 wb.save(D + "ordini_scuole.xlsx")
 c = collections.Counter(r["stato"] for r in righe)
 print(len(righe), "richieste:", dict(c), "· editori:", len(per_ed))
