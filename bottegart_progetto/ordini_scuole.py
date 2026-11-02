@@ -74,9 +74,9 @@ CATALOGO_LIBRI = {b["titolo"]: b for b in json.load(open("output/libri_flipbook.
 CLASSICI_RE = re.compile(r"Pinocchio|^Cuore$|diario di Anna Frank|Oliver Twist|viaggi di Gulliver|Alice nel paese|mago di Oz|giro del mondo in 80|"
     r"Dalla Terra alla Luna|Viaggio al centro della Terra|Rosso Malpelo|Canto di Natale|Piccolo Principe|Se questo è un uomo|sistema periodico|"
     r"fattoria degli animali|amico ritrovato|barone rampante|cavaliere inesistente|visconte dimezzato|sentiero dei nidi|foresta-radice|"
-    r"giorno della civetta|gabbiano Jonathan|cronache di Narnia|storia infinita|Classicini|Favole al telefono|^Matilde$|fabbrica di cioccolato|"
-    r"^Il GGG$|magica medicina|Lotta Combinaguai|invasione degli orsi|bambino sottovuoto|Quando Hitler rubò|tigre all.ora del tè|bruco Maisazio|"
-    r"^Pezzettino|Un anno di sorprese|bruco misuratutto|^Il sentiero segreto|faccia di Leonardo|Piccole donne raccontato|lupo e i sette capretti", re.I)
+    r"giorno della civetta|gabbiano Jonathan|cronache di Narnia|storia infinita|Classicini|"
+    r"^Pezzettino|Un anno di sorprese|bruco misuratutto|faccia di Leonardo|Piccole donne raccontato|lupo e i sette capretti", re.I)
+# i classici per bambini (Dahl, Rodari, Lindgren, Buzzati, Nöstlinger, Kerr, Carle, Carpi) restano; Lionni no (scelta di Bottegart)
 NOSTRA_EDIZIONE = [(r"Pinocchio", "Logos", "Pinocchio", ""), (r"mago di Oz", "L’Ippocampo", "Il meraviglioso mago di Oz", ""),
     (r"giro del mondo in 80", "L’Ippocampo", "Il giro del mondo in 80 giorni", ""),
     (r"Anna Frank", "La Meridiana", "Il diario di Anna Frank", "versione in simboli CAA"), (r"Canto di Natale", "La Meridiana", "Canto di Natale", "versione in simboli CAA"),
