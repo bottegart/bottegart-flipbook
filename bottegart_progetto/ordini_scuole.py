@@ -47,8 +47,11 @@ for k, it in enumerate(I):
     scelta = SCELTE.get(str(k))
     if scelta == "nessuno":
         best, stato = None, "Non trovato"
+    elif scelta == "eduki":
+        best, stato = None, "Materiale didattico eduki (non è un libro)"
     elif isinstance(scelta, dict):
-        best, stato = dict(scelta, sconto=0, disp="libro del catalogo Bottegart"), "Trovato (scelto a mano)"
+        best = dict(scelta, sconto=0, disp=scelta.get("disp", "libro del catalogo Bottegart"))
+        stato = scelta.get("stato", "Trovato (scelto a mano)")
     elif scelta:
         best = next((c for c in tutti if c["isbn"] == scelta), None) or TUTTI_ISBN.get(scelta)
         stato = "Trovato (scelto a mano)" if best else "Non trovato"
@@ -61,7 +64,7 @@ for k, it in enumerate(I):
                       titolo=titolo_pulito(best["titolo"]) if best else "", autore=(best or {}).get("autore") or "", editore=editore((best or {}).get("editore")),
                       isbn=(best or {}).get("isbn", ""), copie=1, prezzo=prezzo_copertina(best) if best else None, stato=stato, fonte=it["fonte"],
                       disp=(best or {}).get("disp") or "",
-                      alternative="; ".join(f'{titolo_pulito(c["titolo"])} – {editore(c["editore"])} ({c["isbn"]})' for c in tutti[:3]) if not stato.startswith("Trovato") else ""))
+                      alternative=("" if stato.startswith(("Trovato", "Fuori", "Materiale")) else "; ".join(f'{titolo_pulito(c["titolo"])} – {editore(c["editore"])} ({c["isbn"]})' for c in tutti[:3]))))
 
 FN_ = "Arial"
 hfont = Font(name=FN_, bold=True, color="FFFFFF", size=10); hfill = PatternFill("solid", start_color="1F3864")
@@ -87,7 +90,7 @@ def tabella(ws, head, rows, widths, money=(), sub=None):
 GRUPPI = {"Mondadori": "Gruppo Mondadori", "Piemme": "Gruppo Mondadori", "Einaudi": "Gruppo Mondadori", "Rizzoli": "Gruppo Mondadori",
           "Fabbri": "Gruppo Mondadori", "Sperling & Kupfer": "Gruppo Mondadori", "Salani": "Gruppo GeMS", "Guanda": "Gruppo GeMS",
           "Giunti Editore": "Gruppo Giunti", "Bompiani": "Gruppo Giunti", "EL": "Gruppo EL", "Emme Edizioni": "Gruppo EL", "Einaudi Ragazzi": "Gruppo EL",
-          "Feltrinelli": "Gruppo Feltrinelli"}
+          "Feltrinelli": "Gruppo Feltrinelli", "Autopubblicato (Amazon)": "Acquisto su Amazon", "Autopubblicato": "Acquisto su Amazon"}
 def chi(r): return r["plesso"] + (f' {r["classe"]}' if r["classe"] else "")
 ordinabili = [r for r in righe if r["stato"].startswith(("Trovato", "Dal "))]
 nel_catalogo = set(CONT)
@@ -115,7 +118,7 @@ wsg = wb.create_sheet("Riepilogo per gruppo", 1)
 can = collections.OrderedDict()
 for r in rows:
     k = r[0] if r[2] == "Sì" else (r[1] if r[1] != "—" else "Altri editori indipendenti")
-    c = can.setdefault(k, ["", 0, 0, 0.0, []]); c[0] = "Catalogo Bottegart" if r[2] == "Sì" else ("Gruppo editoriale" if r[1] != "—" else "Fuori catalogo")
+    c = can.setdefault(k, ["", 0, 0, 0.0, []]); c[0] = "Catalogo Bottegart" if r[2] == "Sì" else ("Autopubblicati, solo online" if r[1] == "Acquisto su Amazon" else ("Gruppo editoriale" if r[1] != "—" else "Fuori catalogo"))
     c[1] += r[3]; c[2] += r[4]; c[3] += r[5]; c[4].append(r[0])
 grows = [[k, v[0], len(v[4]), v[1], v[2], round(v[3], 2), ", ".join(v[4]) if len(v[4]) > 1 or v[0] != "Catalogo Bottegart" else ""] for k, v in can.items()]
 tabella(wsg, ["Canale d’ordine", "Tipo", "Editori", "Titoli", "Copie", "Totale a prezzo di copertina", "Editori compresi"], grows, [28, 18, 8, 8, 8, 14, 90], money=(6,))
@@ -151,7 +154,7 @@ for i, r in enumerate(rows, 2):
 
 # 4. da verificare
 ws = wb.create_sheet("Da verificare")
-dv = [r for r in righe if r["stato"] in ("Da verificare", "Non trovato")]
+dv = [r for r in righe if r not in ordinabili]
 tabella(ws, ["Scuola / plesso", "Classe", "Richiesta originale", "Stato", "Libro proposto", "Casa editrice", "ISBN", "Altre possibilità"],
         [[r["plesso"], r["classe"], r["richiesta"], r["stato"], r["titolo"], r["editore"], r["isbn"], r.get("alternative", "")] for r in dv],
         [24, 12, 48, 14, 36, 18, 16, 70])
