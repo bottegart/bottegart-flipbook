@@ -174,6 +174,10 @@ for b in books:
         continue
     _web(b, w)
     _out.append(b)
+# libri aggiunti a mano al catalogo (non presenti nell’Excel di base): vedi libri_aggiunti.json
+for x in json.load(open('libri_aggiunti.json', encoding='utf-8'))["libri"]:
+    _out.append(dict(id=0, t=fix(x["titolo"]), a=fix(x["autore"]), p=x["editore"], f=x["fascia"], s=fix(x["sinossi"]), real=True, pr=x["prezzo"],
+                     caa=x.get("caa", False), e=x["eta"], isbn=x["isbn"], g=fix(x.get("tipo", "")), c=fix(x.get("collana", "")), th=fix(x.get("temi", "")), acc=""))
 books = _out
 # correzioni indicate da Bottegart: hanno la precedenza su tutto (vedi correzioni_bottegart.json)
 CORR = json.load(open('correzioni_bottegart.json', encoding='utf-8'))

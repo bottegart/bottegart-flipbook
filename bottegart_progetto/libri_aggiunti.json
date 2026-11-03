@@ -1,0 +1,61 @@
+{
+ "_leggimi": "Libri aggiunti al catalogo online che non sono nell’Excel di base. make_flipbook.py li aggiunge alla fine. Campi: titolo, autore, editore, fascia, eta, prezzo, isbn, tipo, collana, temi, sinossi, fonte.",
+ "libri": [
+  {
+   "titolo": "Colori in rivolta!",
+   "autore": "Manuela Mapelli",
+   "editore": "People",
+   "fascia": "3-6 anni",
+   "eta": "da 4 anni",
+   "prezzo": 9.0,
+   "isbn": "9791259794048",
+   "tipo": "Albo da colorare",
+   "collana": "People Kids",
+   "temi": "Creatività, immaginare un mondo più giusto",
+   "sinossi": "Sognatrici e sognatori, a raccolta! Quello che avete tra le mani è un albo illustrato per le vostre piccole e grandi rivoluzioni. Pastelli, tempere, pennarelli: i disegni di Manuela Mapelli sono pensati per dar libero sfogo alla vostra fantasia e, chissà, magari provare anche a immaginare un mondo un po’ più giusto, dentro e fuori dai bordi.",
+   "fonte": "https://www.ibs.it/x/e/9791259794048"
+  },
+  {
+   "titolo": "La meravigliosa storia della pastasciutta dei fratelli Cervi",
+   "autore": "Stefano Catone; ill. Manuela Mapelli",
+   "editore": "People",
+   "fascia": "Prime letture (6-8)",
+   "eta": "da 6 anni",
+   "prezzo": 20.0,
+   "isbn": "9791259794185",
+   "tipo": "Albo illustrato",
+   "collana": "People Kids",
+   "temi": "Resistenza, antifascismo, democrazia",
+   "sinossi": "A metà strada tra Parma e Reggio Emilia, sorge la dimora della famiglia Cervi: qui si incontrano il lavoro nei campi, lo studio e l’impegno antifascista. Il 25 luglio 1943, con la caduta di Mussolini, i Cervi decidono di festeggiare. Donne, uomini e bambini si ritrovano per mangiare oltre 300 chili di pasta condita solo con burro e formaggio. La storia dei fratelli Cervi, meravigliosa e tragica assieme, ci ricorda come l’impegno per la libertà, i diritti e la democrazia sia qualcosa al quale ancora oggi non possiamo sottrarci.",
+   "fonte": "https://www.ibs.it/x/e/9791259794185"
+  },
+  {
+   "titolo": "Il no di Giacomo",
+   "autore": "Valentina Stecchi",
+   "editore": "People",
+   "fascia": "Prime letture (6-8)",
+   "eta": "da 7 anni",
+   "prezzo": 20.0,
+   "isbn": "9791259792433",
+   "tipo": "Albo illustrato",
+   "collana": "",
+   "temi": "Bullismo, coraggio di dire no, Giacomo Matteotti",
+   "sinossi": "Giacomo frequenta la classe 2ªC. A Giacomo non piacciono le persone prepotenti ed è pronto a prendere parola e dirlo a gran voce. In questa storia illustrata ispirata alla vita di Giacomo Matteotti, il «NO» del piccolo Giacomo risuonerà forte e magari riuscirà a smuovere l’indifferenza e il silenzio delle sue compagne e compagni, ricordando a ciascuno di noi l’importanza di opporsi e denunciare bullismo, imbrogli e sopraffazioni.",
+   "fonte": "https://www.ibs.it/x/e/9791259792433"
+  },
+  {
+   "titolo": "Le cose come stanno",
+   "autore": "Eliana Cocca, Giobi",
+   "editore": "People",
+   "fascia": "Scuola media (11-13)",
+   "eta": "da 13 anni",
+   "prezzo": 16.0,
+   "isbn": "9791259793065",
+   "tipo": "Divulgazione",
+   "collana": "",
+   "temi": "Antirazzismo, stereotipi di genere, crisi climatica, guerra, diritti",
+   "sinossi": "Ci nascondiamo dietro la complessità di alcuni temi, lasciando che il dibattito rimanga solo tra adulti e tagliando fuori ragazze e ragazzi che tra non molti anni dovranno decidere da che parte schierarsi su grandi questioni come l’antirazzismo, l’aborto, l’eutanasia, le disuguaglianze e gli stereotipi di genere, la crisi climatica, la guerra. Con questo libro diciamo basta!",
+   "fonte": "https://www.ibs.it/x/e/9791259793065"
+  }
+ ]
+}
