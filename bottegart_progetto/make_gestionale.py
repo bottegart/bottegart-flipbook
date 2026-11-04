@@ -15,6 +15,8 @@ QUI = os.path.dirname(os.path.abspath(__file__))
 XLSX = os.path.join(QUI, "output", "catalogo_case_editrici_indipendenti.xlsx")
 TEMPLATE = os.path.join(QUI, "gestionale_template.html")
 OUT = os.path.join(QUI, "output", "gestionale_bottegart.html")
+# Copia pubblicata su GitHub Pages: https://bottegart.github.io/bottegart-flipbook/gestionale/
+OUT_WEB = os.path.join(QUI, "..", "docs", "gestionale", "index.html")
 
 
 def isbn13_valido(s):
@@ -73,9 +75,11 @@ def main():
     segnaposto = "/*CATALOGO_RIFERIMENTO*/{}"
     assert segnaposto in html, "segnaposto mancante nel template"
     html = html.replace(segnaposto, dati)
-    with open(OUT, "w", encoding="utf-8") as f:
-        f.write(html)
-    print(f"Creato {OUT} con {len(catalogo)} titoli nel catalogo di riferimento")
+    for dest in (OUT, OUT_WEB):
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
+        with open(dest, "w", encoding="utf-8") as f:
+            f.write(html)
+    print(f"Creato {OUT} (e la copia per il sito in docs/gestionale/) con {len(catalogo)} titoli nel catalogo di riferimento")
 
 
 if __name__ == "__main__":

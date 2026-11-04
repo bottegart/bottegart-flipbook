@@ -4,6 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gestionale Bottegart – libreria</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#2b2622">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icona-192.png">
+<link rel="apple-touch-icon" href="icona-192.png">
 <style>
 :root{--bg:#f6f3ee;--card:#fff;--ink:#2b2622;--muted:#7a7068;--line:#e4ddd3;--acc:#b5532f;--acc2:#2f6f6a;--ok:#2e7d32;--warn:#c77700;--err:#b3261e}
 *{box-sizing:border-box}
@@ -66,6 +71,18 @@ dialog .piede{padding:12px 18px;border-top:1px solid var(--line);display:flex;ga
 .scroll{max-height:60vh;overflow:auto}
 .barra{height:8px;background:var(--acc2);border-radius:4px;min-width:2px}
 .avviso{background:#fff1d6;border:1px solid #f0d49b;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:14px}
+.scanriga{display:flex;gap:8px;align-items:stretch}.scanriga .scanbox{flex:1}
+button.cam{font-size:26px;padding:0 18px;border-radius:10px;border:2px solid var(--acc2);background:#e0eeed;cursor:pointer;flex:0 0 auto}
+#camera{position:fixed;inset:0;background:#000;z-index:200;display:flex;flex-direction:column}
+#camera[hidden]{display:none}
+#camera video{flex:1;width:100%;min-height:0;object-fit:cover}
+#camera .mirino{position:absolute;left:10%;right:10%;top:38%;height:22%;border:3px solid #fff;border-radius:14px;box-shadow:0 0 0 9999px #0006;pointer-events:none}
+#camera .mirino::after{content:"";position:absolute;left:4%;right:4%;top:50%;height:2px;background:#ff5a3c}
+#camera .info{z-index:2;position:absolute;top:0;left:0;right:0;padding:16px;color:#fff;text-align:center;font-size:18px;background:linear-gradient(#000a,#0000)}
+#camera .info b{display:block;font-size:22px;margin-top:4px}
+#camera .comandi{position:relative;z-index:2;display:flex;gap:12px;padding:14px;justify-content:center;background:#000}
+#camera .comandi button{font-size:18px;padding:12px 24px}
+#camera.letto .mirino{border-color:#4caf50}
 @media print{header,nav,.noprint{display:none!important}}
 </style>
 </head>
@@ -88,7 +105,7 @@ dialog .piede{padding:12px 18px;border-top:1px solid var(--line);display:flex;ga
 <!-- ============ CASSA ============ -->
 <section id="tab-cassa" class="attivo">
   <div class="card">
-    <div class="scanbox"><input class="scan" data-tab="cassa" placeholder="Scansiona l’ISBN, oppure scrivi titolo o autore" autocomplete="off"><div class="risultati" hidden></div></div>
+    <div class="scanriga"><div class="scanbox"><input class="scan" data-tab="cassa" placeholder="Scansiona l’ISBN, oppure scrivi titolo o autore" autocomplete="off"><div class="risultati" hidden></div></div><button class="cam" data-cam="cassa" title="Leggi il codice con la fotocamera">📷</button></div>
   </div>
   <div class="card">
     <h2>Vendita in corso</h2>
@@ -118,7 +135,7 @@ dialog .piede{padding:12px 18px;border-top:1px solid var(--line);display:flex;ga
     </div>
   </div>
   <div class="card">
-    <div class="scanbox"><input class="scan" data-tab="arrivi" placeholder="Scansiona ogni libro arrivato (ogni scansione = +1 copia)" autocomplete="off"><div class="risultati" hidden></div></div>
+    <div class="scanriga"><div class="scanbox"><input class="scan" data-tab="arrivi" placeholder="Scansiona ogni libro arrivato (ogni scansione = +1 copia)" autocomplete="off"><div class="risultati" hidden></div></div><button class="cam" data-cam="arrivi" title="Leggi il codice con la fotocamera">📷</button></div>
   </div>
   <div class="card">
     <h2 id="titoloArrivo">Libri arrivati</h2>
@@ -135,7 +152,7 @@ dialog .piede{padding:12px 18px;border-top:1px solid var(--line);display:flex;ga
 <section id="tab-magazzino">
   <div class="card">
     <div class="riga">
-      <div style="flex:3 1 300px"><label>Cerca (titolo, autore, editore, ISBN – puoi anche scansionare)</label><input id="cercaMag" autocomplete="off"></div>
+      <div style="flex:3 1 300px"><label>Cerca (titolo, autore, editore, ISBN – puoi anche scansionare)</label><div class="scanriga"><input id="cercaMag" autocomplete="off"><button class="cam" data-cam="magazzino" title="Leggi il codice con la fotocamera">📷</button></div></div>
       <div><label>Mostra</label><select id="filtroMag">
         <option value="disp">Disponibili (quantità &gt; 0)</option>
         <option value="tutti">Tutti</option>
@@ -189,9 +206,10 @@ dialog .piede{padding:12px 18px;border-top:1px solid var(--line);display:flex;ga
 <section id="tab-impostazioni">
   <div class="card">
     <h2>Backup dei dati</h2>
-    <p>I dati sono salvati <b>solo in questo browser, su questo computer</b>. Fai un backup almeno una volta alla settimana e tienilo su una chiavetta o su Google Drive: se il browser viene ripulito o il computer si rompe, il backup è l’unica copia.</p>
+    <p>I dati sono salvati <b>solo in questo browser, su questo dispositivo</b>. Fai un backup almeno una volta alla settimana e mandalo su Google Drive o per email: se il browser viene ripulito, il tablet si rompe o viene perso, il backup è l’unica copia.</p>
     <div class="riga">
       <button class="btn pri" id="esportaBackup">⬇ Scarica backup completo</button>
+      <button class="btn" id="condividiBackup" hidden>📤 Invia backup (Drive, email, WhatsApp…)</button>
       <button class="btn" id="importaBackupBtn">⬆ Ripristina da un backup</button>
       <input type="file" id="importaBackup" accept=".json,application/json" hidden>
     </div>
@@ -228,6 +246,12 @@ dialog .piede{padding:12px 18px;border-top:1px solid var(--line);display:flex;ga
 
 <datalist id="listaEditori"></datalist>
 <div id="toast"></div>
+<div id="camera" hidden>
+  <video playsinline muted></video>
+  <div class="mirino"></div>
+  <div class="info">Inquadra il codice a barre dentro il riquadro<b id="camLetto"></b></div>
+  <div class="comandi"><button class="btn" id="camLuce" hidden>🔦 Luce</button><button class="btn pri" id="camFine">Fine</button></div>
+</div>
 
 <dialog id="dlgLibro">
   <form method="dialog" id="formLibro">
@@ -478,6 +502,7 @@ $$('#nav button').forEach(b=>b.onclick=()=>vai(b.dataset.tab));
    Se il cursore non è in un campo, intercettiamo comunque la scansione. */
 let bufScan='', ultimoTasto=0;
 document.addEventListener('keydown', e=>{
+  if(e.key==='Escape' && CAM.attivo){ chiudiCamera(); return; }
   if($('#dlgLibro').open) return;
   const t=e.target; if(t.matches && t.matches('input,textarea,select')) return;
   const ora=performance.now(); if(ora-ultimoTasto>100) bufScan=''; ultimoTasto=ora;
@@ -724,7 +749,7 @@ function renderInventario(){
   const voci=Object.entries(inv.conteggi);
   const ult = inv.ultimo ? (S.libri[inv.ultimo]?.titolo || inv.ultimo) : null;
   el.innerHTML = `<div class="card"><h2>Conta in corso <span class="muted">(${inv.modo==='totale'?'tutto il negozio':'parziale'}, iniziata il ${fdata(inv.inizio)})</span></h2>
-    <div class="scanbox"><input class="scan" data-tab="inventario" placeholder="Scansiona ogni copia" autocomplete="off"></div>
+    <div class="scanriga"><div class="scanbox"><input class="scan" data-tab="inventario" placeholder="Scansiona ogni copia" autocomplete="off"></div><button class="cam" data-cam="inventario" title="Leggi il codice con la fotocamera">📷</button></div>
     ${ult?`<div class="ultimo">Ultimo: <b>${esc(ult)}</b> → contate ${inv.conteggi[inv.ultimo]||0}</div>`:''}
     <div class="riga" style="margin-top:12px"><div class="muted">${voci.length} titoli · ${voci.reduce((s,[,n])=>s+n,0)} copie contate</div>
     <button class="btn rosso" id="invAnnulla">Annulla la conta</button><button class="btn pri" id="invConfronta">Confronta e chiudi</button></div></div>
@@ -734,6 +759,7 @@ function renderInventario(){
   const inp=$('#invContenuto input.scan');
   inp.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); const v=inp.value.trim(); inp.value=''; if(v) scanInventario(v); }});
   inp.focus();
+  el.querySelector('[data-cam]').onclick=()=>apriCamera('inventario');
   el.querySelectorAll('[data-inv]').forEach(b=>b.onclick=()=>{ const i=b.dataset.isbn; inv.conteggi[i]+= b.dataset.inv==='+'?1:-1; if(inv.conteggi[i]<=0) delete inv.conteggi[i]; salva(); renderInventario(); });
   $('#invAnnulla').onclick=()=>{ if(confirm('Annullare la conta? Le copie contate andranno perse (il magazzino non cambia).')){ S.inventario=null; salva(); renderInventario(); } };
   $('#invConfronta').onclick=confrontaInventario;
@@ -925,6 +951,81 @@ $('#salvaImp').onclick=()=>{
   i.scorta_min=parseInt($('#impScorta').value)||0; i.sconto_fornitore=pnum($('#impScForn').value)??30; i.suono=$('#impSuono').checked;
   salva(); toast('Impostazioni salvate','ok');
 };
+
+/* ===== Fotocamera (Chrome su Android: BarcodeDetector) ===== */
+const CAM = {stream:null, det:null, tab:null, attivo:false, ultimo:'', quando:0, conferma:'', timer:null, luce:false};
+const CAM_CONTINUA = {arrivi:true, inventario:true};   // qui la fotocamera resta aperta per più libri
+async function apriCamera(tab){
+  if(!('BarcodeDetector' in window)){ alert('Questo browser non sa leggere i codici con la fotocamera. Usa Google Chrome aggiornato (su Android funziona) oppure la pistola.'); return; }
+  if(!navigator.mediaDevices || !window.isSecureContext){ alert('La fotocamera funziona solo aprendo il gestionale dal suo indirizzo internet (https), non da un file salvato.'); return; }
+  try{
+    const formati = await BarcodeDetector.getSupportedFormats();
+    CAM.det = new BarcodeDetector({formats:['ean_13','ean_8','upc_a','upc_e','code_128','code_39'].filter(f=>formati.includes(f))});
+    CAM.stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}, width:{ideal:1280}, height:{ideal:720}}, audio:false});
+  }catch(e){ alert('Non riesco ad aprire la fotocamera: '+e.message+'\nControlla di aver dato a Chrome il permesso di usare la fotocamera.'); chiudiCamera(); return; }
+  CAM.tab=tab; CAM.attivo=true; CAM.ultimo=''; CAM.conferma='';
+  const v=$('#camera video'); v.srcObject=CAM.stream;
+  $('#camLetto').textContent=''; $('#camera').hidden=false; $('#camera').classList.remove('letto');
+  await v.play().catch(()=>{});
+  const traccia=CAM.stream.getVideoTracks()[0], cap=traccia.getCapabilities?traccia.getCapabilities():{};
+  $('#camLuce').hidden=!cap.torch; CAM.luce=false;
+  if(cap.focusMode && cap.focusMode.includes('continuous')) traccia.applyConstraints({advanced:[{focusMode:'continuous'}]}).catch(()=>{});
+  leggiFotogramma();
+}
+async function leggiFotogramma(){
+  if(!CAM.attivo) return;
+  const v=$('#camera video');
+  try{
+    if(v.readyState>=2){
+      const codici=await CAM.det.detect(v);
+      if(codici.length && CAM.attivo) gestisciLettura(codici[0].rawValue);
+    }
+  }catch(e){}
+  if(CAM.attivo) CAM.timer=setTimeout(leggiFotogramma, 120);
+}
+function gestisciLettura(raw){
+  const codice=pulisciCodice(raw);
+  if(/^97[89]\d{10}$/.test(codice) && !isbn13ok(codice)) return;   // lettura sporca
+  // lo stesso codice letto due volte di fila = lettura sicura
+  if(codice!==CAM.conferma){ CAM.conferma=codice; return; }
+  CAM.conferma='';
+  const ora=Date.now();
+  if(codice===CAM.ultimo && ora-CAM.quando<1500) return;   // per contare un’altra copia dello stesso libro: togli e rimetti il codice davanti
+  CAM.ultimo=codice; CAM.quando=ora;
+  const cam=$('#camera'); cam.classList.add('letto'); setTimeout(()=>cam.classList.remove('letto'),400);
+  if(navigator.vibrate) navigator.vibrate(60);
+  const noto = S.libri[codice];
+  if(CAM_CONTINUA[CAM.tab] && noto){
+    SCAN[CAM.tab](codice);
+    $('#camLetto').textContent = '✔ '+noto.titolo+(CAM.tab==='inventario' && S.inventario ? ` (contate ${S.inventario.conteggi[codice]||0})` : '');
+  } else {
+    const tab=CAM.tab; chiudiCamera(); SCAN[tab](codice);
+  }
+}
+function chiudiCamera(){
+  CAM.attivo=false; clearTimeout(CAM.timer);
+  if(CAM.stream) CAM.stream.getTracks().forEach(t=>t.stop());
+  CAM.stream=null;
+  $('#camera').hidden=true; $('#camera video').srcObject=null;
+}
+$('#camFine').onclick=()=>{ chiudiCamera(); focusScan(); };
+$('#camLuce').onclick=()=>{ const t=CAM.stream&&CAM.stream.getVideoTracks()[0]; if(!t) return; CAM.luce=!CAM.luce; t.applyConstraints({advanced:[{torch:CAM.luce}]}).catch(()=>{}); };
+$$('button[data-cam]').forEach(b=>b.onclick=()=>apriCamera(b.dataset.cam));
+document.addEventListener('visibilitychange',()=>{ if(document.hidden && CAM.attivo) chiudiCamera(); });
+
+/* ===== Invia il backup (tablet: Drive, email, WhatsApp…) ===== */
+(function(){
+  try{ const prova=new File(['{}'],'b.json',{type:'application/json'}); if(navigator.canShare && navigator.canShare({files:[prova]})) $('#condividiBackup').hidden=false; }catch(e){}
+})();
+$('#condividiBackup').onclick=async()=>{
+  const quando=adesso();
+  const file=new File([JSON.stringify(Object.assign({},S,{ultimo_backup:quando}))], `backup-gestionale-${oggiNome()}.json`, {type:'application/json'});
+  try{ await navigator.share({files:[file], title:'Backup gestionale '+S.impostazioni.negozio}); S.ultimo_backup=quando; salva(); toast('Backup inviato','ok'); }
+  catch(e){ if(e.name!=='AbortError') alert('Invio non riuscito: '+e.message+'. Usa “Scarica backup completo”.'); }
+};
+
+/* ===== App installabile e utilizzabile senza internet ===== */
+if('serviceWorker' in navigator && location.protocol==='https:') navigator.serviceWorker.register('sw.js').catch(()=>{});
 
 /* ===== Avvio ===== */
 window.addEventListener('storage', e=>{ if(e.key===CHIAVE){ S=carica(); renderAttivo(); toast('Dati aggiornati da un’altra finestra'); } });

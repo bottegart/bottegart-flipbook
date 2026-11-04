@@ -31,7 +31,11 @@ Le formule dell'Excel si ricalcolano aprendo il file (o con LibreOffice headless
 - Il flipbook finale deve restare un SINGOLO file HTML autosufficiente (immagini incorporate).
 
 ## Gestionale della libreria (magazzino, arrivi, vendite)
-- `python make_gestionale.py` -> output/gestionale_bottegart.html (un solo file, funziona offline nel browser).
+- `python make_gestionale.py` -> output/gestionale_bottegart.html e docs/gestionale/index.html (un solo file, funziona offline nel browser).
+- Pubblicato su GitHub Pages: https://bottegart.github.io/bottegart-flipbook/gestionale/ (si aggiorna quando docs/ arriva su main).
+  In docs/gestionale/ ci sono anche manifest.webmanifest, sw.js (uso senza internet, "prima la rete") e le icone: è un'app installabile.
+- Bottegart usa SOLO un tablet Android con Chrome (niente PC): pulsante 📷 per leggere i codici con la fotocamera (BarcodeDetector,
+  serve https), "Invia backup" con la condivisione di Android. Ogni modifica va pensata e provata per il tablet (touch, schermo ~800 px).
 - Template: gestionale_template.html. Lo script incorpora il "catalogo di riferimento" (ISBN -> titolo, autore, editore, prezzo)
   preso dal foglio "Tutti i titoli" + isbn.json + output/libri_flipbook.json, così scansionando un ISBN noto la scheda si compila da sola.
 - I dati del negozio (libri, copie, movimenti, vendite) stanno nel localStorage del browser (chiave `bottegart_gestionale_v1`):
