@@ -51,6 +51,9 @@ h1 em{font-style:normal;color:var(--rosso)}
 .loghi img{border-radius:50%;background:#fff;box-shadow:0 0 0 2px #eee}
 .loghi p{text-align:left;font-weight:600;line-height:1.2}
 .loghi p small{display:block;font-weight:500;opacity:.7}
+.fum{display:inline-flex;align-items:center;gap:.45em;background:var(--giallo);color:var(--nero);border:.12em solid var(--nero);border-radius:.6em;padding:.18em .7em .22em;font-weight:700;line-height:1.1;transform:rotate(-1.5deg);box-shadow:.12em .16em 0 var(--nero)}
+.fum span{white-space:nowrap}.fum svg{width:1.3em;height:1.3em;flex:none}.fum em{font-family:'Gochi Hand',cursive;font-style:normal;font-weight:400;font-size:1.25em;color:var(--rosso)}
+.fum{margin-top:auto}.fum+.loghi{margin-top:.7em}
 .banda{position:absolute;left:0;right:0;height:var(--bh);background:repeating-linear-gradient(90deg,var(--rosso) 0 50%,var(--nero) 50% 100%);background-size:var(--bw) 100%}
 """
 
@@ -61,6 +64,10 @@ def loghi():
     return (f'<div class="loghi"><img src="{IMG["bart"]}" alt="Associazione Bottegart"><img src="{IMG["sostare"]}" alt="So’Stare">'
             f'<p>{INFO["luogo"]}<small>{INFO["chi"]}</small></p></div>')
 
+MATITA = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="14" height="11" rx="2.5" fill="#fff" stroke="#141414" stroke-width="1.8"/><path d="M6 15l-1.5 4 4.5-4" fill="#fff" stroke="#141414" stroke-width="1.8" stroke-linejoin="round"/><path d="M20.5 6.5l-8 8-2.5.8.8-2.5 8-8z" fill="#f2141b" stroke="#141414" stroke-width="1.6" stroke-linejoin="round"/></svg>'
+def fumetto():
+    return f'<p class="fum">{MATITA}<span>Ogni sabato continua il <em>corso di fumetto</em> con Anna Paris</span></p>'
+
 def pagina(w, h, css, corpo):
     return f'<!doctype html><html lang="it"><head><meta charset="utf-8"><style>{CSS}{css}</style></head><body><div class="f" style="width:{w}px;height:{h}px">{corpo}</div></body></html>'
 
@@ -70,34 +77,36 @@ POST = pagina(1080, 1350, """
 .f{padding:56px 60px 48px;--g:18px;--r:26px;--lg:22px;--bh:16px;--bw:60px}
 .banda{top:0}.logo{width:560px;margin-top:10px}
 h1{font-size:104px;margin-top:14px}.sub{font-size:48px;margin-top:4px}
-.ill{width:880px;height:372px;margin-top:8px}
+.ill{width:880px;height:340px;margin-top:8px}
 .g{width:132px;height:132px}.g b{font-size:66px}.g span{font-size:20px}
 .mese{font-size:40px;margin-top:4px}
 .riga{font-size:32px}.dove{margin-top:8px}
 .loghi{margin-top:auto}.loghi img{width:78px;height:78px}.loghi p{font-size:24px}
+.fum{font-size:26px}
 """, f"""<div class="banda"></div><img class="logo" src="{IMG['logo']}" alt="#ioleggoperché 2026">
 <h1>Dona <em>un libro</em><br>alla tua classe</h1><p class="sub">{I['sottotitolo']}</p>
 <img class="ill" src="{IMG['comunita']}" alt="">
 {blocco_giorni(1)}<p class="mese">{I['mese']}</p>
 <p class="riga">{CLOCK} {I['orari']}</p><p class="riga dove">{PIN} {I['luogo']} · {I['indirizzo']}</p>
-{loghi()}""")
+{fumetto()}{loghi()}""")
 
 # 2. storia 1080x1920
 STORIA = pagina(1080, 1920, """
 .f{padding:120px 70px 110px;--g:20px;--r:30px;--lg:24px;--bh:22px;--bw:80px}
 .banda{top:0}.b2{top:auto;bottom:0}.logo{width:700px}
-h1{font-size:146px;margin-top:36px}.sub{font-size:54px;margin-top:12px}
-.ill{width:900px;height:540px;margin-top:16px}
+h1{font-size:136px;margin-top:30px}.sub{font-size:54px;margin-top:12px}
+.ill{width:900px;height:440px;margin-top:16px}
 .g{width:190px;height:190px}.g b{font-size:96px}.g span{font-size:28px}
 .mese{font-size:56px;margin-top:8px}
 .riga{font-size:44px;margin-top:6px}.dove{margin-top:16px}
 .loghi{margin-top:auto}.loghi img{width:118px;height:118px}.loghi p{font-size:34px}
+.fum{font-size:31px}
 """, f"""<div class="banda"></div><div class="banda b2"></div><img class="logo" src="{IMG['logo']}" alt="#ioleggoperché 2026">
 <h1>Dona <em>un libro</em><br>alla tua classe</h1><p class="sub">{I['sottotitolo']}</p>
 <img class="ill" src="{IMG['lettrici']}" alt="">
 {blocco_giorni(1)}<p class="mese">{I['mese']}</p>
 <p class="riga">{CLOCK} {I['orari']}</p><p class="riga dove">{PIN} {I['luogo']}</p><p class="riga">{I['indirizzo']}</p>
-{loghi()}""")
+{fumetto()}{loghi()}""")
 
 # 3. infografica "Come funziona" 1080x1350
 PASSI = [("Vieni a trovarci", f"sabato e domenica 7-8 e 14-15 {I['mese']}, {I['orari']}, alla {I['luogo']}."),
@@ -135,11 +144,12 @@ BANNER = pagina(1200, 630, """
 .giorni{justify-content:flex-start;margin-top:auto}.g{width:96px;height:96px}.g b{font-size:48px}.g span{font-size:15px}
 .mese{font-size:30px;margin-top:2px}.riga{font-size:22px;justify-content:flex-start}
 .dx{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px 26px 22px 0}
-.ill{width:560px;height:430px}.loghi img{width:56px;height:56px}.loghi p{font-size:18px}
+.ill{width:560px;height:380px}.loghi img{width:56px;height:56px}.loghi p{font-size:18px}
+.fum{font-size:17px}
 """, f"""<div class="banda"></div><div class="sx"><img class="logo" src="{IMG['logo']}" alt="#ioleggoperché 2026">
 <h1>Dona <em>un libro</em><br>alla tua classe</h1><p class="sub">{I['sottotitolo']}</p>
 {blocco_giorni(1)}<p class="mese" style="text-align:left">{I['mese']} · {I['orari']}</p><p class="riga">{PIN} {I['luogo']} · {I['indirizzo']}</p></div>
-<div class="dx"><img class="ill" src="{IMG['comunita']}" alt="">{loghi()}</div>""")
+<div class="dx"><img class="ill" src="{IMG['comunita']}" alt="">{fumetto()}{loghi()}</div>""")
 
 # 5. locandina A4 (210x297 mm = 794x1123 px a 96 dpi)
 A4 = pagina(794, 1123, """
@@ -152,23 +162,56 @@ h1{font-size:82px;margin-top:12px}.sub{font-size:36px;margin-top:4px}
 .mese{font-size:32px;margin-top:2px}
 .riga{font-size:25px}.dove{margin-top:4px}
 .loghi{margin-top:auto}.loghi img{width:70px;height:70px}.loghi p{font-size:20px}
+.fum{font-size:19px}
 """, f"""<div class="banda"></div><div class="banda b2"></div><img class="logo" src="{IMG['logo']}" alt="#ioleggoperché 2026">
 <h1>Dona <em>un libro</em><br>alla tua classe</h1><p class="sub">{I['sottotitolo']}</p>
 <img class="ill" src="{IMG['comunita']}" alt="">
 {blocco_giorni(1)}<p class="mese">{I['mese']}</p>
 <p class="riga">{CLOCK} {I['orari']}</p><p class="riga dove">{PIN} {I['luogo']} · {I['indirizzo']}</p>
-{loghi()}""")
+{fumetto()}{loghi()}""")
+
+# 6. locandina A4 per le scuole (da appendere nell’atrio, in classe o da mandare nelle chat dei genitori)
+PASSI_S = [(ICONE[0], "Vieni in libreria", f"7-8 e 14-15 {I['mese']}"),
+           (ICONE[1], "Scegli un libro", "dalla lista della classe o con i nostri consigli"),
+           (ICONE[3], "Lo portiamo noi a scuola", "con la tua dedica")]
+A4_SCUOLE = pagina(794, 1123, """
+@page{size:A4;margin:0}
+.f{padding:50px 50px 40px;--g:14px;--r:20px;--lg:16px;--bh:12px;--bw:44px}
+.banda{top:0}.b2{top:auto;bottom:0}.logo{width:340px}
+.anche{font-family:'Gochi Hand',cursive;font-size:36px;color:#fff;background:var(--rosso);padding:2px 22px 6px;border-radius:14px;transform:rotate(-2deg);margin-top:12px}
+h1{font-size:66px;margin-top:8px}.sub{font-size:30px;margin-top:2px}
+.campi{display:flex;gap:18px;width:100%;margin-top:12px;font-family:'Gochi Hand',cursive;font-size:30px;text-align:left}
+.campi span{display:flex;align-items:flex-end;gap:8px}.campi i{flex:1;border-bottom:2.5px dashed var(--nero);height:30px}
+.campi .s1{flex:2.6}.campi .s2{flex:1}
+.ill{width:600px;height:170px;margin-top:10px}
+.passi{list-style:none;display:flex;gap:14px;width:100%;margin-top:12px}
+.passi li{flex:1;border:2.5px solid var(--nero);border-radius:18px;box-shadow:0 5px 0 var(--nero);padding:10px 10px;display:flex;flex-direction:column;align-items:center}
+.passi svg{width:40px;height:40px}.passi b{font-family:'Gochi Hand',cursive;font-weight:400;font-size:28px;line-height:1;margin-top:4px}
+.passi p{font-size:15px;line-height:1.25;margin-top:4px}
+.giorni{margin-top:16px}.g{width:82px;height:82px}.g b{font-size:42px}.g span{font-size:14px}
+.mese{font-size:28px;margin-top:2px}
+.riga{font-size:22px}.dove{margin-top:2px}
+.loghi{margin-top:auto}.loghi img{width:64px;height:64px}.loghi p{font-size:19px}
+.fum{font-size:18px}
+""", f"""<div class="banda"></div><div class="banda b2"></div><img class="logo" src="{IMG['logo']}" alt="#ioleggoperché 2026">
+<p class="anche">Anche la nostra scuola partecipa!</p>
+<h1>Dona <em>un libro</em><br>alla tua classe</h1><p class="sub">{I['sottotitolo']}</p>
+<div class="campi"><span class="s1">Scuola <i></i></span><span class="s2">classe <i></i></span></div>
+<img class="ill" src="{IMG['lettrici']}" alt="">
+<ol class="passi">""" + "".join(f'<li>{ic}<b>{t}</b><p>{p}</p></li>' for ic, t, p in PASSI_S) + f"""</ol>
+{blocco_giorni(1)}<p class="mese">{I['mese']} · {I['orari']}</p><p class="riga dove">{PIN} {I['luogo']} · {I['indirizzo']}</p>
+{fumetto()}{loghi()}""")
 
 async def main():
     async with async_playwright() as p:
         b = await p.chromium.launch(executable_path=os.environ.get("CHROMIUM", "/opt/pw-browsers/chromium-1194/chrome-linux/chrome"))
         for nome, html, w, h, scala in [("1_post_instagram_facebook", POST, 1080, 1350, 1), ("2_storia_instagram_whatsapp", STORIA, 1080, 1920, 1),
                                         ("3_infografica_come_funziona", INFO_G, 1080, 1350, 1), ("4_banner_evento_facebook", BANNER, 1200, 630, 1),
-                                        ("5_locandina_A4", A4, 794, 1123, 3)]:
+                                        ("5_locandina_A4", A4, 794, 1123, 3), ("6_locandina_A4_scuole", A4_SCUOLE, 794, 1123, 3)]:
             pg = await b.new_page(viewport={"width": w, "height": h}, device_scale_factor=scala)
             await pg.set_content(html); await pg.wait_for_timeout(500)
             await pg.screenshot(path=os.path.join(OUT, nome + ".png"), clip={"x": 0, "y": 0, "width": w, "height": h})
-            if nome.startswith("5_"):
+            if "locandina" in nome:
                 await pg.pdf(path=os.path.join(OUT, nome + ".pdf"), width="210mm", height="297mm", print_background=True)
             open(os.path.join(OUT, nome + ".html"), "w", encoding="utf-8").write(html) if False else None
             await pg.close()
