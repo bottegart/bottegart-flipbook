@@ -122,20 +122,21 @@ INFO_G = pagina(1080, 1350, """
 .f{padding:60px 70px 50px;--lg:20px;--bh:16px;--bw:60px;text-align:left}
 .banda{top:0}.logo{width:440px;align-self:center;margin-top:10px}
 h1{font-size:96px;text-align:center;margin-top:16px}
-.passi{list-style:none;display:flex;flex-direction:column;gap:22px;margin-top:30px;width:100%}
-.passi li{display:grid;grid-template-columns:96px 1fr;gap:26px;align-items:center;background:#fff;border:3px solid var(--nero);border-radius:28px;padding:22px 28px;box-shadow:0 7px 0 var(--nero)}
+.passi{list-style:none;display:flex;flex-direction:column;gap:18px;margin-top:22px;width:100%}
+.passi li{display:grid;grid-template-columns:96px 1fr;gap:26px;align-items:center;background:#fff;border:3px solid var(--nero);border-radius:28px;padding:16px 28px;box-shadow:0 7px 0 var(--nero)}
 .ico{position:relative;width:96px;height:96px}.ico svg{width:96px;height:96px}
 .ico i{position:absolute;top:-14px;left:-14px;width:46px;height:46px;border-radius:50%;background:var(--rosso);color:#fff;font-style:normal;font-weight:800;font-size:28px;display:flex;align-items:center;justify-content:center;border:3px solid var(--nero)}
 .passi b{font-family:'Gochi Hand',cursive;font-weight:400;font-size:50px;line-height:1;display:block}
 .passi p{font-size:27px;line-height:1.28;margin-top:4px}
-.nota{margin-top:26px;font-size:26px;text-align:center;align-self:center;max-width:880px}
+.nota{margin-top:20px;font-size:26px;text-align:center;align-self:center;max-width:880px}
 .nota strong{color:var(--rosso)}
-.loghi{margin-top:auto;align-self:center}.loghi img{width:80px;height:80px}.loghi p{font-size:24px}
+.loghi{margin-top:auto;align-self:center}.loghi img{width:72px;height:72px}.loghi p{font-size:22px}
+.fum{font-size:22px;align-self:center}.sp{height:20px}
 """, f"""<div class="banda"></div><img class="logo" src="{IMG['logo']}" alt="#ioleggoperché 2026">
 <h1>Come <em>funziona</em></h1>
 <ol class="passi">""" + "".join(f'<li><div class="ico">{ICONE[k]}<i>{k+1}</i></div><div><b>{t}</b><p>{p}</p></div></li>' for k, (t, p) in enumerate(PASSI)) + f"""</ol>
 <p class="nota"><strong>Lo sapevi?</strong> Da quest’anno partecipano anche gli asili nido!</p>
-{loghi()}""")
+{fumetto()}{loghi()}""")
 
 # 4. banner 1200x630 (evento Facebook, anteprima link WhatsApp)
 BANNER = pagina(1200, 630, """
