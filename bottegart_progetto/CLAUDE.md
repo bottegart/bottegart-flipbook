@@ -29,3 +29,12 @@ Le formule dell'Excel si ricalcolano aprendo il file (o con LibreOffice headless
 - Controllare a vista (contact sheet) le copertine estratte prima di tenerle; scartare QR code, crop con testo, abbinamenti scambiati.
 - Tutto il testo visibile in italiano con apostrofi tipografici (’) e virgolette “ ”.
 - Il flipbook finale deve restare un SINGOLO file HTML autosufficiente (immagini incorporate).
+
+## Gestionale della libreria (magazzino, arrivi, vendite)
+- `python make_gestionale.py` -> output/gestionale_bottegart.html (un solo file, funziona offline nel browser).
+- Template: gestionale_template.html. Lo script incorpora il "catalogo di riferimento" (ISBN -> titolo, autore, editore, prezzo)
+  preso dal foglio "Tutti i titoli" + isbn.json + output/libri_flipbook.json, così scansionando un ISBN noto la scheda si compila da sola.
+- I dati del negozio (libri, copie, movimenti, vendite) stanno nel localStorage del browser (chiave `bottegart_gestionale_v1`):
+  NON sono nel repository. Il backup si scarica dalla scheda "Backup e impostazioni" (file JSON).
+- La pistola barcode funziona come una tastiera (digita il codice + Invio): non serve nessun driver.
+- Se si cambia la struttura dei dati, mantenere la compatibilità con i backup già salvati.

@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gestionale Bottegart – libreria</title>
+<style>
+:root{--bg:#f6f3ee;--card:#fff;--ink:#2b2622;--muted:#7a7068;--line:#e4ddd3;--acc:#b5532f;--acc2:#2f6f6a;--ok:#2e7d32;--warn:#c77700;--err:#b3261e}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:var(--ink);color:#fff;padding:10px 16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+header h1{font-size:18px;margin:0;font-weight:600}
+#backupInfo{margin-left:auto;font-size:13px;opacity:.85}
+#backupInfo.rosso{color:#ffb4a8;opacity:1;font-weight:600}
+nav{display:flex;gap:4px;padding:8px 12px 0;background:var(--ink);flex-wrap:wrap}
+nav button{background:transparent;color:#ddd;border:0;padding:10px 16px;font-size:15px;border-radius:8px 8px 0 0;cursor:pointer}
+nav button.attivo{background:var(--bg);color:var(--ink);font-weight:600}
+main{padding:16px;max-width:1200px;margin:0 auto}
+section{display:none}section.attivo{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+h2{margin:0 0 12px;font-size:20px}h3{margin:16px 0 8px;font-size:16px}
+.riga{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}
+.riga>*{flex:1 1 160px}
+label{display:block;font-size:13px;color:var(--muted);margin-bottom:3px}
+input,select,textarea{width:100%;font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--acc2);border-color:transparent}
+.scanbox{position:relative}
+.scanbox input{font-size:22px;padding:14px 16px 14px 50px;border:2px solid var(--acc2)}
+.scanbox::before{content:"▥";position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:22px;color:var(--acc2)}
+.risultati{position:absolute;left:0;right:0;top:100%;background:#fff;border:1px solid var(--line);border-radius:8px;z-index:20;box-shadow:0 8px 24px #0002;max-height:340px;overflow:auto}
+.risultati div{padding:8px 12px;cursor:pointer;border-bottom:1px solid var(--line)}
+.risultati div:hover{background:#f1ece5}
+button.btn{font:inherit;padding:9px 16px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer;flex:0 0 auto}
+button.btn:hover{background:#f1ece5}
+button.pri{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}
+button.pri:hover{background:#9b4426}
+button.big{font-size:20px;padding:14px 28px}
+button.mini{padding:2px 9px;font-size:14px}
+button.rosso{color:var(--err)}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+th{font-size:13px;color:var(--muted);font-weight:600;background:#faf8f5;position:sticky;top:0}
+td.n,th.n{text-align:right;white-space:nowrap}
+tr.click{cursor:pointer}tr.click:hover td{background:#faf6f0}
+td input{padding:4px 6px;width:80px}
+.totale{font-size:30px;font-weight:700}
+.muted{color:var(--muted);font-size:13px}
+.tag{display:inline-block;font-size:12px;padding:1px 7px;border-radius:10px;background:#eee;color:#555;margin-left:4px}
+.tag.ok{background:#e3f1e4;color:var(--ok)}.tag.warn{background:#fff1d6;color:var(--warn)}.tag.err{background:#fde3e1;color:var(--err)}.tag.cv{background:#e0eeed;color:var(--acc2)}
+.kpi{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin-bottom:16px}
+.kpi div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}
+.kpi b{display:block;font-size:24px}
+.kpi span{font-size:13px;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:800px){.grid2{grid-template-columns:1fr}}
+.ultimo{font-size:20px;padding:12px;border-radius:10px;background:#e0eeed;margin:12px 0}
+.vuoto{color:var(--muted);text-align:center;padding:24px}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 20px;border-radius:10px;font-size:16px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:100;max-width:90vw}
+#toast.on{opacity:1}#toast.err{background:var(--err)}#toast.ok{background:var(--ok)}
+dialog{border:0;border-radius:14px;padding:0;width:min(760px,95vw);box-shadow:0 20px 60px #0005}
+dialog::backdrop{background:#0006}
+dialog .testa{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px}
+dialog .testa h2{margin:0;flex:1}
+dialog .corpo{padding:16px 18px;max-height:70vh;overflow:auto}
+dialog .piede{padding:12px 18px;border-top:1px solid var(--line);display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.scroll{max-height:60vh;overflow:auto}
+.barra{height:8px;background:var(--acc2);border-radius:4px;min-width:2px}
+.avviso{background:#fff1d6;border:1px solid #f0d49b;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:14px}
+@media print{header,nav,.noprint{display:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="nomeNegozio">Bottegart – gestionale libreria</h1>
+  <span id="backupInfo"></span>
+</header>
+<nav id="nav">
+  <button data-tab="cassa" class="attivo">🛒 Cassa</button>
+  <button data-tab="arrivi">📦 Arrivi e rese</button>
+  <button data-tab="magazzino">📚 Magazzino</button>
+  <button data-tab="inventario">🔢 Inventario</button>
+  <button data-tab="registro">🧾 Registro</button>
+  <button data-tab="statistiche">📈 Statistiche</button>
+  <button data-tab="impostazioni">⚙️ Backup e impostazioni</button>
+</nav>
+<main>
+
+<!-- ============ CASSA ============ -->
+<section id="tab-cassa" class="attivo">
+  <div class="card">
+    <div class="scanbox"><input class="scan" data-tab="cassa" placeholder="Scansiona l’ISBN, oppure scrivi titolo o autore" autocomplete="off"><div class="risultati" hidden></div></div>
+  </div>
+  <div class="card">
+    <h2>Vendita in corso</h2>
+    <div id="carrello"></div>
+    <div class="riga" style="margin-top:14px">
+      <div><label>Sconto su tutto (%)</label><input id="scontoTutto" type="number" min="0" max="100" step="1" placeholder="0"></div>
+      <div><label>Pagamento</label><select id="pagamento"><option>Contanti</option><option>Carta / bancomat</option><option>Satispay</option><option>Bonifico</option><option>Buono / carta docente</option><option>Altro</option></select></div>
+      <div style="flex:2 1 240px"><label>Nota (facoltativa: cliente, scuola…)</label><input id="notaVendita"></div>
+    </div>
+    <div class="riga" style="margin-top:16px;align-items:center">
+      <div><span class="muted">Totale da incassare</span><div class="totale" id="totaleCarrello">0,00 €</div><div class="muted" id="dettaglioCarrello"></div></div>
+      <button class="btn" id="svuotaCarrello">Svuota</button>
+      <button class="btn pri big" id="confermaVendita">✔ Registra vendita</button>
+    </div>
+    <p class="muted">Il gestionale non sostituisce il registratore telematico: lo scontrino fiscale va emesso come sempre.</p>
+  </div>
+</section>
+
+<!-- ============ ARRIVI ============ -->
+<section id="tab-arrivi">
+  <div class="card">
+    <div class="riga">
+      <div><label>Operazione</label><select id="tipoArrivo"><option value="arrivo">Arrivo di libri (carico)</option><option value="reso_fornitore">Reso all’editore / distributore (scarico)</option></select></div>
+      <div><label>Fornitore (editore o distributore)</label><input id="fornitore" list="listaEditori"></div>
+      <div><label>Documento (DDT / fattura n.)</label><input id="documento"></div>
+      <div><label>Condizione</label><select id="condizione"><option value="fermo">Acquisto (fermo)</option><option value="cv">Conto vendita</option></select></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="scanbox"><input class="scan" data-tab="arrivi" placeholder="Scansiona ogni libro arrivato (ogni scansione = +1 copia)" autocomplete="off"><div class="risultati" hidden></div></div>
+  </div>
+  <div class="card">
+    <h2 id="titoloArrivo">Libri arrivati</h2>
+    <div id="listaArrivo"></div>
+    <div class="riga" style="margin-top:14px;align-items:center">
+      <div class="muted" id="riepilogoArrivo"></div>
+      <button class="btn" id="svuotaArrivo">Svuota</button>
+      <button class="btn pri big" id="confermaArrivo">✔ Registra in magazzino</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MAGAZZINO ============ -->
+<section id="tab-magazzino">
+  <div class="card">
+    <div class="riga">
+      <div style="flex:3 1 300px"><label>Cerca (titolo, autore, editore, ISBN – puoi anche scansionare)</label><input id="cercaMag" autocomplete="off"></div>
+      <div><label>Mostra</label><select id="filtroMag">
+        <option value="disp">Disponibili (quantità &gt; 0)</option>
+        <option value="tutti">Tutti</option>
+        <option value="scorta">Sotto scorta minima</option>
+        <option value="esauriti">Esauriti</option>
+        <option value="nuovi">Nuovi arrivi (ultimi 30 giorni)</option>
+        <option value="cv">In conto vendita</option>
+        <option value="neg">Da controllare (quantità negativa)</option>
+      </select></div>
+      <div><label>Editore</label><select id="editoreMag"></select></div>
+      <button class="btn pri" id="nuovoLibro">+ Nuovo libro</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="muted" id="contoMag" style="margin-bottom:8px"></div>
+    <div class="scroll"><table id="tabMag"></table></div>
+  </div>
+</section>
+
+<!-- ============ INVENTARIO ============ -->
+<section id="tab-inventario">
+  <div id="invContenuto"></div>
+</section>
+
+<!-- ============ REGISTRO ============ -->
+<section id="tab-registro">
+  <div class="card">
+    <div class="riga">
+      <div><label>Periodo</label><select id="periodoReg" class="periodo"></select></div>
+      <div><label>Tipo</label><select id="tipoReg">
+        <option value="vendite">Vendite (scontrini)</option>
+        <option value="tutti">Tutti i movimenti</option>
+        <option value="arrivo">Arrivi</option>
+        <option value="reso_fornitore">Rese all’editore</option>
+        <option value="reso_cliente">Resi dei clienti / vendite annullate</option>
+        <option value="rettifica">Rettifiche d’inventario</option>
+      </select></div>
+      <div style="flex:2 1 240px"><label>Cerca</label><input id="cercaReg"></div>
+    </div>
+  </div>
+  <div class="card"><div class="scroll" id="registro"></div></div>
+</section>
+
+<!-- ============ STATISTICHE ============ -->
+<section id="tab-statistiche">
+  <div class="card"><div class="riga"><div style="max-width:260px"><label>Periodo</label><select id="periodoStat" class="periodo"></select></div></div></div>
+  <div id="stat"></div>
+</section>
+
+<!-- ============ IMPOSTAZIONI ============ -->
+<section id="tab-impostazioni">
+  <div class="card">
+    <h2>Backup dei dati</h2>
+    <p>I dati sono salvati <b>solo in questo browser, su questo computer</b>. Fai un backup almeno una volta alla settimana e tienilo su una chiavetta o su Google Drive: se il browser viene ripulito o il computer si rompe, il backup è l’unica copia.</p>
+    <div class="riga">
+      <button class="btn pri" id="esportaBackup">⬇ Scarica backup completo</button>
+      <button class="btn" id="importaBackupBtn">⬆ Ripristina da un backup</button>
+      <input type="file" id="importaBackup" accept=".json,application/json" hidden>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Excel</h2>
+    <p class="muted">I file CSV si aprono con Excel o LibreOffice.</p>
+    <div class="riga">
+      <button class="btn" id="csvMag">⬇ Magazzino (CSV)</button>
+      <button class="btn" id="csvMov">⬇ Tutti i movimenti (CSV)</button>
+      <button class="btn" id="csvImportBtn">⬆ Importa libri da CSV</button>
+      <input type="file" id="csvImport" accept=".csv,text/csv" hidden>
+    </div>
+    <p class="muted">Per importare: un CSV con intestazioni come <i>isbn; titolo; autore; editore; collana; fascia; prezzo; quantità; posizione</i> (bastano isbn e quantità per i libri del catalogo). La quantità indicata diventa la giacenza del libro.</p>
+  </div>
+  <div class="card">
+    <h2>Impostazioni</h2>
+    <div class="riga">
+      <div><label>Nome della libreria</label><input id="impNome"></div>
+      <div><label>Avvisa se lo sconto al cliente supera (%)</label><input id="impSconto" type="number" min="0" max="100"></div>
+      <div><label>Scorta minima predefinita (copie)</label><input id="impScorta" type="number" min="0"></div>
+      <div><label>Sconto fornitore predefinito (%)</label><input id="impScForn" type="number" min="0" max="100"></div>
+    </div>
+    <div class="riga" style="margin-top:10px"><label style="flex:0 0 auto"><input type="checkbox" id="impSuono" style="width:auto"> Suono a ogni scansione</label></div>
+    <div class="riga" style="margin-top:12px"><button class="btn pri" id="salvaImp">Salva impostazioni</button></div>
+    <p class="muted">Sconti ai clienti: per legge (L. 128/2011 modificata dalla L. 15/2020) lo sconto sui libri ai privati ha un tetto, con eccezioni per scuole e biblioteche: verificate i limiti attuali con la vostra associazione di categoria e impostate la soglia d’avviso di conseguenza.</p>
+  </div>
+  <div class="card">
+    <h2>Catalogo di riferimento</h2>
+    <p class="muted" id="infoCatalogo"></p>
+  </div>
+</section>
+</main>
+
+<datalist id="listaEditori"></datalist>
+<div id="toast"></div>
+
+<dialog id="dlgLibro">
+  <form method="dialog" id="formLibro">
+    <div class="testa"><h2 id="dlgTitolo">Scheda libro</h2><button class="btn mini" value="annulla" formnovalidate>✕</button></div>
+    <div class="corpo">
+      <div id="dlgAvviso"></div>
+      <div class="riga">
+        <div><label>ISBN / codice</label><input name="isbn" required></div>
+        <button type="button" class="btn" id="cercaOnline">🔎 Cerca dati online</button>
+      </div>
+      <div class="riga" style="margin-top:10px">
+        <div style="flex:3 1 300px"><label>Titolo *</label><input name="titolo" required></div>
+      </div>
+      <div class="riga" style="margin-top:10px">
+        <div><label>Autore</label><input name="autore"></div>
+        <div><label>Editore</label><input name="editore" list="listaEditori"></div>
+      </div>
+      <div class="riga" style="margin-top:10px">
+        <div><label>Collana</label><input name="collana"></div>
+        <div><label>Fascia d’età / reparto</label><input name="fascia" list="listaFasce"></div>
+        <div><label>Posizione (scaffale)</label><input name="posizione"></div>
+      </div>
+      <div class="riga" style="margin-top:10px">
+        <div><label>Prezzo di copertina (€)</label><input name="prezzo" inputmode="decimal"></div>
+        <div><label>Sconto fornitore (%)</label><input name="sconto_fornitore" inputmode="decimal"></div>
+        <div><label>Copie in negozio</label><input name="quantita" type="number" step="1"></div>
+        <div><label>Scorta minima</label><input name="scorta_min" type="number" min="0" step="1"></div>
+      </div>
+      <div class="riga" style="margin-top:10px">
+        <label style="flex:0 0 auto"><input type="checkbox" name="conto_vendita" style="width:auto"> In conto vendita</label>
+      </div>
+      <div style="margin-top:10px"><label>Note</label><textarea name="note" rows="2"></textarea></div>
+      <div id="dlgStorico"></div>
+    </div>
+    <div class="piede">
+      <button type="button" class="btn rosso" id="eliminaLibro">Elimina</button>
+      <span style="flex:1"></span>
+      <button class="btn" value="annulla" formnovalidate>Annulla</button>
+      <button class="btn pri" value="salva" id="salvaLibro">Salva</button>
+    </div>
+  </form>
+</dialog>
+<datalist id="listaFasce"><option>0-3 anni</option><option>3-6 anni</option><option>Prime letture (6-8)</option><option>8-11 anni</option><option>11-14 anni</option><option>Adolescenza (14+)</option><option>Adulti</option><option>Fumetti</option><option>Cartoleria / altro</option></datalist>
+
+<script>
+/* ===== Catalogo di riferimento (generato da make_gestionale.py) ===== */
+const CATALOGO = /*CATALOGO_RIFERIMENTO*/{};
+
+/* ===== Dati ===== */
+const CHIAVE = 'bottegart_gestionale_v1';
+function statoVuoto(){
+  return {versione:1, libri:{}, movimenti:[], vendite:[], inventario:null, ultimo_backup:null,
+    impostazioni:{negozio:'Bottegart', sconto_avviso:5, scorta_min:1, sconto_fornitore:30, suono:true}};
+}
+function carica(){
+  try{
+    const s = JSON.parse(localStorage.getItem(CHIAVE));
+    if(s && s.libri){ const v = statoVuoto(); s.impostazioni = Object.assign(v.impostazioni, s.impostazioni||{}); return Object.assign(v, s); }
+  }catch(e){ console.error(e); }
+  return statoVuoto();
+}
+let S = carica();
+function salva(){
+  try{ localStorage.setItem(CHIAVE, JSON.stringify(S)); }
+  catch(e){ alert('Attenzione: non riesco a salvare i dati nel browser ('+e.message+'). Scarica subito un backup.'); }
+  aggiornaInfoBackup();
+}
+if(navigator.storage && navigator.storage.persist) navigator.storage.persist();
+
+/* ===== Utilità ===== */
+const $ = (s,el=document)=>el.querySelector(s);
+const $$ = (s,el=document)=>[...el.querySelectorAll(s)];
+const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmtE = new Intl.NumberFormat('it-IT',{style:'currency',currency:'EUR'});
+const eur = n => (n==null||isNaN(n)) ? '—' : fmtE.format(n);
+const cifra = n => Number(n).toFixed(2).replace('.',',');
+const r2 = x => Math.round((x+Number.EPSILON)*100)/100;
+function pnum(v){ if(v===''||v==null) return null; const n=parseFloat(String(v).replace(/\s|€/g,'').replace(',','.')); return isNaN(n)?null:n; }
+const uid = () => Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const adesso = () => new Date().toISOString();
+const fdata = iso => new Date(iso).toLocaleString('it-IT',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+const fgiorno = iso => new Date(iso).toLocaleDateString('it-IT');
+const norm = s => String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[’']/g,"'");
+
+function toast(msg, tipo=''){
+  const t=$('#toast'); t.textContent=msg; t.className='on '+tipo;
+  clearTimeout(toast._t); toast._t=setTimeout(()=>t.className='',2600);
+}
+let audio;
+function beep(ok=true){
+  if(!S.impostazioni.suono) return;
+  try{
+    audio = audio || new (window.AudioContext||window.webkitAudioContext)();
+    const o=audio.createOscillator(), g=audio.createGain();
+    o.frequency.value = ok?1250:300; o.type = ok?'sine':'square';
+    g.gain.value=.08; o.connect(g); g.connect(audio.destination);
+    o.start(); o.stop(audio.currentTime + (ok?.09:.3));
+  }catch(e){}
+}
+
+/* ===== ISBN ===== */
+function isbn13ok(s){ if(!/^\d{13}$/.test(s)) return false; let t=0; for(let i=0;i<12;i++) t+=(+s[i])*(i%2?3:1); return (10-t%10)%10===+s[12]; }
+function isbn10ok(s){ if(!/^\d{9}[\dX]$/.test(s)) return false; let t=0; for(let i=0;i<10;i++) t+=(s[i]==='X'?10:+s[i])*(10-i); return t%11===0; }
+function isbn10a13(s){ const b='978'+s.slice(0,9); let t=0; for(let i=0;i<12;i++) t+=(+b[i])*(i%2?3:1); return b+((10-t%10)%10); }
+/* Pulisce quello che arriva dalla pistola o dalla tastiera: toglie trattini e spazi,
+   converte l’ISBN-10 in ISBN-13, toglie l’eventuale codice aggiuntivo a 2 o 5 cifre (prezzo). */
+function pulisciCodice(raw){
+  const t = String(raw).trim();
+  if(/[A-WYZ]/i.test(t)) return t.toUpperCase();   // codice interno (es. cartoleria): lo teniamo com’è
+  let s = String(raw).toUpperCase().replace(/[^0-9X]/g,'');
+  if((s.length===15||s.length===18) && /^97[89]/.test(s)) s=s.slice(0,13);
+  if(s.length===10 && isbn10ok(s)) s=isbn10a13(s);
+  return s;
+}
+const sembraCodice = raw => /^[\d\s\-xX]{8,}$/.test(String(raw).trim());
+
+/* ===== Libri ===== */
+function nuovoLibroDa(isbn, dati={}){
+  return Object.assign({isbn, titolo:'', autore:'', editore:'', collana:'', fascia:'', posizione:'', prezzo:null,
+    sconto_fornitore:null, quantita:0, scorta_min:S.impostazioni.scorta_min, conto_vendita:false, note:'',
+    creato:adesso(), aggiornato:adesso(), ultimo_arrivo:null}, dati);
+}
+function cercaLibri(q, max=10){
+  const n = norm(q).split(/\s+/).filter(Boolean); if(!n.length) return [];
+  const out=[];
+  const pesca = (isbn, l, inCat) => { const t = norm([l.titolo,l.autore,l.editore,l.collana,isbn].join(' ')); if(n.every(p=>t.includes(p))) out.push({isbn, l, inCat}); };
+  for(const [isbn,l] of Object.entries(S.libri)) pesca(isbn,l,false);
+  if(out.length<max) for(const [isbn,l] of Object.entries(CATALOGO)) if(!S.libri[isbn]) { pesca(isbn,l,true); if(out.length>=max) break; }
+  return out.slice(0,max);
+}
+function scontoForn(l){ if(l.sconto_fornitore!=null) return l.sconto_fornitore; return S.impostazioni.sconto_fornitore; }
+function costoUnit(l, prezzo){ const p = prezzo ?? l.prezzo; return p==null? null : r2(p*(1-scontoForn(l)/100)); }
+function aggiungiMov(m){ S.movimenti.push(Object.assign({id:uid(), data:adesso()}, m)); }
+function editori(){ const s=new Set(); Object.values(S.libri).forEach(l=>l.editore&&s.add(l.editore)); Object.values(CATALOGO).forEach(l=>l.editore&&s.add(l.editore)); return [...s].sort((a,b)=>a.localeCompare(b,'it')); }
+function aggiornaListaEditori(){ $('#listaEditori').innerHTML = editori().map(e=>`<option value="${esc(e)}">`).join(''); }
+
+/* ===== Ricerca online (Google Books, poi Open Library) ===== */
+async function cercaOnline(isbn){
+  try{
+    const r = await fetch('https://www.googleapis.com/books/v1/volumes?q=isbn:'+isbn);
+    const j = await r.json();
+    if(j.items && j.items.length){
+      const v = j.items[0].volumeInfo||{}, s=j.items[0].saleInfo||{};
+      const prezzo = s.listPrice && s.listPrice.currencyCode==='EUR' ? s.listPrice.amount : null;
+      return {titolo:[v.title,v.subtitle].filter(Boolean).join('. '), autore:(v.authors||[]).join(', '), editore:v.publisher||'', prezzo, fonte:'Google Libri'};
+    }
+  }catch(e){}
+  try{
+    const r = await fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`);
+    const j = await r.json(); const v = j['ISBN:'+isbn];
+    if(v) return {titolo:v.title||'', autore:(v.authors||[]).map(a=>a.name).join(', '), editore:(v.publishers||[]).map(p=>p.name).join(', '), prezzo:null, fonte:'Open Library'};
+  }catch(e){}
+  return null;
+}
+
+/* ===== Scheda libro (finestra) ===== */
+let schedaCallback = null, schedaIsbn = null;
+function apriScheda(isbn, {onSave=null, avviso=''}={}){
+  const f = $('#formLibro'); f.reset();
+  schedaIsbn = isbn||null; schedaCallback = onSave;
+  const esiste = isbn && S.libri[isbn];
+  const l = esiste ? S.libri[isbn] : nuovoLibroDa(isbn||'', CATALOGO[isbn]||{});
+  $('#dlgTitolo').textContent = esiste ? 'Scheda libro' : 'Nuovo libro';
+  let avv = avviso;
+  if(!esiste && CATALOGO[isbn]) avv += '<div class="avviso">Dati presi dal catalogo Bottegart: controllali e salva.</div>';
+  if(isbn && !isbn13ok(isbn)) avv += '<div class="avviso">Questo codice non è un ISBN valido: va bene per cartoleria e altri articoli, ma se è un libro ricontrolla il codice.</div>';
+  $('#dlgAvviso').innerHTML = avv;
+  for(const k of ['isbn','titolo','autore','editore','collana','fascia','posizione','note']) f.elements[k].value = l[k]||'';
+  f.elements.prezzo.value = l.prezzo!=null ? cifra(l.prezzo) : '';
+  f.elements.sconto_fornitore.value = l.sconto_fornitore!=null ? l.sconto_fornitore : '';
+  f.elements.sconto_fornitore.placeholder = 'predefinito '+S.impostazioni.sconto_fornitore;
+  f.elements.quantita.value = l.quantita||0;
+  f.elements.scorta_min.value = l.scorta_min ?? S.impostazioni.scorta_min;
+  f.elements.conto_vendita.checked = !!l.conto_vendita;
+  f.elements.isbn.readOnly = !!esiste;
+  f.elements.quantita.readOnly = !!esiste;
+  f.elements.quantita.title = esiste ? 'Per cambiare le copie usa Arrivi, Cassa o Inventario: così resta traccia nel registro.' : '';
+  $('#eliminaLibro').hidden = !esiste;
+  // storico
+  if(esiste){
+    const mov = S.movimenti.filter(m=>m.isbn===isbn).slice(-15).reverse();
+    $('#dlgStorico').innerHTML = '<h3>Ultimi movimenti</h3>' + (mov.length ? '<table>'+mov.map(m=>`<tr><td>${fdata(m.data)}</td><td>${NOMI_TIPO[m.tipo]||m.tipo}</td><td class="n">${m.qta>0?'+':''}${m.qta}</td><td>${esc(m.fornitore||m.nota||'')}</td></tr>`).join('')+'</table>' : '<p class="muted">Nessun movimento.</p>')
+      + '<p class="muted">Per cambiare il numero di copie usa Arrivi, Cassa o Inventario: così resta traccia nel registro.</p>';
+  } else $('#dlgStorico').innerHTML='';
+  $('#dlgLibro').showModal();
+  if(!esiste) (isbn ? f.elements.titolo : f.elements.isbn).focus();
+  if(!esiste && isbn && !CATALOGO[isbn] && isbn13ok(isbn)) riempiOnline();
+}
+async function riempiOnline(){
+  const f=$('#formLibro'); const isbn = pulisciCodice(f.elements.isbn.value);
+  if(!isbn){ toast('Scrivi prima l’ISBN','err'); return; }
+  $('#cercaOnline').textContent='Cerco…';
+  const d = await cercaOnline(isbn);
+  $('#cercaOnline').textContent='🔎 Cerca dati online';
+  if(!d){ toast('Nessun dato trovato online: compila a mano','err'); return; }
+  for(const k of ['titolo','autore','editore']) if(!f.elements[k].value && d[k]) f.elements[k].value=d[k];
+  if(!f.elements.prezzo.value && d.prezzo!=null) f.elements.prezzo.value=cifra(d.prezzo);
+  $('#dlgAvviso').innerHTML += `<div class="avviso">Dati trovati su ${d.fonte}: controlla titolo ed editore e inserisci il prezzo di copertina.</div>`;
+}
+$('#cercaOnline').onclick = riempiOnline;
+$('#formLibro').addEventListener('submit', e=>{
+  if(e.submitter && e.submitter.value!=='salva') return;
+  const f = e.target, v = k => f.elements[k].value.trim();
+  const giaEsiste = !!(schedaIsbn && S.libri[schedaIsbn]);
+  const isbn = giaEsiste ? schedaIsbn : (pulisciCodice(v('isbn')) || v('isbn'));
+  if(!isbn){ e.preventDefault(); toast('Manca l’ISBN o il codice','err'); return; }
+  if(!giaEsiste && S.libri[isbn]){ e.preventDefault(); toast('Esiste già un libro con questo codice','err'); return; }
+  const esiste = !!S.libri[isbn];
+  const l = esiste ? S.libri[isbn] : nuovoLibroDa(isbn);
+  for(const k of ['titolo','autore','editore','collana','fascia','posizione','note']) l[k]=v(k);
+  l.prezzo = pnum(v('prezzo'));
+  l.sconto_fornitore = pnum(v('sconto_fornitore'));
+  l.scorta_min = parseInt(v('scorta_min'))||0;
+  l.conto_vendita = f.elements.conto_vendita.checked;
+  l.aggiornato = adesso();
+  if(!esiste){
+    const q = parseInt(v('quantita'))||0;
+    S.libri[isbn]=l;
+    if(q){ l.quantita=q; aggiungiMov({tipo:'rettifica', isbn, titolo:l.titolo, qta:q, nota:'Giacenza iniziale'}); }
+  }
+  salva(); aggiornaListaEditori();
+  toast('Libro salvato','ok');
+  const cb=schedaCallback; schedaCallback=null;
+  if(cb) cb(isbn); else renderAttivo();
+});
+$('#dlgLibro').addEventListener('close', ()=>{ schedaCallback=null; setTimeout(focusScan,50); });
+$('#eliminaLibro').onclick = ()=>{
+  const l=S.libri[schedaIsbn]; if(!l) return;
+  if(!confirm(`Eliminare “${l.titolo}” dal magazzino? Lo storico dei movimenti resta nel registro.`)) return;
+  delete S.libri[schedaIsbn]; salva(); $('#dlgLibro').close(); renderAttivo(); toast('Libro eliminato');
+};
+
+/* ===== Navigazione e scanner ===== */
+let tabAttiva = 'cassa';
+const RENDER = {cassa:renderCassa, arrivi:renderArrivi, magazzino:renderMagazzino, inventario:renderInventario, registro:renderRegistro, statistiche:renderStat, impostazioni:renderImpostazioni};
+const SCAN = {cassa:scanCassa, arrivi:scanArrivi, magazzino:scanMagazzino, inventario:scanInventario};
+function vai(tab){
+  tabAttiva=tab;
+  $$('#nav button').forEach(b=>b.classList.toggle('attivo', b.dataset.tab===tab));
+  $$('main section').forEach(s=>s.classList.toggle('attivo', s.id==='tab-'+tab));
+  renderAttivo(); focusScan();
+}
+function renderAttivo(){ RENDER[tabAttiva](); }
+function focusScan(){ if($('#dlgLibro').open) return; const i=$(`#tab-${tabAttiva} input.scan`) || (tabAttiva==='magazzino' && $('#cercaMag')); if(i) i.focus(); }
+$$('#nav button').forEach(b=>b.onclick=()=>vai(b.dataset.tab));
+
+/* Le pistole barcode “scrivono” il codice come una tastiera velocissima e premono Invio.
+   Se il cursore non è in un campo, intercettiamo comunque la scansione. */
+let bufScan='', ultimoTasto=0;
+document.addEventListener('keydown', e=>{
+  if($('#dlgLibro').open) return;
+  const t=e.target; if(t.matches && t.matches('input,textarea,select')) return;
+  const ora=performance.now(); if(ora-ultimoTasto>100) bufScan=''; ultimoTasto=ora;
+  if(e.key==='Enter'){ if(bufScan.length>=8 && SCAN[tabAttiva]){ e.preventDefault(); SCAN[tabAttiva](bufScan); } bufScan=''; return; }
+  if(/^[0-9xX\-]$/.test(e.key)) bufScan+=e.key;
+});
+/* Campi di scansione: Invio = codice; testo = ricerca per titolo */
+$$('input.scan').forEach(inp=>{
+  const ris = inp.parentElement.querySelector('.risultati');
+  const handler = isbn => { inp.value=''; ris.hidden=true; SCAN[inp.dataset.tab](isbn, true); };
+  inp.addEventListener('keydown', e=>{
+    if(e.key==='Enter'){ e.preventDefault(); const v=inp.value.trim(); if(!v) return;
+      if(sembraCodice(v)) handler(v);
+      else { const r=cercaLibri(v,1); if(r.length===1 && cercaLibri(v,2).length===1) handler(r[0].isbn); }
+    }
+    if(e.key==='Escape'){ inp.value=''; ris.hidden=true; }
+  });
+  inp.addEventListener('input', ()=>{
+    const v=inp.value.trim();
+    if(v.length<3 || sembraCodice(v)){ ris.hidden=true; return; }
+    const r=cercaLibri(v,10);
+    ris.innerHTML = r.length ? r.map(x=>`<div data-isbn="${esc(x.isbn)}"><b>${esc(x.l.titolo)}</b> <span class="muted">${esc(x.l.autore)} · ${esc(x.l.editore)}</span>${x.inCat?'<span class="tag">catalogo</span>':`<span class="tag ${x.l.quantita>0?'ok':'err'}">${x.l.quantita} copie</span>`}</div>`).join('') : '<div class="muted">Nessun libro trovato</div>';
+    ris.hidden=false;
+  });
+  ris.addEventListener('click', e=>{ const d=e.target.closest('[data-isbn]'); if(d) handler(d.dataset.isbn); });
+  inp.addEventListener('blur', ()=>setTimeout(()=>ris.hidden=true,200));
+});
+
+/* Trova il libro o crea la scheda, poi chiama fatto(isbn) */
+function conLibro(raw, fatto, giaPulito=false){
+  const isbn = pulisciCodice(raw) || String(raw).trim();
+  if(!isbn) return;
+  if(S.libri[isbn]){ beep(true); fatto(isbn); return; }
+  beep(false);
+  apriScheda(isbn, {onSave: fatto, avviso: '<div class="avviso">Questo libro non è ancora in magazzino: completa la scheda e salva.</div>'});
+}
+
+/* ===== CASSA ===== */
+let carrello = [];   // {isbn, qta, prezzo, sconto}
+function scanCassa(raw){
+  conLibro(raw, isbn=>{
+    const l=S.libri[isbn];
+    const r = carrello.find(x=>x.isbn===isbn);
+    if(r) r.qta++; else carrello.push({isbn, qta:1, prezzo:l.prezzo??0, sconto:pnum($('#scontoTutto').value)||0});
+    const nel = carrello.find(x=>x.isbn===isbn).qta;
+    if(nel > l.quantita) toast(`“${l.titolo}”: in magazzino ne risultano ${l.quantita}`, 'err'); else toast('+ '+l.titolo);
+    if(l.prezzo==null) toast('Manca il prezzo: scrivilo nella riga','err');
+    renderCassa();
+  });
+}
+const importoRiga = r => r2((r.prezzo||0)*(1-(r.sconto||0)/100)*r.qta);
+function renderCassa(){
+  const el=$('#carrello');
+  if(!carrello.length){ el.innerHTML='<div class="vuoto">Scansiona il primo libro per iniziare una vendita.</div>'; }
+  else el.innerHTML = `<table><tr><th>Titolo</th><th class="n">Copie</th><th class="n">Prezzo €</th><th class="n">Sconto %</th><th class="n">Importo</th><th></th></tr>`+
+    carrello.map((r,i)=>{ const l=S.libri[r.isbn]||{};
+      const scarso = r.qta > (l.quantita||0) ? `<span class="tag err">disponibili ${l.quantita||0}</span>`:'';
+      return `<tr><td><b>${esc(l.titolo)}</b>${scarso}<br><span class="muted">${esc(l.autore)} · ${esc(l.editore)} · ${esc(r.isbn)}</span></td>
+      <td class="n"><button class="btn mini" data-a="meno" data-i="${i}">−</button> ${r.qta} <button class="btn mini" data-a="piu" data-i="${i}">+</button></td>
+      <td class="n"><input data-a="prezzo" data-i="${i}" value="${r.prezzo!=null?cifra(r.prezzo):''}" inputmode="decimal"></td>
+      <td class="n"><input data-a="sconto" data-i="${i}" value="${r.sconto||''}" inputmode="decimal" placeholder="0"></td>
+      <td class="n"><b>${eur(importoRiga(r))}</b></td>
+      <td><button class="btn mini rosso" data-a="via" data-i="${i}">✕</button></td></tr>`;}).join('')+'</table>';
+  const tot = r2(carrello.reduce((s,r)=>s+importoRiga(r),0));
+  const lordo = r2(carrello.reduce((s,r)=>s+(r.prezzo||0)*r.qta,0));
+  const copie = carrello.reduce((s,r)=>s+r.qta,0);
+  $('#totaleCarrello').textContent = eur(tot);
+  $('#dettaglioCarrello').textContent = copie ? `${copie} ${copie===1?'libro':'libri'}${lordo>tot?` · prezzo pieno ${eur(lordo)} · sconto ${eur(r2(lordo-tot))}`:''}` : '';
+}
+$('#carrello').addEventListener('click', e=>{
+  const b=e.target.closest('button[data-a]'); if(!b) return; const r=carrello[+b.dataset.i];
+  if(b.dataset.a==='piu') r.qta++;
+  if(b.dataset.a==='meno') r.qta=Math.max(1,r.qta-1);
+  if(b.dataset.a==='via') carrello.splice(+b.dataset.i,1);
+  renderCassa(); focusScan();
+});
+$('#carrello').addEventListener('change', e=>{
+  const i=e.target.dataset.i; if(i==null) return; const r=carrello[+i];
+  if(e.target.dataset.a==='prezzo') r.prezzo=pnum(e.target.value);
+  if(e.target.dataset.a==='sconto') r.sconto=Math.min(100,Math.max(0,pnum(e.target.value)||0));
+  renderCassa();
+});
+$('#scontoTutto').addEventListener('change', e=>{ const s=Math.min(100,Math.max(0,pnum(e.target.value)||0)); carrello.forEach(r=>r.sconto=s); renderCassa(); });
+$('#svuotaCarrello').onclick=()=>{ if(carrello.length && !confirm('Svuotare la vendita in corso?')) return; carrello=[]; $('#scontoTutto').value=''; renderCassa(); focusScan(); };
+$('#confermaVendita').onclick=()=>{
+  if(!carrello.length){ toast('Nessun libro nella vendita','err'); return; }
+  if(carrello.some(r=>r.prezzo==null)){ toast('Manca il prezzo di qualche libro','err'); return; }
+  const maxS = Math.max(...carrello.map(r=>r.sconto||0));
+  if(maxS > S.impostazioni.sconto_avviso && !confirm(`Stai applicando uno sconto del ${maxS}% (soglia d’avviso: ${S.impostazioni.sconto_avviso}%). Confermi?`)) return;
+  const id=uid(), data=adesso();
+  const righe = carrello.map(r=>{ const l=S.libri[r.isbn];
+    return {isbn:r.isbn, titolo:l.titolo, editore:l.editore, qta:r.qta, prezzo:r.prezzo, sconto:r.sconto||0, importo:importoRiga(r), costo:costoUnit(l, r.prezzo), cv:!!l.conto_vendita}; });
+  const totale = r2(righe.reduce((s,r)=>s+r.importo,0));
+  S.vendite.push({id, data, righe, totale, pagamento:$('#pagamento').value, nota:$('#notaVendita').value.trim()});
+  for(const r of righe){
+    S.libri[r.isbn].quantita -= r.qta;
+    aggiungiMov({data, tipo:'vendita', isbn:r.isbn, titolo:r.titolo, qta:-r.qta, prezzo:r.prezzo, sconto:r.sconto, importo:r.importo, vendita_id:id});
+  }
+  salva();
+  carrello=[]; $('#scontoTutto').value=''; $('#notaVendita').value='';
+  renderCassa(); beep(true); toast('Vendita registrata: '+eur(totale),'ok'); focusScan();
+};
+
+/* ===== ARRIVI E RESE ===== */
+let arrivo = [];  // {isbn, qta, prezzo, sconto_fornitore}
+function scanArrivi(raw){
+  conLibro(raw, isbn=>{
+    const l=S.libri[isbn];
+    const r=arrivo.find(x=>x.isbn===isbn);
+    if(r) r.qta++; else arrivo.unshift({isbn, qta:1, prezzo:l.prezzo, sconto_fornitore:scontoForn(l)});
+    if(!$('#fornitore').value && l.editore) $('#fornitore').value=l.editore;
+    toast('+1 '+l.titolo); renderArrivi();
+  });
+}
+function renderArrivi(){
+  const reso = $('#tipoArrivo').value==='reso_fornitore';
+  $('#titoloArrivo').textContent = reso ? 'Libri da rendere' : 'Libri arrivati';
+  $('#confermaArrivo').textContent = reso ? '✔ Registra la resa (scarico)' : '✔ Registra in magazzino';
+  const el=$('#listaArrivo');
+  if(!arrivo.length) el.innerHTML = `<div class="vuoto">${reso?'Scansiona i libri che rimandi indietro.':'Scansiona i libri del pacco: ogni scansione aggiunge una copia.'}</div>`;
+  else el.innerHTML = `<table><tr><th>Titolo</th><th class="n">Copie</th><th class="n">Prezzo copertina €</th><th class="n">Sconto forn. %</th><th class="n">Costo</th><th class="n">In negozio ora</th><th></th></tr>`+
+    arrivo.map((r,i)=>{ const l=S.libri[r.isbn]||{}; const c = r.prezzo!=null? r2(r.prezzo*(1-(r.sconto_fornitore||0)/100)*r.qta):null;
+      return `<tr><td><b>${esc(l.titolo)}</b><br><span class="muted">${esc(l.autore)} · ${esc(l.editore)} · ${esc(r.isbn)}</span></td>
+      <td class="n"><button class="btn mini" data-a="meno" data-i="${i}">−</button> <input data-a="qta" data-i="${i}" value="${r.qta}" style="width:54px" inputmode="numeric"> <button class="btn mini" data-a="piu" data-i="${i}">+</button></td>
+      <td class="n"><input data-a="prezzo" data-i="${i}" value="${r.prezzo!=null?cifra(r.prezzo):''}" inputmode="decimal"></td>
+      <td class="n"><input data-a="sconto" data-i="${i}" value="${r.sconto_fornitore??''}" inputmode="decimal"></td>
+      <td class="n">${eur(c)}</td><td class="n">${l.quantita??0}</td>
+      <td><button class="btn mini rosso" data-a="via" data-i="${i}">✕</button></td></tr>`; }).join('')+'</table>';
+  const copie = arrivo.reduce((s,r)=>s+r.qta,0);
+  const costo = r2(arrivo.reduce((s,r)=>s+(r.prezzo||0)*(1-(r.sconto_fornitore||0)/100)*r.qta,0));
+  $('#riepilogoArrivo').textContent = copie ? `${arrivo.length} titoli · ${copie} copie · costo stimato ${eur(costo)}` : '';
+}
+$('#tipoArrivo').onchange = renderArrivi;
+$('#listaArrivo').addEventListener('click', e=>{
+  const b=e.target.closest('button[data-a]'); if(!b) return; const r=arrivo[+b.dataset.i];
+  if(b.dataset.a==='piu') r.qta++;
+  if(b.dataset.a==='meno') r.qta=Math.max(1,r.qta-1);
+  if(b.dataset.a==='via') arrivo.splice(+b.dataset.i,1);
+  renderArrivi(); focusScan();
+});
+$('#listaArrivo').addEventListener('change', e=>{
+  const i=e.target.dataset.i; if(i==null) return; const r=arrivo[+i];
+  if(e.target.dataset.a==='qta') r.qta=Math.max(1,parseInt(e.target.value)||1);
+  if(e.target.dataset.a==='prezzo') r.prezzo=pnum(e.target.value);
+  if(e.target.dataset.a==='sconto') r.sconto_fornitore=pnum(e.target.value);
+  renderArrivi();
+});
+$('#svuotaArrivo').onclick=()=>{ if(arrivo.length && !confirm('Svuotare la lista?')) return; arrivo=[]; renderArrivi(); focusScan(); };
+$('#confermaArrivo').onclick=()=>{
+  if(!arrivo.length){ toast('Lista vuota','err'); return; }
+  const tipo=$('#tipoArrivo').value, reso = tipo==='reso_fornitore';
+  const fornitore=$('#fornitore').value.trim(), documento=$('#documento').value.trim(), cv=$('#condizione').value==='cv';
+  const data=adesso();
+  for(const r of arrivo){
+    const l=S.libri[r.isbn];
+    if(!reso){
+      if(r.prezzo!=null) l.prezzo=r.prezzo;
+      if(r.sconto_fornitore!=null) l.sconto_fornitore=r.sconto_fornitore;
+      l.conto_vendita = cv; l.ultimo_arrivo = data;
+    }
+    l.quantita += reso ? -r.qta : r.qta; l.aggiornato=data;
+    aggiungiMov({data, tipo, isbn:r.isbn, titolo:l.titolo, qta: reso?-r.qta:r.qta, prezzo:r.prezzo, sconto_fornitore:r.sconto_fornitore,
+      costo: r.prezzo!=null ? r2(r.prezzo*(1-(r.sconto_fornitore||0)/100)) : null, fornitore, documento, cv});
+  }
+  salva();
+  const copie=arrivo.reduce((s,r)=>s+r.qta,0);
+  arrivo=[]; $('#documento').value=''; renderArrivi();
+  toast(reso? `Resa registrata: ${copie} copie scaricate` : `Arrivo registrato: ${copie} copie caricate`, 'ok'); focusScan();
+};
+
+/* ===== MAGAZZINO ===== */
+function scanMagazzino(raw){
+  const isbn=pulisciCodice(raw)||raw;
+  $('#cercaMag').value='';
+  if(S.libri[isbn]){ beep(true); apriScheda(isbn); }
+  else { beep(false); apriScheda(isbn,{onSave:()=>renderMagazzino(), avviso:'<div class="avviso">Libro non ancora in magazzino: completa la scheda. Per caricare copie arrivate usa “Arrivi e rese”.</div>'}); }
+}
+let ordineMag = 'titolo';
+function renderMagazzino(){
+  const ed=$('#editoreMag'), edSel=ed.value;
+  const eds=[...new Set(Object.values(S.libri).map(l=>l.editore).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'it'));
+  ed.innerHTML='<option value="">Tutti</option>'+eds.map(e=>`<option ${e===edSel?'selected':''}>${esc(e)}</option>`).join('');
+  const q=norm($('#cercaMag').value).split(/\s+/).filter(Boolean), f=$('#filtroMag').value;
+  const trenta = Date.now()-30*864e5;
+  let lista = Object.values(S.libri).filter(l=>{
+    if(edSel && l.editore!==edSel) return false;
+    if(f==='disp' && !(l.quantita>0)) return false;
+    if(f==='scorta' && !(l.quantita < (l.scorta_min||0))) return false;
+    if(f==='esauriti' && l.quantita!==0) return false;
+    if(f==='nuovi' && !(l.ultimo_arrivo && Date.parse(l.ultimo_arrivo)>=trenta)) return false;
+    if(f==='cv' && !l.conto_vendita) return false;
+    if(f==='neg' && !(l.quantita<0)) return false;
+    if(q.length){ const t=norm([l.titolo,l.autore,l.editore,l.collana,l.isbn,l.posizione].join(' ')); if(!q.every(p=>t.includes(p))) return false; }
+    return true;
+  });
+  const cmp = {titolo:(a,b)=>a.titolo.localeCompare(b.titolo,'it'), autore:(a,b)=>(a.autore||'').localeCompare(b.autore||'','it'), editore:(a,b)=>(a.editore||'').localeCompare(b.editore||'','it')||a.titolo.localeCompare(b.titolo,'it'),
+    quantita:(a,b)=>b.quantita-a.quantita, prezzo:(a,b)=>(b.prezzo||0)-(a.prezzo||0), posizione:(a,b)=>(a.posizione||'').localeCompare(b.posizione||'','it')};
+  lista.sort(cmp[ordineMag]);
+  const copie=lista.reduce((s,l)=>s+Math.max(0,l.quantita),0), valore=lista.reduce((s,l)=>s+Math.max(0,l.quantita)*(l.prezzo||0),0);
+  $('#contoMag').textContent = `${lista.length} titoli · ${copie} copie · valore a prezzo di copertina ${eur(r2(valore))}`;
+  const th=(k,t,c='')=>`<th class="${c}" style="cursor:pointer" data-ord="${k}">${t}${ordineMag===k?' ▾':''}</th>`;
+  const tot = Object.keys(S.libri).length;
+  $('#tabMag').innerHTML = lista.length ? '<tr>'+th('titolo','Titolo')+th('autore','Autore')+th('editore','Editore')+th('posizione','Posizione')+th('prezzo','Prezzo','n')+th('quantita','Copie','n')+'</tr>'+
+    lista.slice(0,800).map(l=>`<tr class="click" data-isbn="${esc(l.isbn)}"><td><b>${esc(l.titolo)}</b>${l.conto_vendita?'<span class="tag cv">c/vendita</span>':''}<br><span class="muted">${esc(l.isbn)}${l.fascia?' · '+esc(l.fascia):''}</span></td><td>${esc(l.autore)}</td><td>${esc(l.editore)}</td><td>${esc(l.posizione)}</td><td class="n">${eur(l.prezzo)}</td>
+    <td class="n"><span class="tag ${l.quantita<0?'err':l.quantita<(l.scorta_min||0)?'warn':l.quantita>0?'ok':''}">${l.quantita}</span></td></tr>`).join('')
+    + (lista.length>800?`<tr><td colspan="6" class="muted">Mostrati i primi 800: affina la ricerca.</td></tr>`:'')
+    : `<tr><td class="vuoto">${tot? 'Nessun libro con questi filtri.' : 'Il magazzino è vuoto. Inizia da “Arrivi e rese”: scansiona i libri che hai in negozio, oppure importa un CSV da “Backup e impostazioni”.'}</td></tr>`;
+}
+$('#tabMag').addEventListener('click', e=>{
+  const o=e.target.closest('[data-ord]'); if(o){ ordineMag=o.dataset.ord; renderMagazzino(); return; }
+  const r=e.target.closest('tr[data-isbn]'); if(r) apriScheda(r.dataset.isbn);
+});
+$('#cercaMag').addEventListener('input', renderMagazzino);
+$('#cercaMag').addEventListener('keydown', e=>{ if(e.key==='Enter' && sembraCodice(e.target.value)){ e.preventDefault(); scanMagazzino(e.target.value.trim()); } });
+$('#filtroMag').onchange = renderMagazzino; $('#editoreMag').onchange = renderMagazzino;
+$('#nuovoLibro').onclick = ()=>apriScheda('', {onSave:()=>renderMagazzino()});
+
+/* ===== INVENTARIO ===== */
+function scanInventario(raw){
+  const inv=S.inventario; if(!inv){ toast('Prima premi “Inizia la conta”','err'); return; }
+  const isbn=pulisciCodice(raw)||String(raw).trim();
+  const l = S.libri[isbn];
+  if(!l && !inv.conteggi[isbn]){
+    beep(false);
+    if(confirm(`Il codice ${isbn} non è in magazzino. Vuoi creare la scheda ora?`)){
+      apriScheda(isbn,{onSave:i=>{ S.inventario.conteggi[i]=(S.inventario.conteggi[i]||0)+1; S.inventario.ultimo=i; salva(); renderInventario(); }}); return;
+    }
+  } else beep(true);
+  inv.conteggi[isbn]=(inv.conteggi[isbn]||0)+1; inv.ultimo=isbn; salva(); renderInventario();
+}
+function renderInventario(){
+  const el=$('#invContenuto'), inv=S.inventario;
+  if(!inv){
+    el.innerHTML = `<div class="card"><h2>Conta delle copie (inventario)</h2>
+      <p>Scansiona <b>ogni copia</b> che hai sugli scaffali. Alla fine il gestionale confronta le copie contate con quelle che risultano e ti mostra le differenze; tu decidi se correggere.</p>
+      <div class="riga"><div><label>Cosa conti?</label><select id="invModo">
+        <option value="parziale">Solo una parte (uno scaffale, un editore): confronta solo i libri scansionati</option>
+        <option value="totale">Tutto il negozio: i libri non scansionati si considerano a zero</option></select></div>
+      <button class="btn pri big" id="invInizia">Inizia la conta</button></div>
+      <p class="muted">Puoi interrompere e riprendere quando vuoi: la conta resta salvata.</p></div>`;
+    $('#invInizia').onclick=()=>{ S.inventario={inizio:adesso(), modo:$('#invModo').value, conteggi:{}, ultimo:null}; salva(); renderInventario(); focusScan(); };
+    return;
+  }
+  const voci=Object.entries(inv.conteggi);
+  const ult = inv.ultimo ? (S.libri[inv.ultimo]?.titolo || inv.ultimo) : null;
+  el.innerHTML = `<div class="card"><h2>Conta in corso <span class="muted">(${inv.modo==='totale'?'tutto il negozio':'parziale'}, iniziata il ${fdata(inv.inizio)})</span></h2>
+    <div class="scanbox"><input class="scan" data-tab="inventario" placeholder="Scansiona ogni copia" autocomplete="off"></div>
+    ${ult?`<div class="ultimo">Ultimo: <b>${esc(ult)}</b> → contate ${inv.conteggi[inv.ultimo]||0}</div>`:''}
+    <div class="riga" style="margin-top:12px"><div class="muted">${voci.length} titoli · ${voci.reduce((s,[,n])=>s+n,0)} copie contate</div>
+    <button class="btn rosso" id="invAnnulla">Annulla la conta</button><button class="btn pri" id="invConfronta">Confronta e chiudi</button></div></div>
+    <div class="card"><div class="scroll"><table>${voci.length? '<tr><th>Titolo</th><th class="n">Risultano</th><th class="n">Contate</th><th></th></tr>'+
+      voci.reverse().map(([isbn,n])=>{const l=S.libri[isbn]; return `<tr><td>${l?esc(l.titolo):'<span class="tag err">non in magazzino</span> '+esc(isbn)}</td><td class="n">${l?l.quantita:'—'}</td>
+      <td class="n"><button class="btn mini" data-inv="-" data-isbn="${esc(isbn)}">−</button> ${n} <button class="btn mini" data-inv="+" data-isbn="${esc(isbn)}">+</button></td><td></td></tr>`}).join('') : '<tr><td class="vuoto">Nessuna copia contata.</td></tr>'}</table></div></div>`;
+  const inp=$('#invContenuto input.scan');
+  inp.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); const v=inp.value.trim(); inp.value=''; if(v) scanInventario(v); }});
+  inp.focus();
+  el.querySelectorAll('[data-inv]').forEach(b=>b.onclick=()=>{ const i=b.dataset.isbn; inv.conteggi[i]+= b.dataset.inv==='+'?1:-1; if(inv.conteggi[i]<=0) delete inv.conteggi[i]; salva(); renderInventario(); });
+  $('#invAnnulla').onclick=()=>{ if(confirm('Annullare la conta? Le copie contate andranno perse (il magazzino non cambia).')){ S.inventario=null; salva(); renderInventario(); } };
+  $('#invConfronta').onclick=confrontaInventario;
+}
+function confrontaInventario(){
+  const inv=S.inventario;
+  const isbns = new Set(Object.keys(inv.conteggi).filter(i=>S.libri[i]));
+  if(inv.modo==='totale') Object.keys(S.libri).forEach(i=>isbns.add(i));
+  const diff=[...isbns].map(i=>({isbn:i, l:S.libri[i], sist:S.libri[i].quantita, cont:inv.conteggi[i]||0})).filter(d=>d.sist!==d.cont);
+  const ignoti=Object.keys(inv.conteggi).filter(i=>!S.libri[i]);
+  const el=$('#invContenuto');
+  el.innerHTML = `<div class="card"><h2>Differenze trovate: ${diff.length}</h2>
+    ${ignoti.length?`<div class="avviso">${ignoti.length} codici contati non sono in magazzino e verranno ignorati: ${ignoti.map(esc).join(', ')}</div>`:''}
+    ${diff.length? `<div class="scroll"><table><tr><th><input type="checkbox" id="invTutti" checked style="width:auto"></th><th>Titolo</th><th class="n">Risultano</th><th class="n">Contate</th><th class="n">Differenza</th></tr>`+
+      diff.map((d,k)=>`<tr><td><input type="checkbox" class="invSel" data-k="${k}" checked style="width:auto"></td><td>${esc(d.l.titolo)}<br><span class="muted">${esc(d.isbn)} · ${esc(d.l.editore)}</span></td><td class="n">${d.sist}</td><td class="n">${d.cont}</td><td class="n"><span class="tag ${d.cont>d.sist?'ok':'err'}">${d.cont-d.sist>0?'+':''}${d.cont-d.sist}</span></td></tr>`).join('')+'</table></div>' : '<p>Tutto torna: le copie contate corrispondono al magazzino. 🎉</p>'}
+    <div class="riga" style="margin-top:12px"><button class="btn" id="invTorna">← Torna alla conta</button><button class="btn pri" id="invApplica">${diff.length?'Correggi il magazzino con le righe selezionate e chiudi':'Chiudi la conta'}</button></div></div>`;
+  $('#invTorna').onclick=renderInventario;
+  if($('#invTutti')) $('#invTutti').onchange=e=>$$('.invSel').forEach(c=>c.checked=e.target.checked);
+  $('#invApplica').onclick=()=>{
+    const data=adesso(); let n=0;
+    $$('.invSel').forEach(c=>{ if(!c.checked) return; const d=diff[+c.dataset.k];
+      aggiungiMov({data, tipo:'rettifica', isbn:d.isbn, titolo:d.l.titolo, qta:d.cont-d.sist, nota:'Inventario del '+fgiorno(inv.inizio)}); d.l.quantita=d.cont; n++; });
+    S.inventario=null; salva(); renderInventario(); toast(n?`Magazzino corretto su ${n} titoli`:'Conta chiusa','ok');
+  };
+}
+
+/* ===== REGISTRO ===== */
+const NOMI_TIPO = {vendita:'Vendita', arrivo:'Arrivo', reso_fornitore:'Resa all’editore', reso_cliente:'Reso cliente', rettifica:'Rettifica'};
+const PERIODI = [['oggi','Oggi'],['ieri','Ieri'],['7','Ultimi 7 giorni'],['mese','Questo mese'],['mesescorso','Mese scorso'],['anno','Quest’anno'],['tutto','Sempre']];
+$$('select.periodo').forEach(s=>s.innerHTML=PERIODI.map(([v,t])=>`<option value="${v}">${t}</option>`).join(''));
+$('#periodoStat').value='mese';
+function intervallo(p){
+  const d=new Date(); d.setHours(0,0,0,0); let a=new Date(d), b=null;
+  if(p==='ieri'){ a.setDate(a.getDate()-1); b=new Date(d); }
+  else if(p==='7') a.setDate(a.getDate()-6);
+  else if(p==='mese') a.setDate(1);
+  else if(p==='mesescorso'){ a=new Date(d.getFullYear(), d.getMonth()-1, 1); b=new Date(d.getFullYear(), d.getMonth(), 1); }
+  else if(p==='anno') a=new Date(d.getFullYear(),0,1);
+  else if(p==='tutto') a=new Date(0);
+  return iso => { const t=Date.parse(iso); return t>=a.getTime() && (!b || t<b.getTime()); };
+}
+function renderRegistro(){
+  const nel=intervallo($('#periodoReg').value), tipo=$('#tipoReg').value, q=norm($('#cercaReg').value);
+  const el=$('#registro');
+  if(tipo==='vendite'){
+    const v=S.vendite.filter(x=>nel(x.data) && (!q || norm(x.righe.map(r=>r.titolo+' '+r.isbn).join(' ')+' '+x.nota+' '+x.pagamento).includes(q))).reverse();
+    const tot=r2(v.filter(x=>!x.annullata).reduce((s,x)=>s+x.totale,0));
+    el.innerHTML = `<p class="muted">${v.length} vendite · incasso ${eur(tot)}</p>` + (v.length? '<table><tr><th>Data</th><th>Libri</th><th>Pagamento</th><th class="n">Totale</th><th></th></tr>'+
+      v.map(x=>`<tr><td>${fdata(x.data)}</td><td>${x.righe.map(r=>`${r.qta>1?r.qta+' × ':''}${esc(r.titolo)}${r.sconto?` <span class="tag">-${r.sconto}%</span>`:''}`).join('<br>')}${x.nota?`<br><span class="muted">${esc(x.nota)}</span>`:''}</td>
+      <td>${esc(x.pagamento)}</td><td class="n">${x.annullata?`<s>${eur(x.totale)}</s><br><span class="tag err">annullata</span>`:`<b>${eur(x.totale)}</b>`}</td>
+      <td>${x.annullata?'':`<button class="btn mini" data-annulla="${x.id}">Annulla / reso</button>`}</td></tr>`).join('')+'</table>' : '<div class="vuoto">Nessuna vendita nel periodo.</div>');
+    el.querySelectorAll('[data-annulla]').forEach(b=>b.onclick=()=>annullaVendita(b.dataset.annulla));
+    return;
+  }
+  const m=S.movimenti.filter(x=>nel(x.data) && (tipo==='tutti'||x.tipo===tipo) && (!q || norm(x.titolo+' '+x.isbn+' '+(x.fornitore||'')+' '+(x.documento||'')+' '+(x.nota||'')).includes(q))).reverse();
+  el.innerHTML = `<p class="muted">${m.length} movimenti · ${m.reduce((s,x)=>s+x.qta,0)} copie (saldo)</p>` + (m.length? '<table><tr><th>Data</th><th>Tipo</th><th>Titolo</th><th class="n">Copie</th><th class="n">Prezzo / costo</th><th>Fornitore · documento · nota</th></tr>'+
+    m.slice(0,1000).map(x=>`<tr><td>${fdata(x.data)}</td><td>${NOMI_TIPO[x.tipo]||x.tipo}${x.cv?'<span class="tag cv">c/v</span>':''}</td><td>${esc(x.titolo)}<br><span class="muted">${esc(x.isbn)}</span></td>
+    <td class="n"><span class="tag ${x.qta>0?'ok':'err'}">${x.qta>0?'+':''}${x.qta}</span></td><td class="n">${x.importo!=null?eur(x.importo):x.costo!=null?eur(x.costo)+' cad.':''}</td>
+    <td>${esc([x.fornitore,x.documento,x.nota].filter(Boolean).join(' · '))}</td></tr>`).join('')+'</table>' : '<div class="vuoto">Nessun movimento nel periodo.</div>');
+}
+function annullaVendita(id){
+  const v=S.vendite.find(x=>x.id===id); if(!v||v.annullata) return;
+  if(!confirm(`Annullare la vendita del ${fdata(v.data)} (${eur(v.totale)})? Le copie tornano in magazzino.`)) return;
+  const data=adesso(); v.annullata=data;
+  for(const r of v.righe){ if(S.libri[r.isbn]) S.libri[r.isbn].quantita+=r.qta; aggiungiMov({data, tipo:'reso_cliente', isbn:r.isbn, titolo:r.titolo, qta:r.qta, importo:-r.importo, vendita_id:id, nota:'Annullata la vendita del '+fdata(v.data)}); }
+  salva(); renderRegistro(); toast('Vendita annullata, copie rimesse in magazzino','ok');
+}
+['#periodoReg','#tipoReg'].forEach(s=>$(s).onchange=renderRegistro); $('#cercaReg').oninput=renderRegistro;
+
+/* ===== STATISTICHE ===== */
+function tabellaBarre(righe, colonne){
+  if(!righe.length) return '<p class="muted">Nessun dato nel periodo.</p>';
+  const max=Math.max(...righe.map(r=>r.v))||1;
+  return '<table>'+'<tr>'+colonne.map((c,i)=>`<th class="${i?'n':''}">${c}</th>`).join('')+'<th style="width:30%"></th></tr>'+
+    righe.map(r=>`<tr><td>${r.nome}</td>${r.colonne.map(c=>`<td class="n">${c}</td>`).join('')}<td><div class="barra" style="width:${Math.round(r.v/max*100)}%"></div></td></tr>`).join('')+'</table>';
+}
+function renderStat(){
+  const nel=intervallo($('#periodoStat').value);
+  const vend=S.vendite.filter(v=>!v.annullata && nel(v.data));
+  const righe=vend.flatMap(v=>v.righe);
+  const incasso=r2(vend.reduce((s,v)=>s+v.totale,0)), copie=righe.reduce((s,r)=>s+r.qta,0);
+  const pieno=r2(righe.reduce((s,r)=>s+(r.prezzo||0)*r.qta,0));
+  const costoNoto = righe.filter(r=>r.costo!=null); const margine=r2(costoNoto.reduce((s,r)=>s+r.importo-r.costo*r.qta,0));
+  const arrivi=S.movimenti.filter(m=>m.tipo==='arrivo' && nel(m.data)), copieArr=arrivi.reduce((s,m)=>s+m.qta,0);
+  const libri=Object.values(S.libri), inNeg=libri.filter(l=>l.quantita>0);
+  const valCop=r2(inNeg.reduce((s,l)=>s+l.quantita*(l.prezzo||0),0)), valCosto=r2(inNeg.reduce((s,l)=>s+l.quantita*(costoUnit(l)||0),0));
+  const sotto=libri.filter(l=>l.quantita<(l.scorta_min||0)).sort((a,b)=>a.titolo.localeCompare(b.titolo,'it'));
+  const grp=(arr,key,val)=>{ const m={}; arr.forEach(x=>{const k=key(x); m[k]=m[k]||{q:0,e:0,c:0}; val(m[k],x);}); return Object.entries(m); };
+  const top=grp(righe,r=>r.isbn,(o,r)=>{o.q+=r.qta;o.e+=r.importo;o.t=r.titolo;}).sort((a,b)=>b[1].q-a[1].q).slice(0,15);
+  const perEd=grp(righe,r=>r.editore||'—',(o,r)=>{o.q+=r.qta;o.e+=r.importo;}).sort((a,b)=>b[1].e-a[1].e);
+  const perPag=grp(vend,v=>v.pagamento,(o,v)=>{o.q++;o.e+=v.totale;}).sort((a,b)=>b[1].e-a[1].e);
+  const cv=grp(righe.filter(r=>r.cv),r=>r.editore||'—',(o,r)=>{o.q+=r.qta;o.e+=(r.costo||0)*r.qta;}).sort((a,b)=>b[1].e-a[1].e);
+  $('#stat').innerHTML = `<div class="kpi">
+    <div><b>${eur(incasso)}</b><span>incasso (${vend.length} vendite)</span></div>
+    <div><b>${copie}</b><span>libri venduti</span></div>
+    <div><b>${vend.length?eur(r2(incasso/vend.length)):'—'}</b><span>scontrino medio</span></div>
+    <div><b>${eur(r2(pieno-incasso))}</b><span>sconti fatti ai clienti</span></div>
+    <div><b>${costoNoto.length?eur(margine):'—'}</b><span>margine stimato${costoNoto.length<righe.length?' (solo libri con costo noto)':''}</span></div>
+    <div><b>${copieArr}</b><span>copie arrivate</span></div>
+    <div><b>${inNeg.reduce((s,l)=>s+l.quantita,0)}</b><span>copie in negozio oggi (${inNeg.length} titoli)</span></div>
+    <div><b>${eur(valCop)}</b><span>valore magazzino a prezzo di copertina</span></div>
+    <div><b>${eur(valCosto)}</b><span>valore magazzino a costo (stima)</span></div>
+  </div>
+  <div class="grid2">
+    <div class="card"><h2>Più venduti</h2>${tabellaBarre(top.map(([i,o])=>({nome:esc(o.t),v:o.q,colonne:[o.q,eur(r2(o.e))]})),['Titolo','Copie','Incasso'])}</div>
+    <div class="card"><h2>Per editore</h2>${tabellaBarre(perEd.map(([k,o])=>({nome:esc(k),v:o.e,colonne:[o.q,eur(r2(o.e))]})),['Editore','Copie','Incasso'])}</div>
+    <div class="card"><h2>Per tipo di pagamento</h2>${tabellaBarre(perPag.map(([k,o])=>({nome:esc(k),v:o.e,colonne:[o.q,eur(r2(o.e))]})),['Pagamento','Vendite','Incasso'])}</div>
+    <div class="card"><h2>Conto vendita: da pagare agli editori</h2><p class="muted">Copie in conto vendita vendute nel periodo, al costo.</p>${tabellaBarre(cv.map(([k,o])=>({nome:esc(k),v:o.e,colonne:[o.q,eur(r2(o.e))]})),['Editore','Copie','Da pagare'])}</div>
+  </div>
+  <div class="card"><h2>Da riordinare (sotto la scorta minima): ${sotto.length}</h2>
+    ${sotto.length?'<div class="scroll"><table><tr><th>Titolo</th><th>Editore</th><th class="n">Copie</th><th class="n">Scorta min.</th></tr>'+sotto.map(l=>`<tr class="click" data-isbn="${esc(l.isbn)}"><td>${esc(l.titolo)}</td><td>${esc(l.editore)}</td><td class="n">${l.quantita}</td><td class="n">${l.scorta_min}</td></tr>`).join('')+'</table></div>':'<p class="muted">Niente da riordinare.</p>'}</div>`;
+  $$('#stat tr[data-isbn]').forEach(r=>r.onclick=()=>apriScheda(r.dataset.isbn));
+}
+$('#periodoStat').onchange=renderStat;
+
+/* ===== BACKUP, CSV, IMPOSTAZIONI ===== */
+function scarica(nome, contenuto, tipo){
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([contenuto],{type:tipo})); a.download=nome; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+}
+const oggiNome = () => new Date().toISOString().slice(0,10);
+function aggiornaInfoBackup(){
+  const el=$('#backupInfo'); const u=S.ultimo_backup;
+  const giorni = u ? Math.floor((Date.now()-Date.parse(u))/864e5) : null;
+  const daFare = S.movimenti.length && (giorni===null || giorni>=7);
+  el.textContent = u ? `Ultimo backup: ${fgiorno(u)}${daFare?' – è ora di farne uno!':''}` : (S.movimenti.length?'Nessun backup: fanne uno da “Backup e impostazioni”':'');
+  el.classList.toggle('rosso', !!daFare);
+  $('#nomeNegozio').textContent = S.impostazioni.negozio+' – gestionale libreria';
+}
+$('#esportaBackup').onclick=()=>{ S.ultimo_backup=adesso(); salva(); scarica(`backup-gestionale-${oggiNome()}.json`, JSON.stringify(S), 'application/json'); toast('Backup scaricato: conservalo in un posto sicuro','ok'); };
+$('#importaBackupBtn').onclick=()=>$('#importaBackup').click();
+$('#importaBackup').onchange=async e=>{
+  const f=e.target.files[0]; e.target.value=''; if(!f) return;
+  try{
+    const d=JSON.parse(await f.text()); if(!d.libri||!d.movimenti) throw new Error('file non valido');
+    if(!confirm(`Ripristinare il backup? Contiene ${Object.keys(d.libri).length} libri e ${d.vendite.length} vendite. I dati attuali di questo browser verranno sostituiti.`)) return;
+    const v=statoVuoto(); d.impostazioni=Object.assign(v.impostazioni,d.impostazioni||{}); S=Object.assign(v,d); salva(); aggiornaListaEditori(); renderAttivo(); toast('Backup ripristinato','ok');
+  }catch(err){ alert('Non riesco a leggere il backup: '+err.message); }
+};
+function csvCampo(v){ if(v==null) return ''; if(typeof v==='number') return String(v).replace('.',','); const s=String(v); return /[;"\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s; }
+function csv(righe){ return '﻿'+righe.map(r=>r.map(csvCampo).join(';')).join('\r\n'); }
+$('#csvMag').onclick=()=>{
+  const r=[['ISBN','Titolo','Autore','Editore','Collana','Fascia','Posizione','Prezzo','Sconto fornitore %','Copie','Scorta minima','Conto vendita','Ultimo arrivo','Note']];
+  Object.values(S.libri).sort((a,b)=>a.titolo.localeCompare(b.titolo,'it')).forEach(l=>r.push([l.isbn,l.titolo,l.autore,l.editore,l.collana,l.fascia,l.posizione,l.prezzo,l.sconto_fornitore,l.quantita,l.scorta_min,l.conto_vendita?'Sì':'No',l.ultimo_arrivo?fgiorno(l.ultimo_arrivo):'',l.note]));
+  scarica(`magazzino-${oggiNome()}.csv`, csv(r), 'text/csv');
+};
+$('#csvMov').onclick=()=>{
+  const r=[['Data','Tipo','ISBN','Titolo','Copie','Prezzo','Sconto %','Importo','Costo unitario','Fornitore','Documento','Conto vendita','Nota']];
+  S.movimenti.forEach(m=>r.push([fdata(m.data),NOMI_TIPO[m.tipo]||m.tipo,m.isbn,m.titolo,m.qta,m.prezzo,m.sconto,m.importo,m.costo,m.fornitore,m.documento,m.cv?'Sì':'',m.nota]));
+  scarica(`movimenti-${oggiNome()}.csv`, csv(r), 'text/csv');
+};
+function parseCSV(testo){
+  testo=testo.replace(/^﻿/,''); const primo=testo.split(/\r?\n/)[0]; const sep=(primo.match(/;/g)||[]).length>=(primo.match(/,/g)||[]).length?';':',';
+  const righe=[]; let r=[], c='', q=false;
+  for(let i=0;i<testo.length;i++){ const ch=testo[i];
+    if(q){ if(ch==='"'){ if(testo[i+1]==='"'){c+='"';i++;} else q=false; } else c+=ch; }
+    else if(ch==='"') q=true; else if(ch===sep){ r.push(c); c=''; } else if(ch==='\n'){ r.push(c.replace(/\r$/,'')); righe.push(r); r=[]; c=''; } else c+=ch; }
+  if(c||r.length){ r.push(c); righe.push(r); }
+  return righe.filter(x=>x.some(v=>v.trim()));
+}
+$('#csvImportBtn').onclick=()=>$('#csvImport').click();
+$('#csvImport').onchange=async e=>{
+  const f=e.target.files[0]; e.target.value=''; if(!f) return;
+  const righe=parseCSV(await f.text()); if(righe.length<2){ alert('Il file è vuoto'); return; }
+  const h=righe[0].map(x=>norm(x).trim());
+  const idx=nomi=>h.findIndex(x=>nomi.some(n=>x===n||x.startsWith(n)));
+  const c={isbn:idx(['isbn','codice','ean']), titolo:idx(['titolo']), autore:idx(['autor']), editore:idx(['editore','casa editrice']), collana:idx(['collana']), fascia:idx(['fascia','eta']), prezzo:idx(['prezzo']), quantita:idx(['quantita','copie','giacenza','qta']), posizione:idx(['posizione','scaffale'])};
+  if(c.isbn<0){ alert('Manca la colonna “isbn”'); return; }
+  let nuovi=0, agg=0, saltati=0; const data=adesso();
+  for(const r of righe.slice(1)){
+    const isbn=pulisciCodice(r[c.isbn]||''); if(!isbn){ saltati++; continue; }
+    const get=k=>c[k]>=0?(r[c[k]]||'').trim():'';
+    let l=S.libri[isbn];
+    if(!l){ l=nuovoLibroDa(isbn, CATALOGO[isbn]||{}); if(!get('titolo') && !l.titolo){ saltati++; continue; } S.libri[isbn]=l; nuovi++; } else agg++;
+    for(const k of ['titolo','autore','editore','collana','fascia','posizione']) if(get(k)) l[k]=get(k);
+    if(get('prezzo')) l.prezzo=pnum(get('prezzo'));
+    if(c.quantita>=0 && get('quantita')!==''){ const q=parseInt(get('quantita'))||0; if(q!==l.quantita){ aggiungiMov({data,tipo:'rettifica',isbn,titolo:l.titolo,qta:q-l.quantita,nota:'Importazione CSV'}); l.quantita=q; } }
+    l.aggiornato=data;
+  }
+  salva(); aggiornaListaEditori(); renderAttivo();
+  alert(`Importazione completata: ${nuovi} libri nuovi, ${agg} aggiornati${saltati?`, ${saltati} righe saltate (senza ISBN o titolo)`:''}.`);
+};
+function renderImpostazioni(){
+  const i=S.impostazioni;
+  $('#impNome').value=i.negozio; $('#impSconto').value=i.sconto_avviso; $('#impScorta').value=i.scorta_min; $('#impScForn').value=i.sconto_fornitore; $('#impSuono').checked=i.suono;
+  $('#infoCatalogo').textContent=`Il gestionale conosce già ${Object.keys(CATALOGO).length} titoli dal catalogo Bottegart (case editrici indipendenti): quando ne scansioni uno, titolo, autore, editore e prezzo si compilano da soli. Per gli altri libri cerca i dati online (Google Libri / Open Library), se c’è connessione.`;
+}
+$('#salvaImp').onclick=()=>{
+  const i=S.impostazioni; i.negozio=$('#impNome').value.trim()||'Bottegart'; i.sconto_avviso=pnum($('#impSconto').value)??5;
+  i.scorta_min=parseInt($('#impScorta').value)||0; i.sconto_fornitore=pnum($('#impScForn').value)??30; i.suono=$('#impSuono').checked;
+  salva(); toast('Impostazioni salvate','ok');
+};
+
+/* ===== Avvio ===== */
+window.addEventListener('storage', e=>{ if(e.key===CHIAVE){ S=carica(); renderAttivo(); toast('Dati aggiornati da un’altra finestra'); } });
+aggiornaListaEditori(); aggiornaInfoBackup(); vai('cassa');
+</script>
+</body>
+</html>
