@@ -52,8 +52,8 @@ h1 em{font-style:normal;color:var(--rosso)}
 .loghi p{text-align:left;font-weight:600;line-height:1.2}
 .loghi p small{display:block;font-weight:500;opacity:.7}
 .fum{display:inline-flex;align-items:center;gap:.45em;background:var(--giallo);color:var(--nero);border:.12em solid var(--nero);border-radius:.6em;padding:.18em .7em .22em;font-weight:700;line-height:1.1;transform:rotate(-1.5deg);box-shadow:.12em .16em 0 var(--nero)}
-.fum span{white-space:nowrap}.fum svg{width:1.3em;height:1.3em;flex:none}.fum em{font-family:'Gochi Hand',cursive;font-style:normal;font-weight:400;font-size:1.25em;color:var(--rosso)}
-.fum{margin-top:auto}.fum+.loghi{margin-top:.7em}
+.fum span{text-align:center}.fum svg{width:1.3em;height:1.3em;flex:none}.fum em{font-family:'Gochi Hand',cursive;font-style:normal;font-weight:400;font-size:1.25em;color:var(--rosso)}
+.sp{display:block;flex:none;height:var(--sp,26px)}.fum{margin-top:auto}.fum+.loghi{margin-top:.8em}
 .banda{position:absolute;left:0;right:0;height:var(--bh);background:repeating-linear-gradient(90deg,var(--rosso) 0 50%,var(--nero) 50% 100%);background-size:var(--bw) 100%}
 """
 
@@ -64,9 +64,10 @@ def loghi():
     return (f'<div class="loghi"><img src="{IMG["bart"]}" alt="Associazione Bottegart"><img src="{IMG["sostare"]}" alt="So’Stare">'
             f'<p>{INFO["luogo"]}<small>{INFO["chi"]}</small></p></div>')
 
-MATITA = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="14" height="11" rx="2.5" fill="#fff" stroke="#141414" stroke-width="1.8"/><path d="M6 15l-1.5 4 4.5-4" fill="#fff" stroke="#141414" stroke-width="1.8" stroke-linejoin="round"/><path d="M20.5 6.5l-8 8-2.5.8.8-2.5 8-8z" fill="#f2141b" stroke="#141414" stroke-width="1.6" stroke-linejoin="round"/></svg>'
-def fumetto():
-    return f'<p class="fum">{MATITA}<span>Ogni sabato continua il <em>corso di fumetto</em> con Anna Paris</span></p>'
+MATITA = '<svg viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(45 12 12)"><rect x="8.5" y="1.5" width="7" height="15" rx="1" fill="#f2141b" stroke="#141414" stroke-width="1.7"/><path d="M8.5 16.5h7L12 23z" fill="#fff" stroke="#141414" stroke-width="1.7" stroke-linejoin="round"/><path d="M11 20.7h2L12 23z" fill="#141414"/><path d="M8.5 4.5h7" stroke="#141414" stroke-width="1.7"/></g></svg>'
+def fumetto(a_capo=False):
+    br = '<br>' if a_capo else ''
+    return f'<i class="sp"></i><p class="fum">{MATITA}<span>Ogni sabato pomeriggio vieni a provare{br} il <em>corso di fumetto</em> con Anna Paris</span></p>'
 
 def pagina(w, h, css, corpo):
     return f'<!doctype html><html lang="it"><head><meta charset="utf-8"><style>{CSS}{css}</style></head><body><div class="f" style="width:{w}px;height:{h}px">{corpo}</div></body></html>'
@@ -77,12 +78,12 @@ POST = pagina(1080, 1350, """
 .f{padding:56px 60px 48px;--g:18px;--r:26px;--lg:22px;--bh:16px;--bw:60px}
 .banda{top:0}.logo{width:560px;margin-top:10px}
 h1{font-size:104px;margin-top:14px}.sub{font-size:48px;margin-top:4px}
-.ill{width:880px;height:340px;margin-top:8px}
+.ill{width:880px;height:300px;margin-top:8px}
 .g{width:132px;height:132px}.g b{font-size:66px}.g span{font-size:20px}
 .mese{font-size:40px;margin-top:4px}
 .riga{font-size:32px}.dove{margin-top:8px}
 .loghi{margin-top:auto}.loghi img{width:78px;height:78px}.loghi p{font-size:24px}
-.fum{font-size:26px}
+.fum{font-size:23px}.sp{height:36px}
 """, f"""<div class="banda"></div><img class="logo" src="{IMG['logo']}" alt="#ioleggoperché 2026">
 <h1>Dona <em>un libro</em><br>alla tua classe</h1><p class="sub">{I['sottotitolo']}</p>
 <img class="ill" src="{IMG['comunita']}" alt="">
@@ -100,13 +101,13 @@ h1{font-size:136px;margin-top:30px}.sub{font-size:54px;margin-top:12px}
 .mese{font-size:56px;margin-top:8px}
 .riga{font-size:44px;margin-top:6px}.dove{margin-top:16px}
 .loghi{margin-top:auto}.loghi img{width:118px;height:118px}.loghi p{font-size:34px}
-.fum{font-size:31px}
+.fum{font-size:30px}
 """, f"""<div class="banda"></div><div class="banda b2"></div><img class="logo" src="{IMG['logo']}" alt="#ioleggoperché 2026">
 <h1>Dona <em>un libro</em><br>alla tua classe</h1><p class="sub">{I['sottotitolo']}</p>
 <img class="ill" src="{IMG['lettrici']}" alt="">
 {blocco_giorni(1)}<p class="mese">{I['mese']}</p>
 <p class="riga">{CLOCK} {I['orari']}</p><p class="riga dove">{PIN} {I['luogo']}</p><p class="riga">{I['indirizzo']}</p>
-{fumetto()}{loghi()}""")
+{fumetto(True)}{loghi()}""")
 
 # 3. infografica "Come funziona" 1080x1350
 PASSI = [("Vieni a trovarci", f"sabato e domenica 7-8 e 14-15 {I['mese']}, {I['orari']}, alla {I['luogo']}."),
@@ -145,11 +146,11 @@ BANNER = pagina(1200, 630, """
 .mese{font-size:30px;margin-top:2px}.riga{font-size:22px;justify-content:flex-start}
 .dx{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px 26px 22px 0}
 .ill{width:560px;height:380px}.loghi img{width:56px;height:56px}.loghi p{font-size:18px}
-.fum{font-size:17px}
+.fum{font-size:17px}.sp{height:12px}
 """, f"""<div class="banda"></div><div class="sx"><img class="logo" src="{IMG['logo']}" alt="#ioleggoperché 2026">
 <h1>Dona <em>un libro</em><br>alla tua classe</h1><p class="sub">{I['sottotitolo']}</p>
 {blocco_giorni(1)}<p class="mese" style="text-align:left">{I['mese']} · {I['orari']}</p><p class="riga">{PIN} {I['luogo']} · {I['indirizzo']}</p></div>
-<div class="dx"><img class="ill" src="{IMG['comunita']}" alt="">{fumetto()}{loghi()}</div>""")
+<div class="dx"><img class="ill" src="{IMG['comunita']}" alt="">{fumetto(True)}{loghi()}</div>""")
 
 # 5. locandina A4 (210x297 mm = 794x1123 px a 96 dpi)
 A4 = pagina(794, 1123, """
@@ -162,7 +163,7 @@ h1{font-size:82px;margin-top:12px}.sub{font-size:36px;margin-top:4px}
 .mese{font-size:32px;margin-top:2px}
 .riga{font-size:25px}.dove{margin-top:4px}
 .loghi{margin-top:auto}.loghi img{width:70px;height:70px}.loghi p{font-size:20px}
-.fum{font-size:19px}
+.fum{font-size:17px}
 """, f"""<div class="banda"></div><div class="banda b2"></div><img class="logo" src="{IMG['logo']}" alt="#ioleggoperché 2026">
 <h1>Dona <em>un libro</em><br>alla tua classe</h1><p class="sub">{I['sottotitolo']}</p>
 <img class="ill" src="{IMG['comunita']}" alt="">
@@ -192,7 +193,7 @@ h1{font-size:66px;margin-top:8px}.sub{font-size:30px;margin-top:2px}
 .mese{font-size:28px;margin-top:2px}
 .riga{font-size:22px}.dove{margin-top:2px}
 .loghi{margin-top:auto}.loghi img{width:64px;height:64px}.loghi p{font-size:19px}
-.fum{font-size:18px}
+.fum{font-size:16px}
 """, f"""<div class="banda"></div><div class="banda b2"></div><img class="logo" src="{IMG['logo']}" alt="#ioleggoperché 2026">
 <p class="anche">Anche la nostra scuola partecipa!</p>
 <h1>Dona <em>un libro</em><br>alla tua classe</h1><p class="sub">{I['sottotitolo']}</p>
