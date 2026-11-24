@@ -241,6 +241,15 @@ button.cam{font-size:26px;padding:0 18px;border-radius:10px;border:2px solid var
     <h2>Catalogo di riferimento</h2>
     <p class="muted" id="infoCatalogo"></p>
   </div>
+  <div class="card" style="border-color:#f0c4bf">
+    <h2>Ricomincia da zero</h2>
+    <p>Serve per cancellare le prove e partire con l’inventario vero. Prima di cancellare, il gestionale <b>scarica da solo un backup</b> (cartella Download del tablet): se cambiate idea, lo ripristinate da qui sopra.</p>
+    <div class="riga">
+      <button class="btn rosso" id="azzeraCopie">Azzera copie e movimenti<br><span class="muted">tiene le schede dei libri con i prezzi</span></button>
+      <button class="btn rosso" id="azzeraTutto">Cancella tutto<br><span class="muted">libri, vendite e movimenti</span></button>
+    </div>
+    <p class="muted">Le impostazioni (nome, sconti, scorta minima) restano come sono.</p>
+  </div>
 </section>
 </main>
 
@@ -951,6 +960,28 @@ $('#salvaImp').onclick=()=>{
   i.scorta_min=parseInt($('#impScorta').value)||0; i.sconto_fornitore=pnum($('#impScForn').value)??30; i.suono=$('#impSuono').checked;
   salva(); toast('Impostazioni salvate','ok');
 };
+function ricominciaDaZero(soloCopie){
+  const nLibri=Object.keys(S.libri).length;
+  const cosa = soloCopie
+    ? `Tutte le copie torneranno a 0 e verranno cancellati vendite, arrivi e movimenti. Le ${nLibri} schede dei libri restano.`
+    : `Verranno cancellati ${nLibri} libri, ${S.vendite.length} vendite e tutti i movimenti.`;
+  if(!confirm(cosa+'\n\nPrima scarico un backup di sicurezza. Continuare?')) return;
+  scarica(`backup-prima-di-azzerare-${oggiNome()}.json`, JSON.stringify(S), 'application/json');
+  const r = prompt('Per confermare scrivi AZZERA (in maiuscolo):');
+  if((r||'').trim()!=='AZZERA'){ toast('Annullato: non è stato cancellato niente'); return; }
+  if(soloCopie){
+    for(const l of Object.values(S.libri)){ l.quantita=0; l.ultimo_arrivo=null; l.conto_vendita=false; l.aggiornato=adesso(); }
+    S.movimenti=[]; S.vendite=[]; S.inventario=null;
+  } else {
+    const imp=S.impostazioni; S=statoVuoto(); S.impostazioni=imp;
+  }
+  S.ultimo_backup=adesso();
+  carrello=[]; arrivo=[];
+  salva(); renderCassa(); renderArrivi(); renderAttivo();
+  toast(soloCopie?'Fatto: copie a zero, schede dei libri conservate':'Fatto: il gestionale è vuoto','ok');
+}
+$('#azzeraCopie').onclick=()=>ricominciaDaZero(true);
+$('#azzeraTutto').onclick=()=>ricominciaDaZero(false);
 
 /* ===== Fotocamera (Chrome su Android: BarcodeDetector) ===== */
 const CAM = {stream:null, det:null, tab:null, attivo:false, ultimo:'', quando:0, conferma:'', timer:null, luce:false};
